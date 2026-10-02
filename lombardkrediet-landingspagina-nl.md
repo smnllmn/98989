@@ -1,8 +1,8 @@
 HEADER
-FINANCIER UW PROJECTEN, PRIVÉ OF ZAKELIJK
+FINANCIER UW PROJECTEN
 ZONDER UW BELEGGINGEN TE VERKOPEN
 
-Een privéproject realiseren, een zakelijke opportuniteit grijpen of een investering financieren? Een Lombardkrediet geeft u extra financiële ruimte, met uw beleggingsportefeuille als waarborg. Zo blijft uw vermogen voor u werken terwijl u uw plannen waarmaakt.
+Uw plannen of uw portefeuille? Met een Lombardkrediet hoeft u niet te kiezen. Uw portefeuille blijft belegd, terwijl u middelen vrijmaakt voor uw persoonlijke of zakelijke plannen.
 
 Let op, geld lenen kost ook geld.
 [CTA: Bespreek uw mogelijkheden]
