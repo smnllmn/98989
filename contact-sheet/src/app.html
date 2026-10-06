@@ -104,7 +104,7 @@ body { background: var(--ps-bg); color: var(--ps-ink); }
   stroke-width: 3.2; stroke-linecap: round; filter: drop-shadow(0 1px 2px var(--ps-scrim)); }
 .ps-mark--keep { top: 22px; left: 18px; color: var(--ps-red); transform: rotate(-11deg); }
 .ps-mark--pass { top: 22px; right: 18px; color: var(--ps-pass); transform: rotate(9deg); }
-.ps-mark--hero { bottom: 26px; left: 50%; color: var(--ps-yellow); transform: translateX(-50%) rotate(-4deg); }
+.ps-mark--hero { bottom: 26px; left: 50%; color: var(--ps-yellow); transform: translateX(-50%) rotate(-4deg); font-size: 1.8rem; white-space: nowrap; }
 
 .ps-done { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px;
   text-align: center; border: 1.5px dashed var(--ps-line); border-radius: 4px; }
@@ -200,15 +200,15 @@ body { background: var(--ps-bg); color: var(--ps-ink); }
         <div class="ps-banner" id="ps-banner" hidden></div>
 
         <section class="ps-swipe" id="ps-view-swipe">
-          <div class="ps-stack" id="ps-stack" tabindex="0" aria-label="Photo to judge. Use arrow keys: left to pass, right to keep, up for hero."></div>
+          <div class="ps-stack" id="ps-stack" tabindex="0" aria-label="Photo to judge. Use arrow keys: left to pass, right to keep, up for unstoppable."></div>
           <div class="ps-actions">
             <button type="button" class="ps-act ps-act--pass" id="ps-btn-pass" aria-label="Pass">
               <span class="ps-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
               <span class="ps-act-label">Pass ←</span>
             </button>
-            <button type="button" class="ps-act ps-act--hero" id="ps-btn-hero" aria-label="Hero shot">
+            <button type="button" class="ps-act ps-act--hero" id="ps-btn-hero" aria-label="Unstoppable">
               <span class="ps-btn"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></span>
-              <span class="ps-act-label">Hero ↑</span>
+              <span class="ps-act-label">Unstoppable ↑</span>
             </button>
             <button type="button" class="ps-act ps-act--keep" id="ps-btn-keep" aria-label="Keep">
               <span class="ps-btn"><svg viewBox="0 0 24 24"><path d="M12 20.3s-7.6-4.6-7.6-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.6 2.7c0 5.6-7.6 10.2-7.6 10.2z"/></svg></span>
@@ -245,8 +245,12 @@ body { background: var(--ps-bg); color: var(--ps-ink); }
     listTitle: 'PhotoSwipes',
     // Leave empty to use the site this page lives on, or set e.g.
     // 'https://contoso.sharepoint.com/sites/photo-poc'
-    siteUrl: ''
+    siteUrl: '',
+    // Words shown for each choice. The list always stores the codes keep / pass / hero,
+    // so you can rename these later without splitting the data.
+    labels: { keep: 'Keep', pass: 'Pass', hero: 'Unstoppable' }
   };
+  var L = CONFIG.labels;
   /* ===================================================== */
 
   var NOMETA = 'application/json;odata=nometadata';
@@ -440,9 +444,9 @@ body { background: var(--ps-bg); color: var(--ps-ink); }
     var p = byId[id];
     return '<div class="ps-print"><div class="ps-photo">' +
       '<img alt="' + esc(p.caption) + '" draggable="false" src="' + esc(p.src) + '">' +
-      '<span class="ps-mark ps-mark--keep">Keep' + MARK_KEEP + '</span>' +
-      '<span class="ps-mark ps-mark--pass">Pass' + MARK_PASS + '</span>' +
-      '<span class="ps-mark ps-mark--hero">Hero' + MARK_HERO + '</span>' +
+      '<span class="ps-mark ps-mark--keep">' + esc(L.keep) + MARK_KEEP + '</span>' +
+      '<span class="ps-mark ps-mark--pass">' + esc(L.pass) + MARK_PASS + '</span>' +
+      '<span class="ps-mark ps-mark--hero">' + esc(L.hero) + MARK_HERO + '</span>' +
       '</div><div class="ps-cap"><span class="ps-frame">' + frameNo(id) + '</span>' +
       '<span class="ps-title">' + esc(p.caption) + '</span><span class="ps-credit">' + esc(p.credit) + '</span></div></div>';
   }
@@ -608,7 +612,7 @@ body { background: var(--ps-bg); color: var(--ps-ink); }
       '<div class="ps-stat"><span class="ps-mono">Swipes</span><b>' + nVotes + '</b></div>' +
       '<div class="ps-stat"><span class="ps-mono">Avg decision</span><b>' + (nVotes ? (totalMs / nVotes / 1000).toFixed(1) + ' s' : '–') + '</b></div></div>';
     if (hasExamples) html += '<p class="ps-note">Includes 4 example reviewers so the ranking has something to show. They only appear in demo mode, never on SharePoint.</p>';
-    html += '<div class="ps-legend"><span><i style="background:var(--ps-red)"></i>Keep</span><span><i style="background:var(--ps-yellow)"></i>Hero (counts as keep)</span><span><i style="background:var(--ps-line)"></i>Pass</span></div>';
+    html += '<div class="ps-legend"><span><i style="background:var(--ps-red)"></i>' + esc(L.keep) + '</span><span><i style="background:var(--ps-yellow)"></i>' + esc(L.hero) + ' (counts as ' + esc(L.keep.toLowerCase()) + ')</span><span><i style="background:var(--ps-line)"></i>' + esc(L.pass) + '</span></div>';
     html += '<ol class="ps-list">';
     rows.forEach(function (r, i) {
       var my = mine[r.p.id];
@@ -618,8 +622,8 @@ body { background: var(--ps-bg); color: var(--ps-ink); }
         '<div class="ps-mid"><div class="ps-mid-top"><strong>' + esc(r.p.caption) + '</strong></div>' +
         '<div class="ps-bar" aria-hidden="true"><i class="k" style="width:' + (r.n ? r.keep / r.n * 100 : 0) + '%"></i><i class="h" style="width:' + (r.n ? r.hero / r.n * 100 : 0) + '%"></i></div>' +
         '<div class="ps-meta"><span class="ps-mono">' + r.n + ' vote' + (r.n === 1 ? '' : 's') + (r.n ? ' · ' + (r.ms / 1000).toFixed(1) + ' s' : '') + '</span>' +
-        (my ? '<span class="ps-chip ' + my + '">You: ' + my + '</span>' : '') +
-        (r.hero ? '<span class="ps-chip hero">' + r.hero + ' hero</span>' : '') +
+        (my ? '<span class="ps-chip ' + my + '">You: ' + esc(L[my] || my) + '</span>' : '') +
+        (r.hero ? '<span class="ps-chip hero">' + r.hero + '× ' + esc(L.hero) + '</span>' : '') +
         (split ? '<span class="ps-chip">Split decision</span>' : '') + '</div></div>' +
         '<div class="ps-pct">' + (r.n ? Math.round(r.rate * 100) + '%' : '–') + '<small>kept</small></div></li>';
     });
@@ -771,6 +775,11 @@ body { background: var(--ps-bg); color: var(--ps-ink); }
     });
     $('ps-tab-swipe').addEventListener('click', function () { setView('swipe'); });
     $('ps-tab-results').addEventListener('click', function () { setView('results'); });
+    [['pass', ' ←'], ['hero', ' ↑'], ['keep', ' →']].forEach(function (b) {
+      var btn = $('ps-btn-' + b[0]);
+      btn.setAttribute('aria-label', L[b[0]]);
+      btn.querySelector('.ps-act-label').textContent = L[b[0]] + b[1];
+    });
     $('ps-btn-pass').addEventListener('click', function () { fly('pass'); });
     $('ps-btn-keep').addEventListener('click', function () { fly('keep'); });
     $('ps-btn-hero').addEventListener('click', function () { fly('hero'); });
