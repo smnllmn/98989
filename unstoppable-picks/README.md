@@ -1,18 +1,18 @@
-# Photo Swipe: a photo swipe app for SharePoint
+# Unstoppable Picks: a photo swipe app for SharePoint
 
-People swipe through photos: right for **Top**, left for **Flop**, up for **Unstoppable**. The photos live in a SharePoint document library, and every swipe is saved to a SharePoint list. The Results tab ranks the photos live, anonymously. The look follows the Belfius app: raspberry stage, glass tiles, white sheets, Montserrat. It speaks Dutch, French and English.
+People swipe through photos: right for **Top**, left for **Flop**, up for **Unstoppable**. The photos live in a SharePoint document library, and every swipe is saved to a SharePoint list. Only admins see the results: a live, anonymous ranking they reveal, for example full-screen with Present. The look follows the Belfius app: raspberry stage, glass tiles, white sheets, Montserrat. It speaks Dutch, French and English.
 
 | File | Use it for |
 | --- | --- |
-| `photo-swipe.html` | **Paste this into the custom-script module.** The app and its font, about 200 KB, no photos inside. |
-| `photo-swipe-demo.html` | Opening on a laptop without SharePoint. It has 10 sample photos and 4 example reviewers. |
+| `unstoppable-picks.html` | **Paste this into the custom-script module.** The app and its font, about 200 KB, no photos inside. |
+| `unstoppable-picks-demo.html` | Opening on a laptop without SharePoint. It has 10 sample photos and 4 example reviewers. |
 
 The name is a setting: `title` at the top of the script. It can be one name, or one per language (`{ nl: '…', fr: '…', en: '…' }`).
 
 ## Setup (about 5 minutes)
 
 1. **Pick the site.** Use a site where the custom-script module runs JavaScript (the one v1 worked on). The intranet-news site reports custom script as *off*. Make both admins **site owners** on that site.
-2. **Paste** `photo-swipe.html` into the custom-script module on a page and publish it.
+2. **Paste** `unstoppable-picks.html` into the custom-script module on a page and publish it.
 3. **Open the page as an admin.** You get *Set up this site*. Click **Set up now**. This creates:
    - `SwipePhotos`: a document library for the photos.
    - `PhotoSwipes`: a list for the votes, with the columns `Verdict`, `DwellMs` and `PhotoName`. It is locked so that people can only read their own rows.
@@ -36,25 +36,22 @@ Use this if you can't use **Set up now**:
   - Read access: *Read items that were created by the user*
   - Create and Edit access: *Create items and edit items that were created by the user*
 
-## Anonymous results
+## Results are for admins only
 
-Everyone sees the same totals per photo. Nobody sees who chose what. Each person only sees their own picks ("You: Top") and how often they agree with the group.
+Players never see results. They have no Results tab, no Present, and no "see the results" button. When they finish, they get a thank-you saying the organisers will reveal the results. There is no setting that changes this.
 
-How it works:
-
-- **Reviewers** only ever load their own votes. Their Results tab shows totals that an admin's screen publishes into the photo library, as `photo-swipe-results.json`. That file holds counts per photo and no names.
-- **Admins** load every vote. While an admin has the app open (any tab, for example Present during the session), their screen refreshes those totals every 10 seconds. If no admin has the app open, reviewers see the last published totals, with their time.
+- **Players' browsers** only ever load their own votes. Nothing else about the results reaches them.
+- **Admins** see the live ranking, without names, and can show it full-screen with **Present**.
 - **The votes list** is locked: people can only read their own rows, even when they open the list in SharePoint. Only site owners see every row, which is why admins must be site owners.
   - If the list isn't locked yet (an older list, or one made by hand), the Manage tab shows a warning with a **Lock it down** button.
-  - If an admin isn't a site owner, the Manage tab says so.
+  - If an admin isn't a site owner, the Manage tab says the results are incomplete.
   - **⋮ → Connection details** shows the privacy state.
-
-To switch this off, set `anonymous: false`. Every browser then reads all votes, which is simpler, but anyone can open the list and see names.
+  - `anonymous: false` only leaves the votes list unlocked. Players still never see results.
 
 ## Who can do what
 
-- **`allowedEmails`** can open the app, swipe and see results.
-- **`adminEmails`** also get the Manage tab and publish the totals. Simon and Tijs are admins. Admins don't need to be on the allowed list as well.
+- **`allowedEmails`** are the players: they can open the app and swipe.
+- **`adminEmails`** also get Results, Present and Manage. Simon and Tijs are admins. Admins don't need to be on the allowed list as well.
 - Everyone else gets *This photo round is private*, which shows the exact address to add.
 
 The lists are at the top of the script (search for `CONFIG`). Matching is not case-sensitive and uses the email, UPN and login name.
@@ -63,7 +60,7 @@ These lists only control what the app shows. The real protection is SharePoint p
 
 **Checking what others see.** In the ⋮ menu, admins have:
 
-- **View as reviewer**: no Manage tab, and only your own votes plus the published totals, exactly like a reviewer. A banner takes you back.
+- **View as reviewer**: exactly what players see. No tabs, no results, only your own votes. A banner takes you back.
 - **Preview the locked screen**: what colleagues outside the list see.
 
 ## What gets saved
@@ -97,9 +94,9 @@ All settings are at the top of the script, in `CONFIG`:
 
 | Setting | Default |
 | --- | --- |
-| `title` | `Photo Swipe`, or one name per language |
+| `title` | `Unstoppable Picks`, or one name per language |
 | `allowedEmails`, `adminEmails` | See *Who can do what* |
-| `anonymous` | `true` |
+| `anonymous` | `true`: lock the votes list so people only read their own rows |
 | `photoLibrary`, `votesList` | `SwipePhotos`, `PhotoSwipes` |
 | `siteUrl` | Empty, meaning this site. Set it to keep the data on another site in the same tenant. |
 | `language` | `auto`, which follows each person's SharePoint language. Or `nl`, `fr`, `en`. People can also switch in the ⋮ menu. |

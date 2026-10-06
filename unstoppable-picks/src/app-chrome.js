@@ -45,8 +45,9 @@
   }
 
   function renderTabs() {
-    $('ps-tabs').hidden = !!S.gate;
     $('ps-tab-manage').hidden = !S.admin;
+    $('ps-tab-results').hidden = !canSeeResults();
+    $('ps-tabs').hidden = !!S.gate || !S.admin;   // players only swipe: no tab bar at all
     ['swipe', 'results', 'manage'].forEach(function (v) {
       var b = $('ps-tab-' + v);
       b.setAttribute('aria-selected', String(S.view === v));
@@ -96,7 +97,7 @@
       ['nl', 'fr', 'en'].map(function (l) {
         return '<button type="button" data-act="lang" data-id="' + l + '" aria-pressed="' + (S.lang === l) + '" lang="' + l + '">' + l.toUpperCase() + '</button>';
       }).join('') + '</div></div>' +
-      (canFull() && S.allowed && !S.gate ? '<button type="button" class="ps-mi" data-act="present">' + icon(P.present) + T(isFull() ? 'exitPresent' : 'present') + '</button>' : '') +
+      (canFull() && canSeeResults() && !S.gate ? '<button type="button" class="ps-mi" data-act="present">' + icon(P.present) + T(isFull() ? 'exitPresent' : 'present') + '</button>' : '') +
       (S.realAdmin && !S.gate ? '<button type="button" class="ps-mi" data-act="as-reviewer" data-id="' + (S.asReviewer ? 'off' : 'on') + '">' + icon(P.eye) + T(S.asReviewer ? 'viewAsAdmin' : 'viewAsReviewer') + '</button>' +
         '<button type="button" class="ps-mi" data-act="preview-lock">' + icon(P.lock) + T('previewLock') + '</button>' : '') +
       '<button type="button" class="ps-mi" data-act="view" data-id="details">' + icon(P.info) + T('details') + '</button>' +
@@ -158,7 +159,7 @@
   }
 
   function setView(v) {
-    if (v === 'manage' && !S.admin) v = 'swipe';
+    if ((v === 'manage' && !S.admin) || (v === 'results' && !canSeeResults())) v = 'swipe';
     if (v === 'details' && S.view !== 'details') S.prevView = S.view;
     if (v !== S.view) hideToast();
     S.view = v;

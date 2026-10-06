@@ -192,19 +192,17 @@
     setView(S.view);
   }
 
-  // Reviewers in anonymous mode get their own votes plus the published totals; everyone else gets all votes.
+  // Players only ever load their own votes. Admins load every vote they can see.
   async function loadVotesForRole() {
     try {
       var r = await loadSpVotes(0);
       S.votes = r.votes.concat(S.votes.filter(function (v) { return !v.spId && !v.example; }));
       S.maxVoteId = r.maxId;
-      S.summary = null;
-      if (useSummary()) await loadSummary(); else S.updatedAt = new Date();
+      S.updatedAt = new Date();
     } catch (e) { S.lastError = e.message; }
-    schedulePublish();
   }
 
-  // Lets admins see exactly what reviewers see: no Manage tab, and in anonymous mode only their own votes.
+  // Lets admins see exactly what players see: no Manage, no Results, only their own votes.
   async function setReviewerView(on) {
     S.asReviewer = !!on;
     S.admin = S.realAdmin && !S.asReviewer;

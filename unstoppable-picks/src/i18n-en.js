@@ -69,13 +69,14 @@
     errNoVerdict: 'The list “{list}” has no Verdict column',
     libDescription: 'Photos for the {title} app.',
     listDescription: 'Swipes from the {title} app. Title = ID of the photo in the photo library.',
-    anonymous: 'Anonymous', noSummary: 'The results appear here as soon as an organiser has the app open.',
+    anonymous: 'Anonymous',
     viewAsReviewer: 'View as reviewer', viewAsAdmin: 'Back to admin view',
     reviewerBanner: 'You’re seeing the app the way reviewers see it.', reviewerOn: 'Reviewer view on', reviewerOff: 'Back in admin view',
     listOpen: 'Anyone with access to this site can still open the votes list and see who chose what.', lockVotes: 'Lock it down',
     lockedDone: 'Votes list locked: everyone can only see their own votes.',
     lockFail: 'Couldn’t lock the votes list ({err}). The README has the manual steps.',
-    notOwner: 'You only see your own votes in the locked list, so your screen can’t publish the totals. Make the admins site owners.',
+    notOwner: 'In the locked votes list you only see your own votes, so your results are incomplete. Make the admins site owners.',
     dPrivacy: 'Privacy', sNotAnon: 'not anonymous', sLocked: 'anonymous, votes list locked',
-    sOpenList: 'anonymous in the app, but the votes list is still open', sAnon: 'anonymous'
+    sOpenList: 'anonymous in the app, but the votes list is still open', sAnon: 'anonymous',
+    doneTitleThanks: 'Thanks for voting', resultsLater: 'The organisers will reveal the results.'
   };

@@ -3,8 +3,8 @@
 Usage: python3 build.py
 
 Writes two files:
-  photo-swipe.html       for SharePoint: the app and its font, no photos (photos come from the library)
-  photo-swipe-demo.html  the same app with the sample photos embedded, for trying it outside SharePoint
+  unstoppable-picks.html       for SharePoint: the app and its font, no photos (photos come from the library)
+  unstoppable-picks-demo.html  the same app with the sample photos embedded, for trying it outside SharePoint
 """
 import base64
 import json
@@ -52,7 +52,7 @@ def page(extra_head=""):
     parts = [read(JS_PARTS[0]), "  var I18N = {};"] + [read(name) for name in JS_PARTS[1:]]
     js = "\n\n".join(p.rstrip() for p in parts)
     return (
-        "<title>Photo Swipe</title>\n"
+        "<title>Unstoppable Picks</title>\n"
         "<style>\n" + css + "</style>\n\n"
         + read("markup.html") + "\n"
         + extra_head
@@ -60,7 +60,7 @@ def page(extra_head=""):
     )
 
 
-for name, html in (("photo-swipe.html", page()), ("photo-swipe-demo.html", page(demo_photos()))):
+for name, html in (("unstoppable-picks.html", page()), ("unstoppable-picks-demo.html", page(demo_photos()))):
     out = here / name
     out.write_text(html, encoding="utf-8")
     print(f"wrote {name} ({out.stat().st_size // 1024} KB)")

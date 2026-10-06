@@ -49,7 +49,6 @@
         var id = await spAddVote(job.v);
         job.v.spId = id;
         S.saved++;
-        schedulePublish();
         if (S.queue[0] === job) S.queue.shift();
         if (job.cancelled && id) { try { await spRecycle(votesPath(), id); } catch (e) { /* the next swipe on this photo overrides it anyway */ } }
       } catch (e) {
@@ -90,7 +89,6 @@
       if (qi !== -1 && !job.sending) S.queue.splice(qi, 1);
       else if (job && job.sending) job.cancelled = true;
       else if (v.spId) spRecycle(votesPath(), v.spId).catch(function (e) { S.lastError = e.message; });
-      schedulePublish();
       var fi = S.failed.indexOf(v);
       if (fi !== -1) S.failed.splice(fi, 1);
       persistPending();
@@ -310,7 +308,12 @@
     }
     var mine = myVotes();
     var keeps = S.photos.filter(function (p) { return mine[p.id] && mine[p.id] !== 'pass'; }).length;
-    return panel('done', icon(P.check), t('doneTitle'), t('doneText', { keep: keeps, total: S.photos.length, keepLabel: L('keep') }),
+    var text = t('doneText', { keep: keeps, total: S.photos.length, keepLabel: L('keep') });
+    if (!canSeeResults()) {
+      return panel('done', icon(P.check), t('doneTitleThanks'), text + ' ' + t('resultsLater'),
+        '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'));
+    }
+    return panel('done', icon(P.check), t('doneTitle'), text,
       '<button type="button" class="ps-btn" data-act="view" data-id="results">' + T('seeResults') + '</button>' +
       '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'));
   }
@@ -428,5 +431,5 @@
   function voteToast(v) {
     var p = S.byId[v.photo] || {};
     showToast('<span class="ps-toast-dot ps-toast-dot--' + v.verdict + '"></span><span class="ps-toast-text">' + esc(L(v.verdict)) + ' · ' + esc(p.caption || '') +
-      '</span><button type="button" data-act="undo">' + icon(P.undo) + T('undo') + '</button>');
+      '</span><button type="button" data-act="undo" aria-label="' + T('undo') + '">' + icon(P.undo) + '<span class="ps-undo-label">' + T('undo') + '</span></button>');
   }

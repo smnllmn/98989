@@ -7,11 +7,10 @@
   var SITE = (CONFIG.siteUrl || (CTX && CTX.webAbsoluteUrl) ||
     (location.origin + ((location.pathname.match(/^\/(sites|teams)\/[^/]+/i) || [''])[0]))).replace(/\/$/, '');
   var ORIGIN = (function () { try { return new URL(SITE).origin; } catch (e) { return location.origin; } })();
-  var KEY = 'photo-swipe:v2:';
+  var KEY = 'unstoppable-picks:v2:';
   var IMG_RE = /\.(jpe?g|png|webp|gif|avif)$/i;
   var LARGE = 1.5 * 1024 * 1024;
   var VERDICTS = ['keep', 'pass', 'hero'];
-  var SUMMARY_FILE = 'photo-swipe-results.json';
   var LOCALES = { nl: 'nl-BE', fr: 'fr-BE', en: 'en-GB' };
 
   var APP = null;
@@ -34,7 +33,7 @@
     view: 'swipe', prevView: 'swipe', menu: false,
     queue: [], failed: [], saved: 0, lastError: '',
     uploads: [], confirmRemove: null, shrinking: null, savedCaption: null,
-    summary: null, updatedAt: null, polling: false, previewLocked: false
+    updatedAt: null, polling: false, previewLocked: false
   };
 
   /* ---------- small helpers ---------- */
@@ -58,7 +57,7 @@
   function locale() { return LOCALES[S.lang] || 'en-GB'; }
   function appTitle() {
     var x = CONFIG.title;
-    return String((x && typeof x === 'object' ? x[S.lang] || x.en || x[Object.keys(x)[0]] : x) || 'Photo Swipe');
+    return String((x && typeof x === 'object' ? x[S.lang] || x.en || x[Object.keys(x)[0]] : x) || 'Unstoppable Picks');
   }
   function pct(x) { var n = Math.round(x * 100); return S.lang === 'fr' ? n + '\u202f%' : n + '%'; }
   function secs(ms) { return (ms / 1000).toLocaleString(locale(), { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '\u00a0s'; }
@@ -95,10 +94,9 @@
     MEM[k] = v;
     try { if (v == null) localStorage.removeItem(KEY + k); else localStorage.setItem(KEY + k, JSON.stringify(v)); } catch (e) { /* keep in memory */ }
   }
-  // Anonymous mode: only admins who can read every row load all votes; everyone else loads their own
-  // votes and reads the totals an admin's screen publishes.
-  function seesAll() { return !CONFIG.anonymous || (S.admin && S.list.seeAll !== false); }
-  function useSummary() { return S.mode === 'sharepoint' && S.store === 'sharepoint' && !seesAll(); }
+  // Results are for admins only. Players never see them and only ever load their own votes.
+  function canSeeResults() { return !!S.admin; }
+  function seesAll() { return !!S.admin && S.list.seeAll !== false; }
 
   function reduced() { return !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches); }
 
@@ -251,7 +249,7 @@
     }
   }
 
-  // Item-level permissions on the votes list: read and edit only your own rows. Needs Manage Lists rights.
+  // Item-level permissions on the votes list: people read and edit only their own rows. Needs Manage Lists rights.
   async function lockVotes() {
     await spSend(votesPath(), {
       json: { __metadata: { type: 'SP.List' }, ReadSecurity: 2, WriteSecurity: 2 },
@@ -296,7 +294,7 @@
     var photos = [], skipped = 0;
     rows.forEach(function (r) {
       var name = r.FileLeafRef || '';
-      if (!IMG_RE.test(name)) { if (name !== SUMMARY_FILE) skipped++; return; }
+      if (!IMG_RE.test(name)) { skipped++; return; }
       var ref = r.FileRef || '';
       var inLib = root && ref.toLowerCase().indexOf(root + '/') === 0 ? ref.slice(root.length + 1) : name;
       var title = String(r.Title || '').trim();

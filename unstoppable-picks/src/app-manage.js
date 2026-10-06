@@ -208,7 +208,6 @@
       else if (p.local) URL.revokeObjectURL(p.src);
       setPhotos(S.photos.filter(function (x) { return x.id !== id; }));
       delete S.done[id];
-      schedulePublish();
       toastText(t(S.mode === 'sharepoint' ? 'removed' : 'removedDemo', { name: p.caption }));
     } catch (e) {
       S.lastError = e.message;

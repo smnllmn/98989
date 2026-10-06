@@ -1,7 +1,7 @@
   /* ===== Settings: the only part you normally edit ===== */
   var CONFIG = {
     // App name. One name for every language, or one per language: { nl: '…', fr: '…', en: '…' }
-    title: 'Photo Swipe',
+    title: 'Unstoppable Picks',
 
     // Who can open the app. Not case-sensitive. If someone gets the locked screen,
     // it shows the exact address SharePoint reports for them: add that one.
@@ -18,10 +18,9 @@
       'tijs.verthe@belfius.be'
     ],
 
-    // Anonymous voting. Reviewers only ever load their own votes; their Results tab shows totals
-    // published by an admin's screen, never who chose what. Setup also locks the votes list so
-    // people can only read their own rows in SharePoint. Set to false to let everyone's browser
-    // read all votes (simpler, but anyone can then open the list and see names).
+    // Results are only ever shown to admins; players never see them. Players' browsers only load their
+    // own votes. With anonymous on, setup also locks the votes list so that in SharePoint people can
+    // only read their own rows (site owners still see everything). false leaves the list open.
     anonymous: true,
 
     // Document library that holds the photos, and the list that collects the swipes.

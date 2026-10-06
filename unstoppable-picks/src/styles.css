@@ -1,4 +1,4 @@
-/* Photo Swipe. Belfius look: raspberry stage with a magenta glow, glass tiles, white sheets, Montserrat. */
+/* Unstoppable Picks. Belfius look: raspberry stage with a magenta glow, glass tiles, white sheets, Montserrat. */
 /*FONT-FACE*/
 .ps {
   --b-raspberry: #C30045;
@@ -45,7 +45,8 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps *, .ps *::before, .ps *::after { box-sizing: border-box; }
 .ps [hidden] { display: none !important; }
 .ps button { font: inherit; color: inherit; cursor: pointer; margin: 0; }
-.ps button:focus-visible, .ps a:focus-visible, .ps label:focus-within, .ps-stack:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.ps button:focus-visible, .ps a:focus-visible, .ps label:focus-within { outline: 3px solid #fff; outline-offset: 3px; }
+.ps-stack:focus-visible { outline: 2px solid rgba(255, 255, 255, .55); outline-offset: 8px; }
 .ps-sheet button:focus-visible, .ps-sheet a:focus-visible, .ps-panel button:focus-visible, .ps-menu button:focus-visible { outline-color: var(--b-magenta); }
 .ps h2, .ps h3, .ps p { margin: 0; }
 .ps img { max-width: none; }
@@ -206,6 +207,7 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-toast-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ps-toast button { flex: none; display: inline-flex; align-items: center; gap: 6px; border: 0; border-radius: 999px; padding: 7px 14px; background: #fff; color: var(--b-magenta); font-weight: 700; font-size: .82rem; }
 .ps-toast button .ps-ic { width: 16px; height: 16px; }
+@container ps (max-width: 480px) { .ps-undo-label { display: none; } .ps-toast button { padding: 8px 10px; } }
 .ps-toast-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: #fff; }
 .ps-toast-dot--keep { background: #FF5DB1; }
 .ps-toast-dot--pass { background: #9AA6B0; }
