@@ -1,7 +1,7 @@
   /* ===== Settings: the only part you normally edit ===== */
   var CONFIG = {
     // App name. One name for every language, or one per language: { nl: '…', fr: '…', en: '…' }
-    title: 'Unstoppable Picks',
+    title: 'Unstoppable Photos',
 
     // Who can open the app. Not case-sensitive. If someone gets the locked screen,
     // it shows the exact address SharePoint reports for them: add that one.

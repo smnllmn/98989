@@ -62,7 +62,7 @@
     });
 
     document.addEventListener('click', function (e) {
-      if (!alive() || !S.menu) return;
+      if (!alive() || !S.menu || !e.target.isConnected) return;   // a re-rendered menu button is no longer in the page
       if (!e.target.closest('#ps-menu') && !e.target.closest('#ps-menu-btn')) { S.menu = false; renderMenu(); }
     });
 

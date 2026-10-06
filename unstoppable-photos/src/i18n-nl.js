@@ -78,5 +78,5 @@
     notOwner: 'In de afgeschermde stemmenlijst zie je alleen je eigen stemmen, dus je resultaten zijn onvolledig. Maak de beheerders site-eigenaar.',
     dPrivacy: 'Privacy', sNotAnon: 'niet anoniem', sLocked: 'anoniem, stemmenlijst afgeschermd',
     sOpenList: 'anoniem in de app, maar de stemmenlijst is nog open', sAnon: 'anoniem',
-    doneTitleThanks: 'Bedankt voor je stemmen', resultsLater: 'De organisatoren maken de resultaten straks bekend.'
+    doneTitleThanks: 'Bedankt voor je stemmen'
   };

@@ -78,5 +78,5 @@
     notOwner: 'Dans la liste des votes verrouillée, vous ne voyez que vos propres votes\u00a0: vos résultats sont donc incomplets. Rendez les administrateurs propriétaires du site.',
     dPrivacy: 'Confidentialité', sNotAnon: 'non anonyme', sLocked: 'anonyme, liste des votes verrouillée',
     sOpenList: 'anonyme dans l’application, mais la liste des votes est encore ouverte', sAnon: 'anonyme',
-    doneTitleThanks: 'Merci pour vos votes', resultsLater: 'Les organisateurs dévoileront les résultats.'
+    doneTitleThanks: 'Merci pour vos votes'
   };

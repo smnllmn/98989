@@ -7,7 +7,7 @@
   var SITE = (CONFIG.siteUrl || (CTX && CTX.webAbsoluteUrl) ||
     (location.origin + ((location.pathname.match(/^\/(sites|teams)\/[^/]+/i) || [''])[0]))).replace(/\/$/, '');
   var ORIGIN = (function () { try { return new URL(SITE).origin; } catch (e) { return location.origin; } })();
-  var KEY = 'unstoppable-picks:v2:';
+  var KEY = 'unstoppable-photos:v2:';
   var IMG_RE = /\.(jpe?g|png|webp|gif|avif)$/i;
   var LARGE = 1.5 * 1024 * 1024;
   var VERDICTS = ['keep', 'pass', 'hero'];
@@ -57,7 +57,7 @@
   function locale() { return LOCALES[S.lang] || 'en-GB'; }
   function appTitle() {
     var x = CONFIG.title;
-    return String((x && typeof x === 'object' ? x[S.lang] || x.en || x[Object.keys(x)[0]] : x) || 'Unstoppable Picks');
+    return String((x && typeof x === 'object' ? x[S.lang] || x.en || x[Object.keys(x)[0]] : x) || 'Unstoppable Photos');
   }
   function pct(x) { var n = Math.round(x * 100); return S.lang === 'fr' ? n + '\u202f%' : n + '%'; }
   function secs(ms) { return (ms / 1000).toLocaleString(locale(), { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '\u00a0s'; }

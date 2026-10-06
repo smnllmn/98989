@@ -310,7 +310,7 @@
     var keeps = S.photos.filter(function (p) { return mine[p.id] && mine[p.id] !== 'pass'; }).length;
     var text = t('doneText', { keep: keeps, total: S.photos.length, keepLabel: L('keep') });
     if (!canSeeResults()) {
-      return panel('done', icon(P.check), t('doneTitleThanks'), text + ' ' + t('resultsLater'),
+      return panel('done', icon(P.check), t('doneTitleThanks'), text,
         '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'));
     }
     return panel('done', icon(P.check), t('doneTitle'), text,

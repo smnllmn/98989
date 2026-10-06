@@ -1,18 +1,18 @@
-# Unstoppable Picks: a photo swipe app for SharePoint
+# Unstoppable Photos: a photo swipe app for SharePoint
 
 People swipe through photos: right for **Top**, left for **Flop**, up for **Unstoppable**. The photos live in a SharePoint document library, and every swipe is saved to a SharePoint list. Only admins see the results: a live, anonymous ranking they reveal, for example full-screen with Present. The look follows the Belfius app: raspberry stage, glass tiles, white sheets, Montserrat. It speaks Dutch, French and English.
 
 | File | Use it for |
 | --- | --- |
-| `unstoppable-picks.html` | **Paste this into the custom-script module.** The app and its font, about 200 KB, no photos inside. |
-| `unstoppable-picks-demo.html` | Opening on a laptop without SharePoint. It has 10 sample photos and 4 example reviewers. |
+| `unstoppable-photos.html` | **Paste this into the custom-script module.** The app and its font, about 200 KB, no photos inside. |
+| `unstoppable-photos-demo.html` | Opening on a laptop without SharePoint. It has 10 sample photos and 4 example reviewers. |
 
 The name is a setting: `title` at the top of the script. It can be one name, or one per language (`{ nl: '…', fr: '…', en: '…' }`).
 
 ## Setup (about 5 minutes)
 
 1. **Pick the site.** Use a site where the custom-script module runs JavaScript (the one v1 worked on). The intranet-news site reports custom script as *off*. Make both admins **site owners** on that site.
-2. **Paste** `unstoppable-picks.html` into the custom-script module on a page and publish it.
+2. **Paste** `unstoppable-photos.html` into the custom-script module on a page and publish it.
 3. **Open the page as an admin.** You get *Set up this site*. Click **Set up now**. This creates:
    - `SwipePhotos`: a document library for the photos.
    - `PhotoSwipes`: a list for the votes, with the columns `Verdict`, `DwellMs` and `PhotoName`. It is locked so that people can only read their own rows.
@@ -38,7 +38,7 @@ Use this if you can't use **Set up now**:
 
 ## Results are for admins only
 
-Players never see results. They have no Results tab, no Present, and no "see the results" button. When they finish, they get a thank-you saying the organisers will reveal the results. There is no setting that changes this.
+Players never see results. They have no Results tab, no Present, and no "see the results" button. When they finish, they get a thank-you with their own count of Tops, and nothing about results. There is no setting that changes this.
 
 - **Players' browsers** only ever load their own votes. Nothing else about the results reaches them.
 - **Admins** see the live ranking, without names, and can show it full-screen with **Present**.
@@ -94,7 +94,7 @@ All settings are at the top of the script, in `CONFIG`:
 
 | Setting | Default |
 | --- | --- |
-| `title` | `Unstoppable Picks`, or one name per language |
+| `title` | `Unstoppable Photos`, or one name per language |
 | `allowedEmails`, `adminEmails` | See *Who can do what* |
 | `anonymous` | `true`: lock the votes list so people only read their own rows |
 | `photoLibrary`, `votesList` | `SwipePhotos`, `PhotoSwipes` |
