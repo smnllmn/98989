@@ -42,7 +42,8 @@
   --ps-scrim: rgba(0, 0, 0, .5); --ps-shadow: rgba(0, 0, 0, .6);
   color-scheme: dark;
 }
-body { background: var(--ps-bg); color: var(--ps-ink); }
+/* Only paints the page when the app is the whole page (preview); inside SharePoint it leaves the page alone. */
+body:has(> #ps-app) { background: var(--ps-bg); color: var(--ps-ink); }
 
 .ps { font-family: var(--ps-font-body); font-size: 15px; line-height: 1.45; color: var(--ps-ink); background: var(--ps-bg);
   padding-inline: 16px; padding-block: 14px 24px; display: flex; justify-content: center; -webkit-tap-highlight-color: transparent; }
