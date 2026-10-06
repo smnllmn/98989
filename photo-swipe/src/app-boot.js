@@ -34,10 +34,19 @@
         setView('swipe');
         break;
       case 'preview-lock':
+        var back = S.view === 'details' ? (S.prevView && S.prevView !== 'details' ? S.prevView : 'swipe') : S.view;
         S.previewLocked = true;
         S.gate = 'denied';
-        setView(S.prevView && S.prevView !== 'details' ? S.prevView : 'swipe');
+        setView(back);
         APP.scrollIntoView({ block: 'nearest' });
+        break;
+      case 'as-reviewer': setReviewerView(id === 'on'); break;
+      case 'lock-votes':
+        if (btn) btn.disabled = true;
+        lockVotes().then(function () { toastText(t('lockedDone')); }, function (e) {
+          S.lastError = e.message;
+          toastText(t('lockFail', { err: e.message }), 9000);
+        }).then(function () { setView(S.view); });
         break;
       case 'end-preview': S.previewLocked = false; S.gate = null; setView(S.view); break;
       case 'copy': copyAddr(btn); break;
@@ -132,7 +141,7 @@
   /* ---------- start ---------- */
   async function start() {
     S.mode = 'loading'; S.gate = 'loading'; S.gateText = t('gateChecking');
-    S.user = null; S.allowed = S.admin = false;
+    S.user = null; S.allowed = S.admin = S.realAdmin = false;
     renderFrame();
     var me = null, err = null;
     // Only ask SharePoint who we are when we're actually on SharePoint (or a site is configured).
@@ -141,8 +150,9 @@
     if (me) {
       S.mode = 'sharepoint';
       S.user = mkUser(me);
-      S.allowed = isListed(S.user, CONFIG.allowedEmails);
-      S.admin = S.allowed && isListed(S.user, CONFIG.adminEmails);
+      S.realAdmin = isListed(S.user, CONFIG.adminEmails);
+      S.allowed = S.realAdmin || isListed(S.user, CONFIG.allowedEmails);
+      S.admin = S.realAdmin && !S.asReviewer;
       if (!S.allowed) { S.gate = 'denied'; renderFrame(); return; }
       S.gateText = t('gatePhotos');
       renderFrame();
@@ -152,12 +162,8 @@
       }
       if (S.list.state === 'ok') {
         S.store = 'sharepoint';
-        try {
-          var r = await loadSpVotes(0);
-          S.votes = r.votes;
-          S.maxVoteId = r.maxId;
-          S.updatedAt = new Date();
-        } catch (e) { S.lastError = e.message; }
+        S.votes = [];
+        await loadVotesForRole();
         restorePending();
       } else {
         S.store = 'local';
@@ -170,7 +176,8 @@
       renderFrame();
       return;
     } else {
-      S.mode = 'demo'; S.store = 'local'; S.allowed = S.admin = true;
+      S.mode = 'demo'; S.store = 'local'; S.allowed = S.realAdmin = true;
+      S.admin = !S.asReviewer;
       S.user = { key: 'demo-me', name: t('demoUser'), first: '', initials: '', email: '', upn: '', login: '' };
       setPhotos((window.PS_DEMO_PHOTOS || []).map(function (p) {
         return { id: String(p.id), name: p.file || p.id, caption: p.caption, credit: p.credit, folder: '', src: p.src, size: 0, jpeg: true };
@@ -183,6 +190,29 @@
     S.gate = null;
     S.intro = S.deck.length > 0 && !getStore('intro-seen', false);
     setView(S.view);
+  }
+
+  // Reviewers in anonymous mode get their own votes plus the published totals; everyone else gets all votes.
+  async function loadVotesForRole() {
+    try {
+      var r = await loadSpVotes(0);
+      S.votes = r.votes.concat(S.votes.filter(function (v) { return !v.spId && !v.example; }));
+      S.maxVoteId = r.maxId;
+      S.summary = null;
+      if (useSummary()) await loadSummary(); else S.updatedAt = new Date();
+    } catch (e) { S.lastError = e.message; }
+    schedulePublish();
+  }
+
+  // Lets admins see exactly what reviewers see: no Manage tab, and in anonymous mode only their own votes.
+  async function setReviewerView(on) {
+    S.asReviewer = !!on;
+    S.admin = S.realAdmin && !S.asReviewer;
+    S.menu = false;
+    if (S.view === 'manage' && !S.admin) S.view = 'swipe';
+    if (S.mode === 'sharepoint' && S.store === 'sharepoint') await loadVotesForRole();
+    setView(S.view);
+    toastText(t(on ? 'reviewerOn' : 'reviewerOff'));
   }
 
   function boot() {

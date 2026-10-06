@@ -7,10 +7,11 @@
   var SITE = (CONFIG.siteUrl || (CTX && CTX.webAbsoluteUrl) ||
     (location.origin + ((location.pathname.match(/^\/(sites|teams)\/[^/]+/i) || [''])[0]))).replace(/\/$/, '');
   var ORIGIN = (function () { try { return new URL(SITE).origin; } catch (e) { return location.origin; } })();
-  var KEY = 'contact-sheet:v2:';
+  var KEY = 'photo-swipe:v2:';
   var IMG_RE = /\.(jpe?g|png|webp|gif|avif)$/i;
   var LARGE = 1.5 * 1024 * 1024;
   var VERDICTS = ['keep', 'pass', 'hero'];
+  var SUMMARY_FILE = 'photo-swipe-results.json';
   var LOCALES = { nl: 'nl-BE', fr: 'fr-BE', en: 'en-GB' };
 
   var APP = null;
@@ -24,7 +25,7 @@
     gate: 'loading',          // loading | denied | error | null (app is usable)
     gateText: '',
     lang: 'en',
-    user: null, allowed: false, admin: false,
+    user: null, allowed: false, admin: false, realAdmin: false, asReviewer: false,
     lib: { state: 'unknown' },
     list: { state: 'unknown', fields: {} },
     photos: [], byId: {}, skipped: 0,
@@ -33,7 +34,7 @@
     view: 'swipe', prevView: 'swipe', menu: false,
     queue: [], failed: [], saved: 0, lastError: '',
     uploads: [], confirmRemove: null, shrinking: null, savedCaption: null,
-    updatedAt: null, polling: false, previewLocked: false
+    summary: null, updatedAt: null, polling: false, previewLocked: false
   };
 
   /* ---------- small helpers ---------- */
@@ -55,6 +56,10 @@
     return set[code] || code;
   }
   function locale() { return LOCALES[S.lang] || 'en-GB'; }
+  function appTitle() {
+    var x = CONFIG.title;
+    return String((x && typeof x === 'object' ? x[S.lang] || x.en || x[Object.keys(x)[0]] : x) || 'Photo Swipe');
+  }
   function pct(x) { var n = Math.round(x * 100); return S.lang === 'fr' ? n + '\u202f%' : n + '%'; }
   function secs(ms) { return (ms / 1000).toLocaleString(locale(), { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '\u00a0s'; }
   function fmtSize(b) {
@@ -90,6 +95,11 @@
     MEM[k] = v;
     try { if (v == null) localStorage.removeItem(KEY + k); else localStorage.setItem(KEY + k, JSON.stringify(v)); } catch (e) { /* keep in memory */ }
   }
+  // Anonymous mode: only admins who can read every row load all votes; everyone else loads their own
+  // votes and reads the totals an admin's screen publishes.
+  function seesAll() { return !CONFIG.anonymous || (S.admin && S.list.seeAll !== false); }
+  function useSummary() { return S.mode === 'sharepoint' && S.store === 'sharepoint' && !seesAll(); }
+
   function reduced() { return !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches); }
 
   /* ---------- icons ---------- */
@@ -111,7 +121,8 @@
     setup: '<circle cx="12" cy="12" r="3"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3M6 6l2.1 2.1M15.9 15.9L18 18M6 18l2.1-2.1M15.9 8.1L18 6"/>',
     clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
     alert: '<path d="M12 4.2l8.8 15.3H3.2z"/><path d="M12 10v4M12 16.8v.1"/>',
-    shrink: '<path d="M4.5 9.5h5v-5M19.5 14.5h-5v5M4.5 4.5l5 5M19.5 19.5l-5-5"/>'
+    shrink: '<path d="M4.5 9.5h5v-5M19.5 14.5h-5v5M4.5 4.5l5 5M19.5 19.5l-5-5"/>',
+    eye: '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>'
   };
   var IC = {
     pass: icon('<path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>', 'ps-ic--bold'),
@@ -219,14 +230,34 @@
       var have = {};
       (f.value || []).forEach(function (x) { have[x.InternalName] = true; });
       S.list = { state: 'ok', entityType: j.ListItemEntityTypeFullName, url: (j.RootFolder && j.RootFolder.ServerRelativeUrl) || '', fields: have };
-      if (S.admin && !(have.Verdict && have.DwellMs && have.PhotoName)) {
+      if (S.realAdmin && !(have.Verdict && have.DwellMs && have.PhotoName)) {
         try { await ensureVoteFields(); } catch (e) { S.lastError = e.message; }
       }
       if (!S.list.fields.Verdict) { S.list.state = 'error'; S.list.error = t('errNoVerdict', { list: CONFIG.votesList }); }
+      await checkVotePrivacy();
     } catch (e) {
       S.list = { state: e.status === 404 ? 'missing' : 'error', error: e.message, fields: {} };
       if (e.status !== 404) S.lastError = e.message;
     }
+  }
+
+  // ReadSecurity 2 = people can only read their own rows (item-level permissions). With that on, only
+  // people with the "Override List Behaviors" permission (site owners) see every row.
+  async function checkVotePrivacy() {
+    try { S.list.readSecurity = (await spGet(votesPath() + '?$select=ReadSecurity')).ReadSecurity; } catch (e) { S.list.readSecurity = null; }
+    S.list.seeAll = true;
+    if (S.realAdmin && S.list.readSecurity === 2) {
+      try { S.list.seeAll = !!(Number((await spGet(votesPath() + '/EffectiveBasePermissions')).Low) & 0x100); } catch (e) { /* assume yes */ }
+    }
+  }
+
+  // Item-level permissions on the votes list: read and edit only your own rows. Needs Manage Lists rights.
+  async function lockVotes() {
+    await spSend(votesPath(), {
+      json: { __metadata: { type: 'SP.List' }, ReadSecurity: 2, WriteSecurity: 2 },
+      headers: { 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, what: CONFIG.votesList
+    });
+    await checkVotePrivacy();
   }
 
   // Adds the columns the app writes. Older lists (from v1) get PhotoName added here.
@@ -243,16 +274,17 @@
 
   async function setupSharePoint() {
     if (S.lib.state === 'missing') {
-      await spSend('/_api/web/lists', { json: { __metadata: { type: 'SP.List' }, Title: CONFIG.photoLibrary, BaseTemplate: 101, Description: t('libDescription') } });
+      await spSend('/_api/web/lists', { json: { __metadata: { type: 'SP.List' }, Title: CONFIG.photoLibrary, BaseTemplate: 101, Description: t('libDescription', { title: appTitle() }) } });
       await checkLib();
     }
     if (S.list.state === 'missing') {
-      await spSend('/_api/web/lists', { json: { __metadata: { type: 'SP.List' }, Title: CONFIG.votesList, BaseTemplate: 100, Description: t('listDescription') } });
+      await spSend('/_api/web/lists', { json: { __metadata: { type: 'SP.List' }, Title: CONFIG.votesList, BaseTemplate: 100, Description: t('listDescription', { title: appTitle() }) } });
       S.list = { state: 'ok', fields: {} };
       await ensureVoteFields();
       for (var f of ['Author', 'Created']) {
         try { await spSend(votesPath() + "/DefaultView/ViewFields/addViewField('" + f + "')"); } catch (e) { /* optional */ }
       }
+      if (CONFIG.anonymous) { try { await lockVotes(); } catch (e) { S.lastError = e.message; } }
       await checkVotes();
     }
   }
@@ -264,7 +296,7 @@
     var photos = [], skipped = 0;
     rows.forEach(function (r) {
       var name = r.FileLeafRef || '';
-      if (!IMG_RE.test(name)) { skipped++; return; }
+      if (!IMG_RE.test(name)) { if (name !== SUMMARY_FILE) skipped++; return; }
       var ref = r.FileRef || '';
       var inLib = root && ref.toLowerCase().indexOf(root + '/') === 0 ? ref.slice(root.length + 1) : name;
       var title = String(r.Title || '').trim();
@@ -287,14 +319,17 @@
   }
 
   async function loadSpVotes(sinceId) {
+    var filter = [];
+    if (!seesAll()) filter.push('AuthorId eq ' + Number(S.user.id));
+    if (sinceId) filter.push('Id gt ' + Number(sinceId));
     var rows = await spGetAll(votesPath() + '/items?$select=Id,Title,Verdict,DwellMs,Created,AuthorId,Author/Title&$expand=Author' +
-      (sinceId ? '&$filter=Id gt ' + Number(sinceId) : '') + '&$orderby=Id asc&$top=2000', CONFIG.votesList);
+      (filter.length ? '&$filter=' + filter.join(' and ') : '') + '&$orderby=Id asc&$top=2000', CONFIG.votesList);
     var maxId = sinceId || 0, votes = [];
     rows.forEach(function (it) {
       if (it.Id > maxId) maxId = it.Id;
       if (VERDICTS.indexOf(it.Verdict) === -1) return;
       votes.push({ photo: String(it.Title), verdict: it.Verdict, ms: Number(it.DwellMs) || 0, user: 'sp' + it.AuthorId,
-        name: (it.Author && it.Author.Title) || '?', spId: it.Id, seq: it.Id });
+        name: (it.Author && it.Author.Title) || '?', at: it.Created, spId: it.Id, seq: it.Id });
     });
     return { votes: votes, maxId: maxId };
   }

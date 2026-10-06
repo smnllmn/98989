@@ -67,6 +67,15 @@
     errTimeout: 'SharePoint n’a pas répondu à temps', errNetwork: 'Erreur réseau',
     errNotJson: 'JSON attendu, reçu {type} (HTTP {status})', errNotLibrary: '« {name} » n’est pas une bibliothèque de documents',
     errNoVerdict: 'La liste « {list} » n’a pas de colonne Verdict',
-    libDescription: 'Photos pour l’application de swipe Contact Sheet.',
-    listDescription: 'Swipes de l’application Contact Sheet. Titre = ID de la photo dans la bibliothèque.'
+    libDescription: 'Photos pour l’application {title}.',
+    listDescription: 'Swipes de l’application {title}. Titre = ID de la photo dans la bibliothèque.',
+    anonymous: 'Anonyme', noSummary: 'Les résultats s’affichent ici dès qu’un organisateur a l’application ouverte.',
+    viewAsReviewer: 'Voir comme évaluateur', viewAsAdmin: 'Retour à la vue administrateur',
+    reviewerBanner: 'Vous voyez l’application comme les évaluateurs la voient.', reviewerOn: 'Vue évaluateur activée', reviewerOff: 'Retour à la vue administrateur',
+    listOpen: 'Toute personne ayant accès à ce site peut encore ouvrir la liste des votes et voir qui a choisi quoi.', lockVotes: 'Verrouiller',
+    lockedDone: 'Liste des votes verrouillée\u00a0: chacun ne voit que ses propres votes.',
+    lockFail: 'Impossible de verrouiller la liste des votes ({err}). Le README explique comment le faire à la main.',
+    notOwner: 'Dans la liste verrouillée, vous ne voyez que vos propres votes\u00a0: votre écran ne peut donc pas publier les totaux. Rendez les administrateurs propriétaires du site.',
+    dPrivacy: 'Confidentialité', sNotAnon: 'non anonyme', sLocked: 'anonyme, liste des votes verrouillée',
+    sOpenList: 'anonyme dans l’application, mais la liste des votes est encore ouverte', sAnon: 'anonyme'
   };

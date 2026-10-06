@@ -1,6 +1,7 @@
   /* ===== Settings: the only part you normally edit ===== */
   var CONFIG = {
-    title: 'Contact Sheet',
+    // App name. One name for every language, or one per language: { nl: '…', fr: '…', en: '…' }
+    title: 'Photo Swipe',
 
     // Who can open the app. Not case-sensitive. If someone gets the locked screen,
     // it shows the exact address SharePoint reports for them: add that one.
@@ -10,9 +11,18 @@
     ],
 
     // Who also gets the Manage tab (add photos, edit captions, remove photos).
+    // Make them site owners too: only owners can see everyone's votes once the list is locked down.
+    // Admins can check what reviewers see under the ⋮ menu: "View as reviewer".
     adminEmails: [
-      'simon.sl.laleman@belfius.be'
+      'simon.sl.laleman@belfius.be',
+      'tijs.verthe@belfius.be'
     ],
+
+    // Anonymous voting. Reviewers only ever load their own votes; their Results tab shows totals
+    // published by an admin's screen, never who chose what. Setup also locks the votes list so
+    // people can only read their own rows in SharePoint. Set to false to let everyone's browser
+    // read all votes (simpler, but anyone can then open the list and see names).
+    anonymous: true,
 
     // Document library that holds the photos, and the list that collects the swipes.
     // The app creates both on first use (needs site owner rights), or create them by hand.

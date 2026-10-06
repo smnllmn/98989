@@ -1,16 +1,26 @@
   /* ---------- results ---------- */
   function tally() {
     var votes = latest(S.votes).filter(function (v) { return S.byId[v.photo]; });
-    var users = {}, totalMs = 0, examples = false, per = {};
-    S.photos.forEach(function (p) { per[p.id] = { p: p, n: 0, keep: 0, hero: 0, pass: 0, ms: 0, mine: null }; });
+    var users = {}, totalMs = 0, examples = false, per = {}, nVotes = 0, sum = useSummary() ? S.summary : null;
+    S.photos.forEach(function (p) { per[p.id] = { p: p, n: 0, keep: 0, hero: 0, pass: 0, ms: 0, mine: null, mineAt: null }; });
     votes.forEach(function (v) {
       var r = per[v.photo];
+      if (S.user && v.user === S.user.key) { r.mine = v.verdict; r.mineAt = v.at; }
+      if (sum) return;
       users[v.user] = true;
       totalMs += v.ms || 0;
+      nVotes++;
       if (v.example) examples = true;
       r.n++; r[v.verdict]++; r.ms += v.ms || 0;
-      if (S.user && v.user === S.user.key) r.mine = v.verdict;
     });
+    if (sum) {
+      Object.keys(sum.photos || {}).forEach(function (id) {
+        var r = per[id], a = sum.photos[id];
+        if (!r) return;
+        r.n = a[0]; r.keep = a[1]; r.hero = a[2]; r.pass = a[3]; r.ms = a[4];
+        nVotes += a[0]; totalMs += a[4];
+      });
+    }
     var rows = Object.keys(per).map(function (k) {
       var r = per[k];
       r.rate = r.n ? (r.keep + r.hero) / r.n : -1;
@@ -24,20 +34,22 @@
     // How often my verdict matches the majority of everyone else.
     var agree = 0, compared = 0;
     voted.forEach(function (r) {
-      if (!r.mine || r.n < 2) return;
-      var yes = r.keep + r.hero - (r.mine !== 'pass' ? 1 : 0);
-      var share = yes / (r.n - 1);
+      var mineIn = !!r.mine && (!sum || (r.mineAt && Date.parse(r.mineAt) <= Date.parse(sum.updated)));
+      var others = r.n - (mineIn ? 1 : 0);
+      if (!r.mine || others < 1) return;
+      var yes = r.keep + r.hero - (mineIn && r.mine !== 'pass' ? 1 : 0);
+      var share = yes / others;
       if (share === .5) return;
       compared++;
       if ((share > .5) === (r.mine !== 'pass')) agree++;
     });
-    var reviewers = Object.keys(users).length;
+    var reviewers = sum ? sum.reviewers : Object.keys(users).length;
     var hero = voted.slice().sort(function (a, b) { return (b.hero - a.hero) || (b.rate - a.rate); })[0];
     var minN = reviewers >= 3 ? 3 : 2;
     var split = voted.filter(function (r) { return r.n >= minN; })
       .sort(function (a, b) { return (Math.abs(a.rate - .5) - Math.abs(b.rate - .5)) || (b.n - a.n); })[0];
     return {
-      rows: rows, voted: voted, reviewers: reviewers, votes: votes.length, avgMs: votes.length ? totalMs / votes.length : 0, examples: examples,
+      rows: rows, voted: voted, reviewers: reviewers, votes: nVotes, avgMs: nVotes ? totalMs / nVotes : 0, examples: examples,
       taste: compared >= 3 ? agree / compared : null,
       hero: hero && hero.hero ? hero : null,
       split: split && Math.abs(split.rate - .5) <= .2 ? split : null
@@ -48,10 +60,11 @@
   function canFull() { return !!(document.fullscreenEnabled || document.webkitFullscreenEnabled); }
 
   function liveHtml() {
-    if (S.store !== 'sharepoint') return '<span class="ps-live is-off"><i></i>' + T(S.mode === 'demo' ? 'liveDemo' : 'liveLocal') + '</span>';
-    var time = (S.updatedAt || new Date()).toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    var anon = CONFIG.anonymous ? '<span class="ps-anon">' + icon(P.lock) + T('anonymous') + '</span>' : '';
+    if (S.store !== 'sharepoint') return '<span class="ps-live is-off"><i></i>' + T(S.mode === 'demo' ? 'liveDemo' : 'liveLocal') + '</span>' + anon;
+    var at = S.updatedAt ? S.updatedAt.toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit', second: '2-digit' }) : '–';
     var on = CONFIG.liveSeconds > 0;
-    return '<span class="ps-live' + (on ? '' : ' is-off') + '" id="ps-live"><i></i>' + (on ? T('live') + ' · ' : '') + T('updated', { time: time }) + '</span>';
+    return '<span class="ps-live' + (on ? '' : ' is-off') + '" id="ps-live"><i></i>' + (on ? T('live') + ' · ' : '') + T('updated', { time: at }) + '</span>' + anon;
   }
 
   function kpi(label, value) { return '<div class="ps-kpi"><span>' + esc(label) + '</span><b>' + esc(value) + '</b></div>'; }
@@ -94,12 +107,12 @@
     var tools = (canFull() ? '<button type="button" class="ps-btn ps-btn--soft" data-act="present">' + icon(P.present) + T(isFull() ? 'exitPresent' : 'present') + '</button>' : '') +
       (R.voted.length ? '<button type="button" class="ps-btn ps-btn--soft" data-act="export">' + icon(P.download) + T('exportCsv') + '</button>' : '') +
       (S.store === 'sharepoint' ? '<button type="button" class="ps-btn ps-btn--soft ps-btn--icon" data-act="refresh" aria-label="' + T('refresh') + '" title="' + T('refresh') + '">' + icon(P.refresh) + '</button>' : '');
-    var html = '<div class="ps-head"><div class="ps-head-text"><h2>' + T('resTitle') + '</h2>' + liveHtml() + '</div><div class="ps-tools">' + tools + '</div></div>' +
+    var html = '<div class="ps-head"><div class="ps-head-text"><h2>' + T('resTitle') + '</h2><div class="ps-live-row">' + liveHtml() + '</div></div><div class="ps-tools">' + tools + '</div></div>' +
       '<div class="ps-kpis">' + kpi(t('kPhotos'), S.photos.length) + kpi(t('kReviewers'), R.reviewers) + kpi(t('kVotes'), R.votes) +
       kpi(t('kAvg'), R.votes ? secs(R.avgMs) : '–') + '</div>';
     if (R.examples) html += '<p class="ps-note">' + T('exampleNote') + '</p>';
     if (!R.voted.length) {
-      el.innerHTML = html + '<div class="ps-empty">' + T('noVotes') + '</div>';
+      el.innerHTML = html + '<div class="ps-empty">' + T(useSummary() && !S.summary ? 'noSummary' : 'noVotes') + '</div>';
       return;
     }
     html += '<div class="ps-res-grid"><div><div class="ps-podium">' + R.voted.slice(0, 3).map(podHtml).join('') + '</div>' + highlights(R) + '</div>' +
@@ -113,7 +126,8 @@
   /* Live results: while the Results tab is open, fetch new swipes every few seconds. */
   var liveTimer = null, livePolls = 0;
   function syncLive() {
-    var want = alive() && S.view === 'results' && !S.gate && S.store === 'sharepoint' && CONFIG.liveSeconds > 0 && !document.hidden;
+    var feeding = CONFIG.anonymous && seesAll() && S.admin;   // an admin's screen keeps the published totals fresh
+    var want = alive() && (S.view === 'results' || feeding) && !S.gate && S.store === 'sharepoint' && CONFIG.liveSeconds > 0 && !document.hidden;
     if (want && !liveTimer) liveTimer = setInterval(livePoll, Math.max(3, CONFIG.liveSeconds) * 1000);
     if (!want && liveTimer) { clearInterval(liveTimer); liveTimer = null; }
   }
@@ -126,20 +140,68 @@
     S.polling = true;
     try {
       var full = ++livePolls % 6 === 0;   // every 6th poll: full reload, which also picks up undos and new photos
-      var before = voteSig() + '|' + S.photos.length;
-      var r = await loadSpVotes(full ? 0 : S.maxVoteId);
-      mergeVotes(r.votes, full);
-      S.maxVoteId = Math.max(S.maxVoteId, r.maxId);
+      var before = voteSig() + '|' + S.photos.length + '|' + (S.summary ? S.summary.updated : '');
+      if (useSummary()) {
+        await loadSummary();
+      } else {
+        var r = await loadSpVotes(full ? 0 : S.maxVoteId);
+        mergeVotes(r.votes, full);
+        S.maxVoteId = Math.max(S.maxVoteId, r.maxId);
+        S.updatedAt = new Date();
+      }
       if (full && S.lib.state === 'ok') { await loadSpPhotos(); syncDeck(); }
-      S.updatedAt = new Date();
+      schedulePublish();
       if (S.view === 'results') {
-        if (voteSig() + '|' + S.photos.length !== before) renderResults();
-        else { var live = $('ps-live'); if (live) live.outerHTML = liveHtml(); }
+        if (voteSig() + '|' + S.photos.length + '|' + (S.summary ? S.summary.updated : '') !== before) renderResults();
+        else { var live = $('ps-live'); if (live) live.outerHTML = liveHtml().replace(/<span class="ps-anon">[\s\S]*$/, ''); }
       }
     } catch (e) {
       S.lastError = e.message;
     }
     S.polling = false;
+  }
+
+  /* The published totals: counts per photo, no names. Admins who see every vote write them; others read them. */
+  var lastPublished = '', publishTimer = null;
+  function canPublish() {
+    return CONFIG.anonymous && S.mode === 'sharepoint' && S.admin && seesAll() && S.lib.state === 'ok' && S.store === 'sharepoint';
+  }
+  function schedulePublish() {
+    if (!canPublish()) return;
+    clearTimeout(publishTimer);
+    publishTimer = setTimeout(publishSummary, 2500);
+  }
+  function buildSummary() {
+    var photos = {}, users = {}, votes = 0, ms = 0;
+    latest(S.votes).forEach(function (v) {
+      if (!S.byId[v.photo] || v.example) return;
+      var a = photos[v.photo] || (photos[v.photo] = [0, 0, 0, 0, 0]);
+      a[0]++; a[{ keep: 1, hero: 2, pass: 3 }[v.verdict]]++; a[4] += v.ms || 0;
+      users[v.user] = true; votes++; ms += v.ms || 0;
+    });
+    return { reviewers: Object.keys(users).length, votes: votes, photos: photos };
+  }
+  async function publishSummary() {
+    if (!canPublish() || !alive()) return;
+    if (S.queue.length) { schedulePublish(); return; }        // wait until my own swipes are saved
+    var sum = buildSummary(), sig = JSON.stringify(sum);
+    if (sig === lastPublished) return;
+    sum.app = 'photo-swipe';
+    sum.updated = new Date().toISOString();
+    try {
+      await spSend(libPath() + "/RootFolder/Files/add(url='" + SUMMARY_FILE + "',overwrite=true)", { body: JSON.stringify(sum), what: CONFIG.photoLibrary });
+      lastPublished = sig;
+    } catch (e) { S.lastError = e.message; }
+  }
+  async function loadSummary() {
+    if (S.lib.state !== 'ok') return;
+    var res = await spFetch(ORIGIN + encPath(S.lib.url + '/' + SUMMARY_FILE));
+    if (res.status === 404) { S.summary = null; return; }
+    if (!res.ok) throw await httpError(res, CONFIG.photoLibrary);
+    var j = JSON.parse(await res.text());
+    if (!j || typeof j.photos !== 'object') throw new Error(SUMMARY_FILE + ': ?');
+    S.summary = j;
+    S.updatedAt = new Date(j.updated);
   }
 
   async function refreshAll(btn) {
@@ -151,8 +213,9 @@
         var r = await loadSpVotes(0);
         mergeVotes(r.votes, true);
         S.maxVoteId = Math.max(S.maxVoteId, r.maxId);
+        if (useSummary()) await loadSummary(); else S.updatedAt = new Date();
+        schedulePublish();
       }
-      S.updatedAt = new Date();
     } catch (e) {
       S.lastError = e.message;
       toastText(e.message, 6000);
@@ -177,7 +240,7 @@
     var csv = '﻿' + lines.map(function (l) { return l.map(csvCell).join(';'); }).join('\r\n');
     var a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
-    a.download = slug(CONFIG.title) + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.download = slug(appTitle()) + '-' + new Date().toISOString().slice(0, 10) + '.csv';
     document.body.appendChild(a);
     a.click();
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 2000);

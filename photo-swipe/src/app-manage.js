@@ -158,7 +158,12 @@
     }
     var bar = links + (S.shrinking ? '<span class="ps-count">' + T('shrinking', { i: S.shrinking.i, n: S.shrinking.n }) + '</span>'
       : large.length ? '<button type="button" class="ps-btn ps-btn--soft ps-btn--sm" data-act="shrink-all" title="' + T('shrinkNote') + '">' + icon(P.shrink) + T('shrinkAll', { n: large.length }) + '</button>' : '');
-    var html = head + '</div>' +
+    var notice = '';
+    if (S.mode === 'sharepoint' && CONFIG.anonymous && S.list.state === 'ok') {
+      if (S.list.readSecurity === 1) notice = '<div class="ps-notice">' + icon(P.lock) + '<span>' + T('listOpen') + '</span><button type="button" class="ps-btn ps-btn--sm" data-act="lock-votes">' + T('lockVotes') + '</button></div>';
+      else if (S.list.readSecurity === 2 && S.list.seeAll === false) notice = '<div class="ps-notice">' + icon(P.alert) + '<span>' + T('notOwner') + '</span></div>';
+    }
+    var html = head + '</div>' + notice +
       '<label class="ps-drop" id="ps-drop"><input type="file" class="ps-file" id="ps-file" multiple accept="image/*">' +
       '<span class="ps-drop-ic">' + icon(P.upload) + '</span><b>' + T('drop') + '</b><span class="ps-drop-or">' + T('dropOr') + '</span>' +
       '<small>' + T('dropHint', { px: CONFIG.maxPhotoEdge }) + '</small></label>' +
@@ -203,6 +208,7 @@
       else if (p.local) URL.revokeObjectURL(p.src);
       setPhotos(S.photos.filter(function (x) { return x.id !== id; }));
       delete S.done[id];
+      schedulePublish();
       toastText(t(S.mode === 'sharepoint' ? 'removed' : 'removedDemo', { name: p.caption }));
     } catch (e) {
       S.lastError = e.message;

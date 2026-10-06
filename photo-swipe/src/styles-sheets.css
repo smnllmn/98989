@@ -14,6 +14,12 @@
 .ps-live { display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; font-weight: 700; color: var(--b-muted); }
 .ps-live i { width: 8px; height: 8px; border-radius: 50%; background: var(--b-green); animation: ps-pulse 2s infinite; }
 .ps-live.is-off i { background: #B9C0C6; animation: none; }
+.ps-live-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.ps-anon { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px 2px 7px; border-radius: 999px; background: var(--b-pink-50); color: var(--b-magenta); font-size: .72rem; font-weight: 700; }
+.ps-anon .ps-ic { width: 13px; height: 13px; stroke-width: 2.4; }
+.ps-notice { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 14px; padding: 12px 14px; border-radius: 14px; background: #FFF1E2; color: #6B3306; font-size: .84rem; font-weight: 600; }
+.ps-notice > .ps-ic { width: 18px; height: 18px; color: #94470A; }
+.ps-notice span { flex: 1 1 260px; }
 .ps-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
 @container ps (min-width: 640px) { .ps-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .ps-kpi { padding: 13px 16px; border-radius: 16px; background: var(--b-pink-50); min-width: 0; }

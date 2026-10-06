@@ -67,6 +67,15 @@
     errTimeout: 'SharePoint antwoordde niet op tijd', errNetwork: 'Netwerkfout',
     errNotJson: 'JSON verwacht, maar kreeg {type} (HTTP {status})', errNotLibrary: '“{name}” is geen documentbibliotheek',
     errNoVerdict: 'De lijst “{list}” heeft geen kolom Verdict',
-    libDescription: 'Foto’s voor de Contact Sheet-swipe-app.',
-    listDescription: 'Swipes uit de Contact Sheet-app. Titel = ID van de foto in de fotobibliotheek.'
+    libDescription: 'Foto’s voor de app {title}.',
+    listDescription: 'Swipes uit de app {title}. Titel = ID van de foto in de fotobibliotheek.',
+    anonymous: 'Anoniem', noSummary: 'De resultaten verschijnen hier zodra een organisator de app open heeft.',
+    viewAsReviewer: 'Bekijk als beoordelaar', viewAsAdmin: 'Terug naar beheerdersweergave',
+    reviewerBanner: 'Je ziet de app zoals beoordelaars ze zien.', reviewerOn: 'Beoordelaarsweergave aan', reviewerOff: 'Terug in de beheerdersweergave',
+    listOpen: 'Iedereen met toegang tot deze site kan de stemmenlijst nog openen en zien wie wat koos.', lockVotes: 'Afschermen',
+    lockedDone: 'Stemmenlijst afgeschermd: iedereen ziet alleen de eigen stemmen.',
+    lockFail: 'Afschermen is niet gelukt ({err}). In de README staat hoe je het zelf doet.',
+    notOwner: 'In de afgeschermde lijst zie je alleen je eigen stemmen, dus je scherm kan de totalen niet publiceren. Maak de beheerders site-eigenaar.',
+    dPrivacy: 'Privacy', sNotAnon: 'niet anoniem', sLocked: 'anoniem, stemmenlijst afgeschermd',
+    sOpenList: 'anoniem in de app, maar de stemmenlijst is nog open', sAnon: 'anoniem'
   };

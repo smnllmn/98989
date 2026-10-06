@@ -1,4 +1,4 @@
-/* Contact Sheet v2. Belfius look: raspberry stage with a magenta glow, glass tiles, white sheets, Montserrat. */
+/* Photo Swipe. Belfius look: raspberry stage with a magenta glow, glass tiles, white sheets, Montserrat. */
 /*FONT-FACE*/
 .ps {
   --b-raspberry: #C30045;
@@ -93,6 +93,7 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-tabs button[aria-selected="true"] { background: #fff; color: var(--b-magenta); box-shadow: 0 6px 16px -8px rgba(60, 0, 20, .6); }
 .ps-tabs button:not([aria-selected="true"]):hover { background: rgba(255, 255, 255, .14); }
 
+.ps-banner .ps-ic { width: 16px; height: 16px; vertical-align: -3px; }
 .ps-banner { align-self: center; max-width: 760px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 14px; padding: 10px 16px; border-radius: 16px; font-size: .85rem; font-weight: 600; text-align: center; }
 
 /* buttons */

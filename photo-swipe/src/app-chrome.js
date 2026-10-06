@@ -30,7 +30,7 @@
 
   /* ---------- chrome ---------- */
   function renderTop() {
-    $('ps-name').textContent = CONFIG.title;
+    $('ps-name').textContent = appTitle();
     var u = S.user, av = $('ps-avatar');
     if (u && u.initials) av.textContent = u.initials; else av.innerHTML = icon(P.user);
     av.title = u ? u.name + (u.email ? ' · ' + u.email : '') : '';
@@ -57,7 +57,10 @@
   function renderBanner() {
     var b = $('ps-banner'), html = '';
     if (!S.gate && S.view !== 'details') {
-      if (S.mode === 'sharepoint' && S.lib.state === 'ok' && S.list.state === 'missing') {
+      if (S.asReviewer) {
+        html = '<span>' + icon(P.eye) + ' ' + T('reviewerBanner') + '</span>' +
+          '<button type="button" class="ps-btn ps-btn--white ps-btn--sm" data-act="as-reviewer" data-id="off">' + T('viewAsAdmin') + '</button>';
+      } else if (S.mode === 'sharepoint' && S.lib.state === 'ok' && S.list.state === 'missing') {
         html = '<span>' + T('listMissing', { list: CONFIG.votesList }) + '</span>' +
           (S.admin ? '<button type="button" class="ps-btn ps-btn--white ps-btn--sm" data-act="setup">' + T('setupBtn') + '</button>' : '');
       } else if (S.mode === 'sharepoint' && S.list.state === 'error') {
@@ -94,6 +97,8 @@
         return '<button type="button" data-act="lang" data-id="' + l + '" aria-pressed="' + (S.lang === l) + '" lang="' + l + '">' + l.toUpperCase() + '</button>';
       }).join('') + '</div></div>' +
       (canFull() && S.allowed && !S.gate ? '<button type="button" class="ps-mi" data-act="present">' + icon(P.present) + T(isFull() ? 'exitPresent' : 'present') + '</button>' : '') +
+      (S.realAdmin && !S.gate ? '<button type="button" class="ps-mi" data-act="as-reviewer" data-id="' + (S.asReviewer ? 'off' : 'on') + '">' + icon(P.eye) + T(S.asReviewer ? 'viewAsAdmin' : 'viewAsReviewer') + '</button>' +
+        '<button type="button" class="ps-mi" data-act="preview-lock">' + icon(P.lock) + T('previewLock') + '</button>' : '') +
       '<button type="button" class="ps-mi" data-act="view" data-id="details">' + icon(P.info) + T('details') + '</button>' +
       (S.allowed && !S.gate ? '<p class="ps-menu-keys">' + T('keys', { pass: L('pass'), keep: L('keep'), hero: L('hero') }) + '</p>' : '');
   }
@@ -130,7 +135,8 @@
       [t('dUser'), u.name || '–'], [t('dEmail'), u.email || '–'], [t('dUpn'), u.upn || '–'],
       [t('dAllowed'), CONFIG.allowedEmails.join(', ')], [t('dAdmins'), CONFIG.adminEmails.join(', ')],
       [t('dAccess'), demo ? t('sNotChecked') : S.allowed ? t('dGranted') : S.user ? t('dDenied') : '–'],
-      [t('dRole'), S.admin ? t('dAdmin') : S.allowed ? t('dReviewer') : '–'],
+      [t('dRole'), S.realAdmin ? t('dAdmin') + (S.asReviewer ? ' · ' + t('viewAsReviewer') : '') : S.allowed ? t('dReviewer') : '–'],
+      [t('dPrivacy'), !CONFIG.anonymous ? t('sNotAnon') : S.list.readSecurity === 2 ? t('sLocked') : S.list.readSecurity === 1 ? t('sOpenList') : t('sAnon')],
       [t('dLib'), demo ? t('sNotUsed') : CONFIG.photoLibrary + ': ' + stateText(S.lib.state) + (S.lib.state === 'ok' ? ' · ' + nPhotos(S.photos.length) : '')],
       [t('dList'), demo ? t('sNotUsed') : CONFIG.votesList + ': ' + stateText(S.list.state)],
       [t('dSaved'), String(S.saved)], [t('dError'), S.lastError || '–'], [t('dVersion'), VERSION + ' · ' + S.lang]

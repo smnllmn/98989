@@ -49,6 +49,7 @@
         var id = await spAddVote(job.v);
         job.v.spId = id;
         S.saved++;
+        schedulePublish();
         if (S.queue[0] === job) S.queue.shift();
         if (job.cancelled && id) { try { await spRecycle(votesPath(), id); } catch (e) { /* the next swipe on this photo overrides it anyway */ } }
       } catch (e) {
@@ -89,6 +90,7 @@
       if (qi !== -1 && !job.sending) S.queue.splice(qi, 1);
       else if (job && job.sending) job.cancelled = true;
       else if (v.spId) spRecycle(votesPath(), v.spId).catch(function (e) { S.lastError = e.message; });
+      schedulePublish();
       var fi = S.failed.indexOf(v);
       if (fi !== -1) S.failed.splice(fi, 1);
       persistPending();
