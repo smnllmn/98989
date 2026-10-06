@@ -34,7 +34,7 @@ Use this if you aren't a site owner:
 ## Who can do what
 
 - **`allowedEmails`** can open the app, swipe and see results. Currently Simon and Tijs.
-- **`adminEmails`** also get the Manage tab. Currently Simon; add Tijs on that line if he should manage photos.
+- **`adminEmails`** also get the Manage tab. Currently Simon. To give Tijs the Manage tab too, add the address on that line.
 - Everyone else gets *This photo round is private*, which shows the exact address to add.
 
 The lists are at the top of the script (search for `CONFIG`). Matching is not case-sensitive, and the check uses the email, UPN and login name.
