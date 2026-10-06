@@ -1,0 +1,845 @@
+<title>Contact Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Permanent+Marker&display=swap">
+<style>
+/* Layout: one phone-width column on a light table; prints stacked like a pile, marked up in grease pencil. */
+:root {
+  --ps-bg: #e6eae8;          /* light table */
+  --ps-surface: #f6f8f7;
+  --ps-ink: #151819;
+  --ps-muted: #59625e;
+  --ps-line: #c9d0cc;
+  --ps-red: #d22d25;         /* grease pencil */
+  --ps-on-red: #ffffff;
+  --ps-yellow: #e2a400;      /* chinagraph yellow */
+  --ps-yellow-ink: #835e00;
+  --ps-ok: #23855a;
+  --ps-print: #ffffff;
+  --ps-print-ink: #151819;
+  --ps-print-muted: #6b736f;
+  --ps-pass: #ffffff;
+  --ps-scrim: rgba(0, 0, 0, .45);
+  --ps-shadow: rgba(21, 24, 25, .22);
+  --ps-font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --ps-font-body: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --ps-font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --ps-font-mark: "Permanent Marker", "Segoe Print", "Comic Sans MS", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ps-bg: #0f1211; --ps-surface: #181c1b; --ps-ink: #e7ebe9; --ps-muted: #96a09b; --ps-line: #2b322f;
+    --ps-red: #ff5146; --ps-on-red: #140504; --ps-yellow: #ffc83a; --ps-yellow-ink: #ffc83a; --ps-ok: #55c98f;
+    --ps-print: #e9e9e3; --ps-print-ink: #151819; --ps-print-muted: #5f6763; --ps-pass: #ffffff;
+    --ps-scrim: rgba(0, 0, 0, .5); --ps-shadow: rgba(0, 0, 0, .6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ps-bg: #0f1211; --ps-surface: #181c1b; --ps-ink: #e7ebe9; --ps-muted: #96a09b; --ps-line: #2b322f;
+  --ps-red: #ff5146; --ps-on-red: #140504; --ps-yellow: #ffc83a; --ps-yellow-ink: #ffc83a; --ps-ok: #55c98f;
+  --ps-print: #e9e9e3; --ps-print-ink: #151819; --ps-print-muted: #5f6763; --ps-pass: #ffffff;
+  --ps-scrim: rgba(0, 0, 0, .5); --ps-shadow: rgba(0, 0, 0, .6);
+  color-scheme: dark;
+}
+body { background: var(--ps-bg); color: var(--ps-ink); }
+
+.ps { font-family: var(--ps-font-body); font-size: 15px; line-height: 1.45; color: var(--ps-ink); background: var(--ps-bg);
+  padding-inline: 16px; padding-block: 14px 24px; display: flex; justify-content: center; -webkit-tap-highlight-color: transparent; }
+.ps *, .ps *::before, .ps *::after { box-sizing: border-box; }
+.ps [hidden] { display: none !important; }
+.ps button { font: inherit; color: inherit; cursor: pointer; }
+.ps button:focus-visible, .ps summary:focus-visible { outline: 2px solid var(--ps-ink); outline-offset: 3px; }
+.ps-wrap { width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+
+/* header */
+.ps-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ps-brand { display: flex; flex-direction: column; min-width: 0; }
+.ps-name { font-family: var(--ps-font-display); font-weight: 800; font-size: 1.45rem; letter-spacing: -.025em; line-height: 1.05; }
+.ps-roll, .ps-mono { font-family: var(--ps-font-mono); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; color: var(--ps-muted); }
+.ps-who { display: flex; align-items: center; gap: 8px; min-width: 0; max-width: 58%; padding: 6px 11px; font-size: .8rem;
+  border: 1px solid var(--ps-line); border-radius: 999px; background: var(--ps-surface); }
+.ps-who span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ps-muted); }
+.ps-who.is-verified .ps-dot { background: var(--ps-ok); }
+.ps-who.is-demo .ps-dot { background: var(--ps-yellow); }
+.ps-who.is-denied .ps-dot { background: var(--ps-red); }
+
+/* tabs */
+.ps-tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 3px; border: 1px solid var(--ps-line); border-radius: 10px; background: var(--ps-surface); }
+.ps-tabs button { border: 0; background: transparent; padding: 8px; border-radius: 7px; font-weight: 600; font-size: .88rem; color: var(--ps-muted); }
+.ps-tabs button[aria-selected="true"] { background: var(--ps-ink); color: var(--ps-bg); }
+
+/* banner */
+.ps-banner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 10px 12px; font-size: .84rem;
+  border: 1px solid var(--ps-line); border-radius: 10px; background: var(--ps-surface); }
+.ps-banner p { margin: 0; flex: 1 1 220px; min-width: 0; }
+.ps-link { border: 0; background: none; padding: 0; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.ps-pill { border: 1px solid var(--ps-ink); background: var(--ps-ink); color: var(--ps-bg) !important; border-radius: 999px; padding: 7px 14px; font-weight: 600; font-size: .85rem; }
+.ps-pill--ghost { background: transparent; color: var(--ps-ink) !important; }
+
+/* stack of prints */
+.ps-swipe { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.ps-stack { position: relative; width: min(100%, max(240px, min(360px, calc((100dvh - 270px) * .66)))); aspect-ratio: 360 / 530;
+  touch-action: none; user-select: none; -webkit-user-select: none; outline: none; }
+.ps-card { position: absolute; inset: 0; transform-origin: 50% 85%; will-change: transform;
+  transition: transform .34s cubic-bezier(.2, .8, .2, 1), opacity .34s ease; }
+.ps-card[data-depth="0"] { z-index: 3; cursor: grab; transform: rotate(var(--tilt-top, 0deg)); }
+.ps-card[data-depth="1"] { z-index: 2; transform: translateY(12px) scale(.955) rotate(var(--tilt)); }
+.ps-card[data-depth="2"] { z-index: 1; transform: translateY(24px) scale(.91) rotate(var(--tilt)); }
+.ps-card.is-dragging { transition: none; cursor: grabbing; }
+.ps-print { height: 100%; display: flex; flex-direction: column; padding: 10px 10px 0; border-radius: 3px; background: var(--ps-print);
+  box-shadow: 0 1px 0 var(--ps-line), 0 18px 34px -16px var(--ps-shadow); }
+.ps-photo { position: relative; flex: 1; min-height: 0; overflow: hidden; background: var(--ps-line); }
+.ps-photo img { display: block; width: 100%; height: 100%; max-width: 100%; object-fit: cover; pointer-events: none; }
+.ps-cap { display: grid; grid-template-columns: auto 1fr; column-gap: 10px; align-items: baseline; padding: 9px 2px 11px; color: var(--ps-print-ink); }
+.ps-frame { font-family: var(--ps-font-mono); font-size: .72rem; font-weight: 500; letter-spacing: .06em; color: var(--ps-red); }
+.ps-title { font-weight: 600; font-size: .98rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-credit { grid-column: 2; font-family: var(--ps-font-mono); font-size: .6rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ps-print-muted); }
+
+/* grease-pencil marks */
+.ps-mark { position: absolute; padding: .3em .55em; font-family: var(--ps-font-mark); font-size: 2.1rem; line-height: 1; opacity: 0; pointer-events: none;
+  text-shadow: 0 1px 3px var(--ps-scrim); }
+.ps-mark svg { position: absolute; inset: -6px; width: calc(100% + 12px); height: calc(100% + 12px); overflow: visible; fill: none; stroke: currentColor;
+  stroke-width: 3.2; stroke-linecap: round; filter: drop-shadow(0 1px 2px var(--ps-scrim)); }
+.ps-mark--keep { top: 22px; left: 18px; color: var(--ps-red); transform: rotate(-11deg); }
+.ps-mark--pass { top: 22px; right: 18px; color: var(--ps-pass); transform: rotate(9deg); }
+.ps-mark--hero { bottom: 26px; left: 50%; color: var(--ps-yellow); transform: translateX(-50%) rotate(-4deg); }
+
+.ps-done { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px;
+  text-align: center; border: 1.5px dashed var(--ps-line); border-radius: 4px; }
+.ps-done h2 { margin: 0; font-family: var(--ps-font-display); font-weight: 800; font-size: 1.6rem; letter-spacing: -.02em; text-wrap: balance; }
+.ps-done p { margin: 0; color: var(--ps-muted); max-width: 30ch; }
+.ps-row-btns { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+
+/* action buttons */
+.ps-actions { display: flex; justify-content: center; align-items: flex-start; gap: 26px; }
+.ps-act { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 0; border: 0; background: none; }
+.ps-act:focus-visible { outline: none; }
+.ps-act:focus-visible .ps-btn { outline: 2px solid var(--ps-ink); outline-offset: 3px; }
+.ps-btn { display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; border: 1.5px solid var(--ps-line);
+  background: var(--ps-surface); box-shadow: 0 8px 18px -10px var(--ps-shadow); transition: transform .15s ease; }
+.ps-btn svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.ps-act:hover .ps-btn { transform: translateY(-2px); }
+.ps-act:active .ps-btn { transform: scale(.93); }
+.ps-act--keep .ps-btn { background: var(--ps-red); border-color: var(--ps-red); color: var(--ps-on-red); }
+.ps-act--keep .ps-btn svg { fill: currentColor; stroke-width: 0; }
+.ps-act--hero { margin-top: 8px; }
+.ps-act--hero .ps-btn { width: 48px; height: 48px; border-color: var(--ps-yellow); color: var(--ps-yellow-ink); }
+.ps-act--hero .ps-btn svg { width: 21px; height: 21px; }
+.ps-act[disabled] { opacity: .35; cursor: default; }
+.ps-act-label { font-family: var(--ps-font-mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ps-muted); }
+
+/* results */
+.ps-results { display: flex; flex-direction: column; gap: 14px; }
+.ps-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--ps-line); }
+.ps-stat { padding: 10px 4px; display: flex; flex-direction: column; gap: 2px; }
+.ps-stat + .ps-stat { border-left: 1px solid var(--ps-line); padding-left: 12px; }
+.ps-stat b { font-family: var(--ps-font-display); font-weight: 800; font-size: 1.5rem; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.ps-note { margin: 0; font-size: .8rem; color: var(--ps-muted); }
+.ps-list { list-style: none; margin: 0; padding: 0; }
+.ps-item { display: grid; grid-template-columns: 1.5rem 44px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--ps-line); }
+.ps-rank { font-family: var(--ps-font-mono); font-size: .78rem; color: var(--ps-muted); font-variant-numeric: tabular-nums; }
+.ps-thumb { width: 44px; height: 58px; object-fit: cover; padding: 3px; background: var(--ps-print); box-shadow: 0 4px 10px -6px var(--ps-shadow); }
+.ps-mid { min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.ps-mid-top { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.ps-mid-top strong { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: var(--ps-line); }
+.ps-bar i { display: block; height: 100%; }
+.ps-bar .k { background: var(--ps-red); }
+.ps-bar .h { background: var(--ps-yellow); }
+.ps-meta { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+.ps-chip { font-family: var(--ps-font-mono); font-size: .6rem; letter-spacing: .07em; text-transform: uppercase; padding: 1px 5px; border: 1px solid var(--ps-line); border-radius: 4px; color: var(--ps-muted); white-space: nowrap; }
+.ps-chip.keep { color: var(--ps-red); border-color: var(--ps-red); }
+.ps-chip.hero { color: var(--ps-yellow-ink); border-color: var(--ps-yellow); }
+.ps-pct { text-align: right; font-family: var(--ps-font-display); font-weight: 800; font-size: 1.3rem; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+.ps-pct small { display: block; margin-top: 3px; font-family: var(--ps-font-mono); font-weight: 400; font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ps-muted); }
+.ps-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: .78rem; color: var(--ps-muted); }
+.ps-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+/* gate (sign-in states) */
+.ps-gate { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 26px 22px; border: 1px solid var(--ps-line); border-radius: 12px; background: var(--ps-surface); }
+.ps-gate h2 { margin: 0; font-family: var(--ps-font-display); font-weight: 800; font-size: 1.5rem; letter-spacing: -.02em; text-wrap: balance; }
+.ps-gate p { margin: 0; max-width: 38ch; }
+.ps-gate code { font-family: var(--ps-font-mono); font-size: .85rem; padding: 2px 6px; border-radius: 5px; background: var(--ps-bg); overflow-wrap: anywhere; }
+.ps-lock { width: 34px; height: 34px; fill: none; stroke: var(--ps-red); stroke-width: 2; stroke-linecap: round; }
+
+/* footer + connection details */
+.ps-foot { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+.ps-status { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ps-diag summary { cursor: pointer; font-size: .8rem; color: var(--ps-muted); width: fit-content; }
+.ps-diag[open] summary { margin-bottom: 8px; }
+.ps-dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 5px 14px; margin: 0 0 10px; font-size: .8rem; }
+.ps-dl dt { color: var(--ps-muted); }
+.ps-dl dd { margin: 0; font-family: var(--ps-font-mono); font-size: .74rem; overflow-wrap: anywhere; }
+.ps-diag-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-card, .ps-btn { transition-duration: .01s !important; }
+}
+</style>
+
+<div id="ps-app" class="ps">
+  <div class="ps-wrap">
+    <header class="ps-top">
+      <div class="ps-brand">
+        <span class="ps-name">Contact Sheet</span>
+        <span class="ps-roll" id="ps-roll">Roll 01</span>
+      </div>
+      <div class="ps-who" id="ps-who"><span class="ps-dot"></span><span id="ps-who-name">Checking sign-in…</span></div>
+    </header>
+
+    <section class="ps-gate" id="ps-gate" hidden></section>
+
+    <div id="ps-main" hidden>
+      <div class="ps-wrap">
+        <div class="ps-tabs" role="tablist" aria-label="View">
+          <button type="button" role="tab" id="ps-tab-swipe" aria-selected="true">Swipe</button>
+          <button type="button" role="tab" id="ps-tab-results" aria-selected="false">Results</button>
+        </div>
+        <div class="ps-banner" id="ps-banner" hidden></div>
+
+        <section class="ps-swipe" id="ps-view-swipe">
+          <div class="ps-stack" id="ps-stack" tabindex="0" aria-label="Photo to judge. Use arrow keys: left to pass, right to keep, up for hero."></div>
+          <div class="ps-actions">
+            <button type="button" class="ps-act ps-act--pass" id="ps-btn-pass" aria-label="Pass">
+              <span class="ps-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+              <span class="ps-act-label">Pass ←</span>
+            </button>
+            <button type="button" class="ps-act ps-act--hero" id="ps-btn-hero" aria-label="Hero shot">
+              <span class="ps-btn"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></span>
+              <span class="ps-act-label">Hero ↑</span>
+            </button>
+            <button type="button" class="ps-act ps-act--keep" id="ps-btn-keep" aria-label="Keep">
+              <span class="ps-btn"><svg viewBox="0 0 24 24"><path d="M12 20.3s-7.6-4.6-7.6-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.6 2.7c0 5.6-7.6 10.2-7.6 10.2z"/></svg></span>
+              <span class="ps-act-label">Keep →</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="ps-results" id="ps-view-results" hidden></section>
+      </div>
+    </div>
+
+    <footer class="ps-foot">
+      <div class="ps-status ps-mono" id="ps-status" role="status" aria-live="polite"></div>
+      <details class="ps-diag" id="ps-diag">
+        <summary>Connection details</summary>
+        <dl class="ps-dl" id="ps-dl"></dl>
+        <div class="ps-diag-actions" id="ps-diag-actions"></div>
+      </details>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== Settings: the only part you normally edit ===== */
+  var CONFIG = {
+    // Accounts allowed in. Not case-sensitive. If you get locked out, open
+    // "Connection details" to see the exact address SharePoint reports for you.
+    allowedEmails: ['simon.sl.laleman@belfius.be'],
+    // SharePoint list that collects the swipes. The app can create it for you.
+    listTitle: 'PhotoSwipes',
+    // Leave empty to use the site this page lives on, or set e.g.
+    // 'https://contoso.sharepoint.com/sites/photo-poc'
+    siteUrl: ''
+  };
+  /* ===================================================== */
+
+  var NOMETA = 'application/json;odata=nometadata';
+  var VERBOSE = 'application/json;odata=verbose';
+  var LOCAL_KEY = 'contact-sheet-poc:v1';
+  var ON_SHAREPOINT = !!window._spPageContextInfo || /\.sharepoint(-df)?\.(com|us|cn|de)$/i.test(location.hostname);
+  var SITE = (CONFIG.siteUrl ||
+    (window._spPageContextInfo && window._spPageContextInfo.webAbsoluteUrl) ||
+    (location.origin + ((location.pathname.match(/^\/(sites|teams)\/[^/]+/i) || [''])[0]))).replace(/\/$/, '');
+
+  var $ = function (id) { return document.getElementById(id); };
+  var PHOTOS = [];
+  var byId = {};
+
+  var S = {
+    mode: 'loading',          // loading | sharepoint | demo
+    store: 'local',           // sharepoint | local
+    user: null,
+    allowed: false,
+    list: 'unknown',          // unknown | ok | missing | error
+    entityType: null,
+    votes: [],                // {photo, verdict, ms, user, name, at, example}
+    done: {},                 // photo ids I've judged this round
+    deck: [],
+    view: 'swipe',
+    saved: 0,
+    queue: [],
+    failed: [],
+    lastError: '',
+    shownAt: 0,
+    busy: false,
+    previewLocked: false
+  };
+
+  /* ---------- small helpers ---------- */
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }); }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function frameNo(id) { var i = PHOTOS.indexOf(byId[id]); return String(i + 1).padStart(2, '0') + 'A'; }
+  function spQ(title) { return "getbytitle('" + String(title).replace(/'/g, "''") + "')"; }
+
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+
+  /* ---------- SharePoint REST ---------- */
+  function spFetch(path, opts) {
+    opts = opts || {};
+    var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = ctrl && setTimeout(function () { ctrl.abort(); }, 10000);
+    return fetch(SITE + path, {
+      method: opts.method || 'GET',
+      credentials: 'same-origin',
+      headers: opts.headers || { Accept: NOMETA },
+      body: opts.body,
+      signal: ctrl ? ctrl.signal : undefined
+    }).finally(function () { if (timer) clearTimeout(timer); });
+  }
+
+  async function readJson(res) {
+    var type = res.headers.get('content-type') || '';
+    if (type.indexOf('json') === -1) throw new Error('Expected JSON, got ' + (type || 'nothing') + ' (HTTP ' + res.status + ')');
+    return res.json();
+  }
+
+  async function whoAmI() {
+    var res = await spFetch('/_api/web/currentuser?$select=Id,Title,Email,UserPrincipalName,LoginName');
+    if (!res.ok) throw new Error('SharePoint answered HTTP ' + res.status + ' for the current user');
+    return readJson(res);
+  }
+
+  var digest = { value: null, at: 0 };
+  async function getDigest() {
+    if (digest.value && Date.now() - digest.at < 20 * 60 * 1000) return digest.value;
+    var res = await spFetch('/_api/contextinfo', { method: 'POST', headers: { Accept: NOMETA } });
+    if (!res.ok) throw new Error('Could not get a request digest (HTTP ' + res.status + ')');
+    var j = await readJson(res);
+    digest = { value: j.FormDigestValue, at: Date.now() };
+    return digest.value;
+  }
+
+  async function spPost(path, body) {
+    var res = await spFetch(path, {
+      method: 'POST',
+      headers: { Accept: VERBOSE, 'Content-Type': VERBOSE, 'X-RequestDigest': await getDigest() },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    if (!res.ok) {
+      var msg = 'HTTP ' + res.status;
+      try { var j = await res.json(); msg += ': ' + ((j.error && j.error.message && j.error.message.value) || ''); } catch (e) { /* not JSON */ }
+      throw new Error(msg);
+    }
+    return res;
+  }
+
+  async function checkList() {
+    try {
+      var res = await spFetch('/_api/web/lists/' + spQ(CONFIG.listTitle) + '?$select=Id,ListItemEntityTypeFullName');
+      if (res.status === 404) { S.list = 'missing'; return; }
+      if (!res.ok) throw new Error('HTTP ' + res.status + ' reading the list');
+      var j = await readJson(res);
+      S.entityType = j.ListItemEntityTypeFullName;
+      S.list = 'ok';
+    } catch (e) { S.list = 'error'; S.lastError = e.message; }
+  }
+
+  async function createList() {
+    var base = '/_api/web/lists/' + spQ(CONFIG.listTitle);
+    await spPost('/_api/web/lists', {
+      __metadata: { type: 'SP.List' }, Title: CONFIG.listTitle, BaseTemplate: 100,
+      Description: 'Swipes from the Contact Sheet proof of concept. Title = photo id.'
+    });
+    await spPost(base + '/fields', { __metadata: { type: 'SP.FieldText' }, FieldTypeKind: 2, Title: 'Verdict' });
+    await spPost(base + '/fields', { __metadata: { type: 'SP.FieldNumber' }, FieldTypeKind: 9, Title: 'DwellMs' });
+    for (var f of ['Verdict', 'DwellMs', 'Author', 'Created']) {
+      try { await spPost(base + "/DefaultView/ViewFields/addViewField('" + f + "')"); } catch (e) { /* view tweaks are optional */ }
+    }
+    await checkList();
+  }
+
+  async function loadSpVotes() {
+    var res = await spFetch('/_api/web/lists/' + spQ(CONFIG.listTitle) +
+      '/items?$select=Id,Title,Verdict,DwellMs,Created,AuthorId,Author/Title&$expand=Author&$orderby=Id asc&$top=5000');
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' reading swipes');
+    var j = await readJson(res);
+    S.votes = (j.value || []).filter(function (it) { return byId[it.Title]; }).map(function (it) {
+      return { photo: it.Title, verdict: it.Verdict, ms: it.DwellMs || 0, user: 'sp' + it.AuthorId,
+        name: (it.Author && it.Author.Title) || 'Someone', at: it.Created, example: false };
+    });
+  }
+
+  async function spAddVote(v) {
+    await spPost('/_api/web/lists/' + spQ(CONFIG.listTitle) + '/items', {
+      __metadata: { type: S.entityType }, Title: v.photo, Verdict: v.verdict, DwellMs: v.ms
+    });
+  }
+
+  /* ---------- local storage (demo, or SharePoint without a list) ---------- */
+  var memoryStore = [];
+  function loadLocal() {
+    var saved = memoryStore;
+    try { var raw = localStorage.getItem(LOCAL_KEY); if (raw) saved = JSON.parse(raw); } catch (e) { /* storage blocked */ }
+    return Array.isArray(saved) ? saved.filter(function (v) { return byId[v.photo]; }) : [];
+  }
+  function saveLocal(list) {
+    memoryStore = list;
+    try { localStorage.setItem(LOCAL_KEY, JSON.stringify(list)); } catch (e) { /* storage blocked: keep in memory */ }
+  }
+
+  /* Example reviewers so the results screen has something to show in demo mode. */
+  function exampleVotes() {
+    var appeal = { cat: .9, rocket: .75, coffee: .6, astronaut: .7, dahlia: .55, 'deep-field': .8, hopper: .65, motorcycle: .35, palace: .5, cameraman: .3 };
+    var people = ['Example reviewer A', 'Example reviewer B', 'Example reviewer C', 'Example reviewer D'];
+    var seed = 7;
+    function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    var out = [];
+    people.forEach(function (name, p) {
+      PHOTOS.forEach(function (ph) {
+        var a = appeal[ph.id] == null ? .5 : appeal[ph.id];
+        var r = rnd();
+        var verdict = r < a * .22 ? 'hero' : r < a ? 'keep' : 'pass';
+        out.push({ photo: ph.id, verdict: verdict, ms: Math.round(900 + rnd() * 3200), user: 'example' + p, name: name, at: '', example: true });
+      });
+    });
+    return out;
+  }
+
+  /* ---------- access ---------- */
+  function isAllowed(u) {
+    var allow = CONFIG.allowedEmails.map(function (e) { return String(e).trim().toLowerCase(); });
+    var login = (u.login || '').split('|').pop();
+    return [u.email, u.upn, login].some(function (x) { return x && allow.indexOf(String(x).toLowerCase()) !== -1; });
+  }
+
+  /* ---------- deck ---------- */
+  function buildDeck() {
+    S.deck = shuffle(PHOTOS.filter(function (p) { return !S.done[p.id]; }).map(function (p) { return p.id; }));
+  }
+
+  function tilt(id) {
+    var h = 0; for (var i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) | 0;
+    return ((Math.abs(h) % 50) / 10 - 2.5).toFixed(1) + 'deg';
+  }
+
+  var MARK_KEEP = '<svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M8 27C6 10 40 3 70 6s28 18 20 30-48 14-70 6C9 34 6 24 18 14"/></svg>';
+  var MARK_PASS = '<svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M4 6l92 40M94 4L6 46"/></svg>';
+  var MARK_HERO = '<svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M10 26C8 9 44 2 72 5s26 18 18 30-46 13-68 6C8 34 4 22 16 13"/><path d="M14 30C14 15 46 8 70 11s20 16 13 25-42 10-60 4" opacity=".7"/></svg>';
+
+  function cardHtml(id) {
+    var p = byId[id];
+    return '<div class="ps-print"><div class="ps-photo">' +
+      '<img alt="' + esc(p.caption) + '" draggable="false" src="' + esc(p.src) + '">' +
+      '<span class="ps-mark ps-mark--keep">Keep' + MARK_KEEP + '</span>' +
+      '<span class="ps-mark ps-mark--pass">Pass' + MARK_PASS + '</span>' +
+      '<span class="ps-mark ps-mark--hero">Hero' + MARK_HERO + '</span>' +
+      '</div><div class="ps-cap"><span class="ps-frame">' + frameNo(id) + '</span>' +
+      '<span class="ps-title">' + esc(p.caption) + '</span><span class="ps-credit">' + esc(p.credit) + '</span></div></div>';
+  }
+
+  function renderStack() {
+    var stack = $('ps-stack');
+    stack.innerHTML = '';
+    var left = S.deck.length;
+    $('ps-roll').textContent = 'Roll 01 · ' + PHOTOS.length + ' frames · ' + (left ? left + ' to go' : 'done');
+    ['ps-btn-pass', 'ps-btn-hero', 'ps-btn-keep'].forEach(function (b) { $(b).disabled = !left; });
+
+    if (!left) {
+      var mine = S.votes.filter(function (v) { return v.user === S.user.key; });
+      var keeps = latestByUser(mine).filter(function (v) { return v.verdict !== 'pass'; }).length;
+      stack.innerHTML = '<div class="ps-done"><span class="ps-mono">End of roll</span><h2>You kept ' + keeps + ' of ' + PHOTOS.length + '</h2>' +
+        '<p>See how your picks compare with everyone else’s.</p><div class="ps-row-btns">' +
+        '<button type="button" class="ps-pill" data-act="results">See results</button>' +
+        '<button type="button" class="ps-pill ps-pill--ghost" data-act="restart">Swipe again</button></div></div>';
+      return;
+    }
+    for (var d = Math.min(2, left - 1); d >= 0; d--) {
+      var el = document.createElement('article');
+      el.className = 'ps-card';
+      el.dataset.depth = d;
+      el.dataset.id = S.deck[d];
+      el.style.setProperty('--tilt', tilt(S.deck[d]));
+      el.innerHTML = cardHtml(S.deck[d]);
+      stack.appendChild(el);
+    }
+    S.shownAt = performance.now();
+  }
+
+  function topCard() { return $('ps-stack').querySelector('.ps-card[data-depth="0"]'); }
+  function nextCard() { return $('ps-stack').querySelector('.ps-card[data-depth="1"]'); }
+
+  function setMarks(card, keep, pass, hero) {
+    card.querySelector('.ps-mark--keep').style.opacity = keep;
+    card.querySelector('.ps-mark--pass').style.opacity = pass;
+    card.querySelector('.ps-mark--hero').style.opacity = hero;
+  }
+
+  function fly(verdict, dx, dy) {
+    var card = topCard();
+    if (!card || S.busy) return;
+    S.busy = true;
+    var id = card.dataset.id;
+    var ms = performance.now() - S.shownAt;
+    setMarks(card, verdict === 'keep' ? 1 : 0, verdict === 'pass' ? 1 : 0, verdict === 'hero' ? 1 : 0);
+    card.classList.remove('is-dragging');
+    var w = $('ps-stack').offsetWidth;
+    var out = verdict === 'keep' ? 'translate(' + (w * 1.6) + 'px,' + ((dy || 0) + 40) + 'px) rotate(28deg)'
+      : verdict === 'pass' ? 'translate(' + (-w * 1.6) + 'px,' + ((dy || 0) + 40) + 'px) rotate(-28deg)'
+      : 'translate(' + (dx || 0) + 'px,' + (-w * 2) + 'px) rotate(-6deg)';
+    var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var delay = reduced ? 60 : (dx == null ? 260 : 0);  // buttons/keys: show the mark briefly first
+    setTimeout(function () {
+      card.style.transform = out;
+      card.style.opacity = '0';
+      var next = nextCard();
+      if (next) { next.style.transform = 'translateY(0) scale(1) rotate(0deg)'; }
+      setTimeout(function () {
+        record(id, verdict, ms);
+        S.deck.shift();
+        S.busy = false;
+        renderStack();
+      }, reduced ? 20 : 300);
+    }, delay);
+  }
+
+  /* ---------- drag ---------- */
+  var drag = null;
+  function onDown(e) {
+    var card = topCard();
+    if (!card || S.busy || !card.contains(e.target) || (e.button != null && e.button !== 0)) return;
+    drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, dx: 0, dy: 0, t: performance.now(), lx: e.clientX, lt: performance.now(), vx: 0, card: card };
+    card.classList.add('is-dragging');
+    var next = nextCard(); if (next) next.classList.add('is-dragging');
+    try { card.setPointerCapture(e.pointerId); } catch (err) { /* older browsers */ }
+  }
+  function onMove(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var now = performance.now();
+    drag.dx = e.clientX - drag.x0; drag.dy = e.clientY - drag.y0;
+    drag.vx = (e.clientX - drag.lx) / Math.max(1, now - drag.lt); drag.lx = e.clientX; drag.lt = now;
+    drag.card.style.transform = 'translate(' + drag.dx + 'px,' + drag.dy + 'px) rotate(' + (drag.dx * .055) + 'deg)';
+    var up = -drag.dy > Math.abs(drag.dx) ? clamp(-drag.dy / 110, 0, 1) : 0;
+    setMarks(drag.card, up ? 0 : clamp(drag.dx / 100, 0, 1), up ? 0 : clamp(-drag.dx / 100, 0, 1), up);
+    var p = clamp(Math.max(Math.abs(drag.dx), -drag.dy) / 140, 0, 1);
+    var next = nextCard();
+    if (next) next.style.transform = 'translateY(' + (12 - 12 * p) + 'px) scale(' + (.955 + .045 * p) + ') rotate(' + (1 - p) * parseFloat(next.style.getPropertyValue('--tilt')) + 'deg)';
+  }
+  function onUp(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var d = drag; drag = null;
+    var next = nextCard();
+    if (next) next.classList.remove('is-dragging');
+    if (-d.dy > 110 && -d.dy > Math.abs(d.dx)) return fly('hero', d.dx, d.dy);
+    if (d.dx > 110 || (d.vx > .6 && d.dx > 30)) return fly('keep', d.dx, d.dy);
+    if (d.dx < -110 || (d.vx < -.6 && d.dx < -30)) return fly('pass', d.dx, d.dy);
+    d.card.classList.remove('is-dragging');
+    d.card.style.transform = '';
+    setMarks(d.card, 0, 0, 0);
+    if (next) next.style.transform = '';
+  }
+
+  /* ---------- recording + saving ---------- */
+  function record(id, verdict, ms) {
+    var v = { photo: id, verdict: verdict, ms: Math.round(ms), user: S.user.key, name: S.user.name, at: new Date().toISOString(), example: false };
+    S.votes.push(v);
+    S.done[id] = true;
+    if (S.store === 'sharepoint') { S.queue.push({ v: v, tries: 0 }); flush(); }
+    else { saveLocal(S.votes.filter(function (x) { return !x.example; })); S.saved++; }
+    renderStatus();
+    if (S.view === 'results') renderResults();
+  }
+
+  var flushing = false;
+  async function flush() {
+    if (flushing) return;
+    flushing = true;
+    while (S.queue.length) {
+      var job = S.queue[0];
+      try {
+        await spAddVote(job.v);
+        S.queue.shift(); S.saved++;
+      } catch (e) {
+        job.tries++; S.lastError = e.message;
+        if (job.tries >= 4) { S.queue.shift(); S.failed.push(job.v); }
+        else { renderStatus(); await sleep(1500 * Math.pow(2, job.tries)); }
+      }
+      renderStatus();
+    }
+    flushing = false;
+    renderStatus();
+  }
+
+  /* ---------- results ---------- */
+  function latestByUser(votes) {
+    var m = {};
+    votes.forEach(function (v) { m[v.user + '|' + v.photo] = v; });
+    return Object.keys(m).map(function (k) { return m[k]; });
+  }
+
+  function renderResults() {
+    var votes = latestByUser(S.votes);
+    var users = {}; var totalMs = 0; var hasExamples = false;
+    votes.forEach(function (v) { users[v.user] = 1; totalMs += v.ms || 0; if (v.example) hasExamples = true; });
+    var mine = {};
+    votes.forEach(function (v) { if (v.user === S.user.key) mine[v.photo] = v.verdict; });
+
+    var rows = PHOTOS.map(function (p) {
+      var vs = votes.filter(function (v) { return v.photo === p.id; });
+      var keep = vs.filter(function (v) { return v.verdict === 'keep'; }).length;
+      var hero = vs.filter(function (v) { return v.verdict === 'hero'; }).length;
+      var n = vs.length;
+      var ms = n ? vs.reduce(function (a, v) { return a + (v.ms || 0); }, 0) / n : 0;
+      return { p: p, n: n, keep: keep, hero: hero, rate: n ? (keep + hero) / n : -1, ms: ms };
+    }).sort(function (a, b) { return (b.rate - a.rate) || (b.hero - a.hero) || (b.n - a.n); });
+
+    var nVotes = votes.length;
+    var html = '<div class="ps-stats">' +
+      '<div class="ps-stat"><span class="ps-mono">Reviewers</span><b>' + Object.keys(users).length + '</b></div>' +
+      '<div class="ps-stat"><span class="ps-mono">Swipes</span><b>' + nVotes + '</b></div>' +
+      '<div class="ps-stat"><span class="ps-mono">Avg decision</span><b>' + (nVotes ? (totalMs / nVotes / 1000).toFixed(1) + ' s' : '–') + '</b></div></div>';
+    if (hasExamples) html += '<p class="ps-note">Includes 4 example reviewers so the ranking has something to show. They only appear in demo mode, never on SharePoint.</p>';
+    html += '<div class="ps-legend"><span><i style="background:var(--ps-red)"></i>Keep</span><span><i style="background:var(--ps-yellow)"></i>Hero (counts as keep)</span><span><i style="background:var(--ps-line)"></i>Pass</span></div>';
+    html += '<ol class="ps-list">';
+    rows.forEach(function (r, i) {
+      var my = mine[r.p.id];
+      var split = r.n >= 3 && r.rate >= .4 && r.rate <= .6;
+      html += '<li class="ps-item"><span class="ps-rank">' + String(i + 1).padStart(2, '0') + '</span>' +
+        '<img class="ps-thumb" alt="" src="' + esc(r.p.src) + '">' +
+        '<div class="ps-mid"><div class="ps-mid-top"><strong>' + esc(r.p.caption) + '</strong></div>' +
+        '<div class="ps-bar" aria-hidden="true"><i class="k" style="width:' + (r.n ? r.keep / r.n * 100 : 0) + '%"></i><i class="h" style="width:' + (r.n ? r.hero / r.n * 100 : 0) + '%"></i></div>' +
+        '<div class="ps-meta"><span class="ps-mono">' + r.n + ' vote' + (r.n === 1 ? '' : 's') + (r.n ? ' · ' + (r.ms / 1000).toFixed(1) + ' s' : '') + '</span>' +
+        (my ? '<span class="ps-chip ' + my + '">You: ' + my + '</span>' : '') +
+        (r.hero ? '<span class="ps-chip hero">' + r.hero + ' hero</span>' : '') +
+        (split ? '<span class="ps-chip">Split decision</span>' : '') + '</div></div>' +
+        '<div class="ps-pct">' + (r.n ? Math.round(r.rate * 100) + '%' : '–') + '<small>kept</small></div></li>';
+    });
+    html += '</ol>';
+    if (S.store === 'sharepoint') html += '<div><button type="button" class="ps-pill ps-pill--ghost" data-act="refresh">Refresh from SharePoint</button></div>';
+    $('ps-view-results').innerHTML = html;
+  }
+
+  /* ---------- chrome: who, banner, status, details ---------- */
+  function renderWho() {
+    var who = $('ps-who');
+    who.className = 'ps-who ' + (S.mode === 'demo' ? 'is-demo' : S.allowed ? 'is-verified' : S.mode === 'sharepoint' ? 'is-denied' : '');
+    $('ps-who-name').textContent = S.mode === 'demo' ? 'Demo mode' : S.user ? S.user.name : 'Checking sign-in…';
+    who.title = S.user ? (S.user.email || S.user.upn || '') : '';
+  }
+
+  function renderBanner() {
+    var b = $('ps-banner');
+    if (S.mode === 'demo') {
+      b.innerHTML = '<p>Demo mode. This page isn’t on SharePoint, so there is no sign-in and swipes stay in this browser.</p>';
+      b.hidden = false;
+    } else if (S.mode === 'sharepoint' && S.list === 'missing') {
+      b.innerHTML = '<p>The results list “' + esc(CONFIG.listTitle) + '” doesn’t exist on this site yet. Swipes stay in this browser until it does.</p>' +
+        '<button type="button" class="ps-pill" data-act="create">Create the list</button>';
+      b.hidden = false;
+    } else if (S.mode === 'sharepoint' && S.list === 'error') {
+      b.innerHTML = '<p>Couldn’t open the results list: ' + esc(S.lastError) + '. Swipes stay in this browser.</p>';
+      b.hidden = false;
+    } else {
+      b.hidden = true;
+    }
+  }
+
+  function renderStatus() {
+    var el = $('ps-status');
+    var parts = [];
+    if (S.store === 'sharepoint') {
+      if (S.queue.length) parts.push('Saving ' + S.queue.length + '…');
+      else parts.push('Saved to “' + esc(CONFIG.listTitle) + '” ✓');
+      if (S.failed.length) parts.push('<span>' + S.failed.length + ' not saved</span> <button type="button" class="ps-link" data-act="retry">Retry</button>');
+    } else if (S.mode !== 'loading' && S.allowed) {
+      parts.push(S.saved ? S.saved + ' swipe' + (S.saved === 1 ? '' : 's') + ' saved in this browser' : 'Swipes save in this browser');
+    }
+    el.innerHTML = parts.join(' · ');
+    renderDiag();
+  }
+
+  function renderDiag() {
+    var u = S.user || {};
+    var rows = [
+      ['Mode', S.mode === 'sharepoint' ? 'SharePoint (signed in)' : S.mode === 'demo' ? 'Demo, not on SharePoint' : S.mode],
+      ['Site', SITE],
+      ['Signed in as', u.name || '–'],
+      ['Email', u.email || '–'],
+      ['UPN', u.upn || '–'],
+      ['Allowed list', CONFIG.allowedEmails.join(', ')],
+      ['Access', S.mode === 'demo' ? 'Not checked (demo)' : S.allowed ? 'Granted' : S.user ? 'Denied' : '–'],
+      ['Results list', S.mode === 'demo' ? 'Not used (demo)' : CONFIG.listTitle + ': ' + S.list],
+      ['Saved this session', String(S.saved)],
+      ['Last error', S.lastError || '–']
+    ];
+    $('ps-dl').innerHTML = rows.map(function (r) { return '<dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd>'; }).join('');
+    var acts = '';
+    if (S.mode === 'sharepoint' && S.allowed && S.list === 'missing') acts += '<button type="button" class="ps-pill" data-act="create">Create the list</button>';
+    if (S.allowed || S.mode === 'demo') acts += '<button type="button" class="ps-pill ps-pill--ghost" data-act="preview-lock">Preview the locked screen</button>';
+    if (S.store === 'local' && S.mode !== 'loading') acts += '<button type="button" class="ps-pill ps-pill--ghost" data-act="clear-local">Clear my swipes in this browser</button>';
+    $('ps-diag-actions').innerHTML = acts;
+  }
+
+  function showGate(kind, detail) {
+    var g = $('ps-gate');
+    var lock = '<svg class="ps-lock" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+    if (kind === 'loading') {
+      g.innerHTML = '<span class="ps-mono">One moment</span><h2>Checking your sign-in…</h2>';
+    } else if (kind === 'denied') {
+      var u = S.user || {};
+      var demo = S.mode === 'demo';
+      var addr = u.email || u.upn || (demo ? 'colleague@yourcompany.com' : 'unknown');
+      g.innerHTML = lock + '<h2>This roll is private</h2>' +
+        '<p>You’re signed in as <strong>' + esc(demo ? 'A colleague' : (u.name || 'someone')) + '</strong>, but this preview is only open to invited reviewers.</p>' +
+        '<p>To get in, ask the owner to add this address:</p><code id="ps-addr">' + esc(addr) + '</code>' +
+        '<div class="ps-row-btns"><button type="button" class="ps-pill ps-pill--ghost" data-act="copy">Copy address</button>' +
+        (S.previewLocked ? '<button type="button" class="ps-pill" data-act="end-preview">Back to the app</button>' : '') + '</div>' +
+        (S.previewLocked ? '<p class="ps-note">Preview: this is what colleagues outside the allowed list see.</p>' : '');
+    } else if (kind === 'error') {
+      g.innerHTML = lock + '<h2>Couldn’t read your SharePoint profile</h2><p>' + esc(detail || '') + '</p>' +
+        '<p class="ps-note">Usually this means the script runs in a sandboxed frame, or the page is on a different site than ' + esc(SITE) + '. Set <code>siteUrl</code> in the settings at the top of the script.</p>' +
+        '<button type="button" class="ps-pill" data-act="retry-boot">Try again</button>';
+    }
+    g.hidden = false;
+    $('ps-main').hidden = true;
+  }
+  function hideGate() { $('ps-gate').hidden = true; $('ps-main').hidden = false; }
+
+  function setView(v) {
+    S.view = v;
+    $('ps-tab-swipe').setAttribute('aria-selected', String(v === 'swipe'));
+    $('ps-tab-results').setAttribute('aria-selected', String(v === 'results'));
+    $('ps-view-swipe').hidden = v !== 'swipe';
+    $('ps-view-results').hidden = v !== 'results';
+    if (v === 'results') renderResults();
+  }
+
+  /* ---------- actions ---------- */
+  async function onAction(act, btn) {
+    if (act === 'results') setView('results');
+    else if (act === 'restart') { S.done = {}; buildDeck(); renderStack(); }
+    else if (act === 'retry') { S.failed.forEach(function (v) { S.queue.push({ v: v, tries: 0 }); }); S.failed = []; flush(); }
+    else if (act === 'create') {
+      if (btn) { btn.disabled = true; btn.textContent = 'Creating…'; }
+      try {
+        await createList();
+        if (S.list === 'ok') {
+          var local = S.votes.filter(function (v) { return !v.example; });
+          S.store = 'sharepoint';
+          local.forEach(function (v) { S.queue.push({ v: v, tries: 0 }); });
+          saveLocal([]);
+          flush();
+        }
+      } catch (e) {
+        S.lastError = 'Creating the list failed (' + e.message + '). You need edit rights on this site.';
+        S.list = 'missing';
+      }
+      renderBanner(); renderStatus();
+    }
+    else if (act === 'refresh') {
+      try { await loadSpVotes(); } catch (e) { S.lastError = e.message; }
+      renderResults(); renderStatus();
+    }
+    else if (act === 'clear-local') {
+      saveLocal([]); S.votes = S.votes.filter(function (v) { return v.example; }); S.done = {}; S.saved = 0;
+      buildDeck(); renderStack(); renderStatus(); if (S.view === 'results') renderResults();
+    }
+    else if (act === 'preview-lock') { S.previewLocked = true; showGate('denied'); $('ps-gate').scrollIntoView({ block: 'nearest' }); }
+    else if (act === 'end-preview') { S.previewLocked = false; hideGate(); }
+    else if (act === 'copy') {
+      var text = $('ps-addr').textContent;
+      try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }
+      catch (e) { var r = document.createRange(); r.selectNodeContents($('ps-addr')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press Ctrl+C'; }
+    }
+    else if (act === 'retry-boot') start();
+  }
+
+  function wire() {
+    var app = $('ps-app');
+    app.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-act]');
+      if (b && app.contains(b)) onAction(b.getAttribute('data-act'), b);
+    });
+    $('ps-tab-swipe').addEventListener('click', function () { setView('swipe'); });
+    $('ps-tab-results').addEventListener('click', function () { setView('results'); });
+    $('ps-btn-pass').addEventListener('click', function () { fly('pass'); });
+    $('ps-btn-keep').addEventListener('click', function () { fly('keep'); });
+    $('ps-btn-hero').addEventListener('click', function () { fly('hero'); });
+    var stack = $('ps-stack');
+    stack.addEventListener('pointerdown', onDown);
+    stack.addEventListener('pointermove', onMove);
+    stack.addEventListener('pointerup', onUp);
+    stack.addEventListener('pointercancel', onUp);
+    document.addEventListener('keydown', function (e) {
+      if (S.view !== 'swipe' || $('ps-main').hidden || e.altKey || e.ctrlKey || e.metaKey) return;
+      var t = e.target;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      var r = app.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;   // app scrolled out of view: leave keys to the page
+      var map = { ArrowLeft: 'pass', ArrowRight: 'keep', ArrowUp: 'hero' };
+      if (map[e.key] && topCard()) { e.preventDefault(); fly(map[e.key]); }
+    });
+  }
+
+  /* ---------- start ---------- */
+  async function start() {
+    S.mode = 'loading'; S.user = null; S.allowed = false;
+    renderWho(); showGate('loading');
+    var me = null, err = null;
+    // Only ask SharePoint who we are when we're actually on SharePoint (or a site is configured).
+    if (ON_SHAREPOINT || CONFIG.siteUrl) { try { me = await whoAmI(); } catch (e) { err = e; } }
+
+    if (me) {
+      S.mode = 'sharepoint';
+      S.user = { key: 'sp' + me.Id, id: me.Id, name: me.Title, email: me.Email || '', upn: me.UserPrincipalName || '', login: me.LoginName || '' };
+      S.allowed = isAllowed(S.user);
+      renderWho(); renderStatus();
+      if (!S.allowed) { showGate('denied'); return; }
+      await checkList();
+      if (S.list === 'ok') {
+        S.store = 'sharepoint';
+        try { await loadSpVotes(); } catch (e) { S.lastError = e.message; }
+      } else {
+        S.store = 'local';
+        S.votes = loadLocal().map(function (v) { v.user = S.user.key; return v; });
+      }
+    } else if (ON_SHAREPOINT) {
+      S.mode = 'sharepoint'; S.lastError = err ? err.message : 'Unknown error';
+      renderWho(); renderStatus(); showGate('error', S.lastError);
+      return;
+    } else {
+      S.mode = 'demo'; S.store = 'local'; S.allowed = true;
+      S.user = { key: 'demo-me', name: 'You', email: '', upn: '', login: '' };
+      S.votes = exampleVotes().concat(loadLocal());
+      S.saved = S.votes.filter(function (v) { return !v.example; }).length;
+    }
+
+    S.done = {};
+    S.votes.forEach(function (v) { if (v.user === S.user.key) S.done[v.photo] = true; });
+    buildDeck();
+    renderWho(); renderBanner(); renderStatus();
+    hideGate();
+    renderStack();
+    setView(S.view);
+  }
+
+  function boot() {
+    PHOTOS = window.PS_PHOTOS || [];
+    PHOTOS.forEach(function (p) { byId[p.id] = p; });
+    wire();
+    start();
+  }
+
+  if (window.PS_PHOTOS) boot(); else window.__psBoot = boot;
+})();
+</script>
+<!--PHOTOS-->
