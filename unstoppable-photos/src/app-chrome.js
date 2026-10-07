@@ -100,7 +100,7 @@
       (canFull() && canSeeResults() && !S.gate ? '<button type="button" class="ps-mi" data-act="present">' + icon(P.present) + T(isFull() ? 'exitPresent' : 'present') + '</button>' : '') +
       (S.realAdmin && !S.gate ? '<button type="button" class="ps-mi" data-act="as-reviewer" data-id="' + (S.asReviewer ? 'off' : 'on') + '">' + icon(P.eye) + T(S.asReviewer ? 'viewAsAdmin' : 'viewAsReviewer') + '</button>' +
         '<button type="button" class="ps-mi" data-act="preview-lock">' + icon(P.lock) + T('previewLock') + '</button>' : '') +
-      '<button type="button" class="ps-mi" data-act="view" data-id="details">' + icon(P.info) + T('details') + '</button>' +
+      (S.realAdmin || S.gate === 'error' ? '<button type="button" class="ps-mi" data-act="view" data-id="details">' + icon(P.info) + T('details') + '</button>' : '') +
       (S.allowed && !S.gate ? '<p class="ps-menu-keys">' + T('keys', { pass: L('pass'), keep: L('keep'), hero: L('hero') }) + '</p>' : '');
   }
 

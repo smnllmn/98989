@@ -75,7 +75,7 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-round { width: 44px; height: 44px; padding: 0; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: .92rem; letter-spacing: .02em; }
 .ps-round .ps-ic { width: 22px; height: 22px; }
 .ps-brand { min-width: 0; text-align: center; }
-.ps-name { display: block; font-weight: 800; font-size: 1.32rem; letter-spacing: -.01em; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ps-name { display: block; font-weight: 800; font-size: clamp(1.02rem, 4.6cqi, 1.32rem); letter-spacing: -.01em; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ps-sub { display: block; min-height: 1.2em; margin-top: 2px; font-size: .8rem; font-weight: 600; opacity: .88; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .ps-menu { position: absolute; top: 54px; right: 0; width: 290px; max-width: calc(100cqi - 32px); padding: 8px; border-radius: 18px; background: #fff; color: var(--b-ink); box-shadow: 0 26px 56px -20px rgba(40, 0, 15, .6); z-index: 40; }
@@ -182,6 +182,12 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-howto-ic--pass { background: var(--b-slate); }
 .ps-howto-ic--hero { background: var(--b-grad); }
 .ps-small { font-size: .8rem !important; color: var(--b-muted) !important; }
+.ps-tally { display: flex; justify-content: center; gap: 6px; width: 100%; max-width: 360px; margin: 2px 0 4px; }
+.ps-tally-i { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; padding: 10px 4px; border-radius: 16px; font-size: .74rem; font-weight: 700; white-space: nowrap; }
+.ps-tally-i b { font-size: 1.6rem; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.ps-tally-i--keep { background: var(--b-pink-50); color: var(--b-magenta); }
+.ps-tally-i--hero { background: #F4E8FA; color: #8A2E9C; }
+.ps-tally-i--pass { background: #EEF0F2; color: var(--b-slate); }
 
 /* action tiles under the card, like the app's shortcut tiles */
 .ps-actions { display: flex; align-items: flex-start; justify-content: center; gap: clamp(18px, 6cqi, 40px); }

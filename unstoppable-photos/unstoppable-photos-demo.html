@@ -80,7 +80,7 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-round { width: 44px; height: 44px; padding: 0; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: .92rem; letter-spacing: .02em; }
 .ps-round .ps-ic { width: 22px; height: 22px; }
 .ps-brand { min-width: 0; text-align: center; }
-.ps-name { display: block; font-weight: 800; font-size: 1.32rem; letter-spacing: -.01em; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ps-name { display: block; font-weight: 800; font-size: clamp(1.02rem, 4.6cqi, 1.32rem); letter-spacing: -.01em; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ps-sub { display: block; min-height: 1.2em; margin-top: 2px; font-size: .8rem; font-weight: 600; opacity: .88; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .ps-menu { position: absolute; top: 54px; right: 0; width: 290px; max-width: calc(100cqi - 32px); padding: 8px; border-radius: 18px; background: #fff; color: var(--b-ink); box-shadow: 0 26px 56px -20px rgba(40, 0, 15, .6); z-index: 40; }
@@ -187,6 +187,12 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-howto-ic--pass { background: var(--b-slate); }
 .ps-howto-ic--hero { background: var(--b-grad); }
 .ps-small { font-size: .8rem !important; color: var(--b-muted) !important; }
+.ps-tally { display: flex; justify-content: center; gap: 6px; width: 100%; max-width: 360px; margin: 2px 0 4px; }
+.ps-tally-i { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; padding: 10px 4px; border-radius: 16px; font-size: .74rem; font-weight: 700; white-space: nowrap; }
+.ps-tally-i b { font-size: 1.6rem; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.ps-tally-i--keep { background: var(--b-pink-50); color: var(--b-magenta); }
+.ps-tally-i--hero { background: #F4E8FA; color: #8A2E9C; }
+.ps-tally-i--pass { background: #EEF0F2; color: var(--b-slate); }
 
 /* action tiles under the card, like the app's shortcut tiles */
 .ps-actions { display: flex; align-items: flex-start; justify-content: center; gap: clamp(18px, 6cqi, 40px); }
@@ -487,12 +493,12 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     introRight: 'Swipe right', introLeft: 'Swipe left', introUp: 'Swipe up', introUpNote: 'for the real standouts',
     introUndo: 'Swiped too fast? You can always undo.', introStart: 'Let’s go',
     undo: 'Undo', undone: 'Undone',
-    doneKicker: 'All done', doneTitle: 'You’ve seen every photo', doneText: 'You marked {keep} of {total} photos as {keepLabel}.',
+    doneKicker: 'All done', doneTitle: 'You’ve seen every photo',
     seeResults: 'See the results', swipeAgain: 'Swipe again',
     emptyTitle: 'No photos yet', emptyAdmin: 'Add photos in Manage. They go into the “{lib}” library on this site.',
     emptyUser: 'There are no photos to judge yet. Check back soon.',
     emptyDemo: 'Add a few photos of your own to try it out. They stay in this browser.', addPhotos: 'Add photos',
-    photoBroken: 'This photo won’t load',
+    photoBroken: 'This photo won’t load', photoAlt: 'Photo {n}',
     setupKicker: 'One-time setup', setupTitle: 'Set up this site',
     setupText: 'The app needs a photo library “{lib}” and a votes list “{list}” on this site. It can create both in one click.',
     setupBtn: 'Set up now', setupBusy: 'Setting up…', setupDone: 'All set. Add your first photos.',
@@ -526,7 +532,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     openLib: 'Open library', openList: 'Open votes list',
     demoPhotosNote: 'Demo: photos you add here stay until you reload the page.',
     skippedFiles: '{n} file(s) in the library aren’t photos a browser can show (HEIC, for example), so they’re skipped.',
-    stSaved: 'Saved to SharePoint', stSaving: 'Saving… ({n})', stFailed: '{n} not saved', retry: 'Retry',
+    stSaved: 'Saved', stSaving: 'Saving… ({n})', stFailed: '{n} not saved', retry: 'Retry',
     stLocal: 'Swipes stay in this browser', stDemo: 'Demo · nothing leaves this browser',
     gateLoading: 'One moment…', gateChecking: 'Checking your sign-in', gatePhotos: 'Loading the photos',
     deniedTitle: 'This photo round is private',
@@ -571,12 +577,12 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     introRight: 'Swipe naar rechts', introLeft: 'Swipe naar links', introUp: 'Swipe omhoog', introUpNote: 'voor de echte uitblinkers',
     introUndo: 'Te snel geswipet? Je kunt altijd ongedaan maken.', introStart: 'Starten',
     undo: 'Ongedaan maken', undone: 'Ongedaan gemaakt',
-    doneKicker: 'Klaar', doneTitle: 'Je hebt alle foto’s gezien', doneText: 'Je gaf {keep} van de {total} foto’s een {keepLabel}.',
+    doneKicker: 'Klaar', doneTitle: 'Je hebt alle foto’s gezien',
     seeResults: 'Bekijk de resultaten', swipeAgain: 'Opnieuw swipen',
     emptyTitle: 'Nog geen foto’s', emptyAdmin: 'Voeg foto’s toe via Beheer. Ze komen in de bibliotheek “{lib}” op deze site.',
     emptyUser: 'Er staan nog geen foto’s klaar. Kom straks even terug.',
     emptyDemo: 'Voeg een paar eigen foto’s toe om het te proberen. Ze blijven in deze browser.', addPhotos: 'Foto’s toevoegen',
-    photoBroken: 'Deze foto laadt niet',
+    photoBroken: 'Deze foto laadt niet', photoAlt: 'Foto {n}',
     setupKicker: 'Eenmalig', setupTitle: 'Deze site instellen',
     setupText: 'De app heeft op deze site een fotobibliotheek “{lib}” en een stemmenlijst “{list}” nodig. Ze worden in één klik aangemaakt.',
     setupBtn: 'Nu instellen', setupBusy: 'Bezig met instellen…', setupDone: 'Klaar. Voeg je eerste foto’s toe.',
@@ -610,7 +616,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     openLib: 'Bibliotheek openen', openList: 'Stemmenlijst openen',
     demoPhotosNote: 'Demo: foto’s die je hier toevoegt, blijven tot je de pagina herlaadt.',
     skippedFiles: '{n} bestand(en) in de bibliotheek zijn geen foto’s die een browser kan tonen (bv. HEIC) en worden overgeslagen.',
-    stSaved: 'Opgeslagen in SharePoint', stSaving: 'Opslaan… ({n})', stFailed: '{n} niet opgeslagen', retry: 'Opnieuw proberen',
+    stSaved: 'Opgeslagen', stSaving: 'Opslaan… ({n})', stFailed: '{n} niet opgeslagen', retry: 'Opnieuw proberen',
     stLocal: 'Swipes blijven in deze browser', stDemo: 'Demo · niets verlaat deze browser',
     gateLoading: 'Even geduld…', gateChecking: 'Je aanmelding controleren', gatePhotos: 'De foto’s laden',
     deniedTitle: 'Deze fotoronde is privé',
@@ -655,12 +661,12 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     introRight: 'Swipez à droite', introLeft: 'Swipez à gauche', introUp: 'Swipez vers le haut', introUpNote: 'pour les vraies pépites',
     introUndo: 'Trop rapide ? Vous pouvez toujours annuler.', introStart: 'C’est parti',
     undo: 'Annuler', undone: 'Annulé',
-    doneKicker: 'Terminé', doneTitle: 'Vous avez vu toutes les photos', doneText: 'Vous avez donné un {keepLabel} à {keep} photos sur {total}.',
+    doneKicker: 'Terminé', doneTitle: 'Vous avez vu toutes les photos',
     seeResults: 'Voir les résultats', swipeAgain: 'Swiper à nouveau',
     emptyTitle: 'Pas encore de photos', emptyAdmin: 'Ajoutez des photos dans Gestion. Elles vont dans la bibliothèque « {lib} » de ce site.',
     emptyUser: 'Aucune photo à évaluer pour l’instant. Revenez un peu plus tard.',
     emptyDemo: 'Ajoutez quelques photos pour essayer. Elles restent dans ce navigateur.', addPhotos: 'Ajouter des photos',
-    photoBroken: 'Cette photo ne se charge pas',
+    photoBroken: 'Cette photo ne se charge pas', photoAlt: 'Photo {n}',
     setupKicker: 'Configuration unique', setupTitle: 'Configurer ce site',
     setupText: 'L’application a besoin d’une bibliothèque de photos « {lib} » et d’une liste de votes « {list} » sur ce site. Elle peut les créer en un clic.',
     setupBtn: 'Configurer', setupBusy: 'Configuration…', setupDone: 'C’est prêt. Ajoutez vos premières photos.',
@@ -694,7 +700,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     openLib: 'Ouvrir la bibliothèque', openList: 'Ouvrir la liste des votes',
     demoPhotosNote: 'Démo : les photos ajoutées ici restent jusqu’au rechargement de la page.',
     skippedFiles: '{n} fichier(s) de la bibliothèque ne sont pas des photos affichables par un navigateur (HEIC, par exemple) et sont ignorés.',
-    stSaved: 'Enregistré dans SharePoint', stSaving: 'Enregistrement… ({n})', stFailed: '{n} non enregistré(s)', retry: 'Réessayer',
+    stSaved: 'Enregistré', stSaving: 'Enregistrement… ({n})', stFailed: '{n} non enregistré(s)', retry: 'Réessayer',
     stLocal: 'Les swipes restent dans ce navigateur', stDemo: 'Démo · rien ne quitte ce navigateur',
     gateLoading: 'Un instant…', gateChecking: 'Vérification de votre connexion', gatePhotos: 'Chargement des photos',
     deniedTitle: 'Cette série de photos est privée',
@@ -1296,11 +1302,8 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
   /* ---------- cards ---------- */
   function cardInner(p) {
     return '<div class="ps-card-inner"><div class="ps-card-bg"></div><div class="ps-card-skel"></div>' +
-      '<img class="ps-card-img" alt="' + esc(p.caption) + '" draggable="false">' +
+      '<img class="ps-card-img" alt="' + T('photoAlt', { n: S.photos.indexOf(p) + 1 }) + '" draggable="false">' +
       '<div class="ps-card-err">' + icon(P.image) + '<span>' + T('photoBroken') + '</span></div>' +
-      '<div class="ps-card-shade"></div><div class="ps-card-cap">' +
-      (p.folder ? '<span class="ps-card-folder">' + esc(p.folder) + '</span>' : '') +
-      '<strong>' + esc(p.caption) + '</strong>' + (p.credit ? '<span class="ps-card-credit">' + esc(p.credit) + '</span>' : '') + '</div>' +
       '<div class="ps-tint ps-tint--keep"></div><div class="ps-tint ps-tint--pass"></div><div class="ps-tint ps-tint--hero"></div>' +
       '<span class="ps-stamp ps-stamp--keep">' + IC.keep + esc(L('keep')) + '</span>' +
       '<span class="ps-stamp ps-stamp--pass">' + IC.pass + esc(L('pass')) + '</span>' +
@@ -1312,7 +1315,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     var el = document.createElement('article');
     el.className = 'ps-card is-loading';
     el.dataset.id = id;
-    el.setAttribute('aria-label', p.caption);
+    el.setAttribute('aria-label', t('photoAlt', { n: S.photos.indexOf(p) + 1 }));
     el.innerHTML = cardInner(p);
     var img = el.querySelector('.ps-card-img');
     var ready = function () { el.classList.remove('is-loading'); fit(el); };
@@ -1422,11 +1425,20 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     $('ps-progress-bar').style.width = total ? (seen / total * 100).toFixed(1) + '%' : '0%';
   }
 
-  function panel(kind, ic, title, text, actions, kicker) {
+  function panel(kind, ic, title, text, actions, kicker, extra) {
     return '<div class="ps-panel ps-panel--' + kind + '"><span class="ps-panel-ic">' + ic + '</span>' +
       (kicker ? '<span class="ps-kicker">' + esc(kicker) + '</span>' : '') +
-      '<h2>' + esc(title) + '</h2><p>' + esc(text) + '</p>' +
+      '<h2>' + esc(title) + '</h2>' + (text ? '<p>' + esc(text) + '</p>' : '') + (extra || '') +
       (actions ? '<div class="ps-row">' + actions + '</div>' : '') + '</div>';
+  }
+
+  // How I voted: 5 Top · 2 Unstoppable · 3 Flop
+  function myTallyHtml() {
+    var mine = myVotes(), n = { keep: 0, hero: 0, pass: 0 };
+    S.photos.forEach(function (p) { if (mine[p.id]) n[mine[p.id]]++; });
+    return '<div class="ps-tally">' + ['keep', 'hero', 'pass'].map(function (v) {
+      return '<span class="ps-tally-i ps-tally-i--' + v + '"><b>' + n[v] + '</b>' + esc(L(v)) + '</span>';
+    }).join('') + '</div>';
   }
 
   function panelHtml() {
@@ -1441,16 +1453,13 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
         '<button type="button" class="ps-btn" data-act="view" data-id="manage">' + icon(P.upload) + T('addPhotos') + '</button>');
       return panel('empty', icon(P.image), t('emptyTitle'), t('emptyUser'), '');
     }
-    var mine = myVotes();
-    var keeps = S.photos.filter(function (p) { return mine[p.id] && mine[p.id] !== 'pass'; }).length;
-    var text = t('doneText', { keep: keeps, total: S.photos.length, keepLabel: L('keep') });
     if (!canSeeResults()) {
-      return panel('done', icon(P.check), t('doneTitleThanks'), text,
-        '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'));
+      return panel('done', icon(P.check), t('doneTitleThanks'), '',
+        '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'), myTallyHtml());
     }
-    return panel('done', icon(P.check), t('doneTitle'), text,
+    return panel('done', icon(P.check), t('doneTitle'), '',
       '<button type="button" class="ps-btn" data-act="view" data-id="results">' + T('seeResults') + '</button>' +
-      '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'));
+      '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'), myTallyHtml());
   }
 
   function introHtml() {
@@ -1564,8 +1573,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
   function hideToast() { clearTimeout(toastTimer); var el = $('ps-toast'); if (el) el.classList.remove('is-on'); }
   function toastText(text, ms) { showToast('<span class="ps-toast-text">' + esc(text) + '</span>', ms); }
   function voteToast(v) {
-    var p = S.byId[v.photo] || {};
-    showToast('<span class="ps-toast-dot ps-toast-dot--' + v.verdict + '"></span><span class="ps-toast-text">' + esc(L(v.verdict)) + ' · ' + esc(p.caption || '') +
+    showToast('<span class="ps-toast-dot ps-toast-dot--' + v.verdict + '"></span><span class="ps-toast-text">' + esc(L(v.verdict)) +
       '</span><button type="button" data-act="undo" aria-label="' + T('undo') + '">' + icon(P.undo) + '<span class="ps-undo-label">' + T('undo') + '</span></button>');
   }
 
@@ -2115,7 +2123,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
       (canFull() && canSeeResults() && !S.gate ? '<button type="button" class="ps-mi" data-act="present">' + icon(P.present) + T(isFull() ? 'exitPresent' : 'present') + '</button>' : '') +
       (S.realAdmin && !S.gate ? '<button type="button" class="ps-mi" data-act="as-reviewer" data-id="' + (S.asReviewer ? 'off' : 'on') + '">' + icon(P.eye) + T(S.asReviewer ? 'viewAsAdmin' : 'viewAsReviewer') + '</button>' +
         '<button type="button" class="ps-mi" data-act="preview-lock">' + icon(P.lock) + T('previewLock') + '</button>' : '') +
-      '<button type="button" class="ps-mi" data-act="view" data-id="details">' + icon(P.info) + T('details') + '</button>' +
+      (S.realAdmin || S.gate === 'error' ? '<button type="button" class="ps-mi" data-act="view" data-id="details">' + icon(P.info) + T('details') + '</button>' : '') +
       (S.allowed && !S.gate ? '<p class="ps-menu-keys">' + T('keys', { pass: L('pass'), keep: L('keep'), hero: L('hero') }) + '</p>' : '');
   }
 

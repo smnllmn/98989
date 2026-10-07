@@ -161,11 +161,8 @@
   /* ---------- cards ---------- */
   function cardInner(p) {
     return '<div class="ps-card-inner"><div class="ps-card-bg"></div><div class="ps-card-skel"></div>' +
-      '<img class="ps-card-img" alt="' + esc(p.caption) + '" draggable="false">' +
+      '<img class="ps-card-img" alt="' + T('photoAlt', { n: S.photos.indexOf(p) + 1 }) + '" draggable="false">' +
       '<div class="ps-card-err">' + icon(P.image) + '<span>' + T('photoBroken') + '</span></div>' +
-      '<div class="ps-card-shade"></div><div class="ps-card-cap">' +
-      (p.folder ? '<span class="ps-card-folder">' + esc(p.folder) + '</span>' : '') +
-      '<strong>' + esc(p.caption) + '</strong>' + (p.credit ? '<span class="ps-card-credit">' + esc(p.credit) + '</span>' : '') + '</div>' +
       '<div class="ps-tint ps-tint--keep"></div><div class="ps-tint ps-tint--pass"></div><div class="ps-tint ps-tint--hero"></div>' +
       '<span class="ps-stamp ps-stamp--keep">' + IC.keep + esc(L('keep')) + '</span>' +
       '<span class="ps-stamp ps-stamp--pass">' + IC.pass + esc(L('pass')) + '</span>' +
@@ -177,7 +174,7 @@
     var el = document.createElement('article');
     el.className = 'ps-card is-loading';
     el.dataset.id = id;
-    el.setAttribute('aria-label', p.caption);
+    el.setAttribute('aria-label', t('photoAlt', { n: S.photos.indexOf(p) + 1 }));
     el.innerHTML = cardInner(p);
     var img = el.querySelector('.ps-card-img');
     var ready = function () { el.classList.remove('is-loading'); fit(el); };
@@ -287,11 +284,20 @@
     $('ps-progress-bar').style.width = total ? (seen / total * 100).toFixed(1) + '%' : '0%';
   }
 
-  function panel(kind, ic, title, text, actions, kicker) {
+  function panel(kind, ic, title, text, actions, kicker, extra) {
     return '<div class="ps-panel ps-panel--' + kind + '"><span class="ps-panel-ic">' + ic + '</span>' +
       (kicker ? '<span class="ps-kicker">' + esc(kicker) + '</span>' : '') +
-      '<h2>' + esc(title) + '</h2><p>' + esc(text) + '</p>' +
+      '<h2>' + esc(title) + '</h2>' + (text ? '<p>' + esc(text) + '</p>' : '') + (extra || '') +
       (actions ? '<div class="ps-row">' + actions + '</div>' : '') + '</div>';
+  }
+
+  // How I voted: 5 Top · 2 Unstoppable · 3 Flop
+  function myTallyHtml() {
+    var mine = myVotes(), n = { keep: 0, hero: 0, pass: 0 };
+    S.photos.forEach(function (p) { if (mine[p.id]) n[mine[p.id]]++; });
+    return '<div class="ps-tally">' + ['keep', 'hero', 'pass'].map(function (v) {
+      return '<span class="ps-tally-i ps-tally-i--' + v + '"><b>' + n[v] + '</b>' + esc(L(v)) + '</span>';
+    }).join('') + '</div>';
   }
 
   function panelHtml() {
@@ -306,16 +312,13 @@
         '<button type="button" class="ps-btn" data-act="view" data-id="manage">' + icon(P.upload) + T('addPhotos') + '</button>');
       return panel('empty', icon(P.image), t('emptyTitle'), t('emptyUser'), '');
     }
-    var mine = myVotes();
-    var keeps = S.photos.filter(function (p) { return mine[p.id] && mine[p.id] !== 'pass'; }).length;
-    var text = t('doneText', { keep: keeps, total: S.photos.length, keepLabel: L('keep') });
     if (!canSeeResults()) {
-      return panel('done', icon(P.check), t('doneTitleThanks'), text,
-        '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'));
+      return panel('done', icon(P.check), t('doneTitleThanks'), '',
+        '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'), myTallyHtml());
     }
-    return panel('done', icon(P.check), t('doneTitle'), text,
+    return panel('done', icon(P.check), t('doneTitle'), '',
       '<button type="button" class="ps-btn" data-act="view" data-id="results">' + T('seeResults') + '</button>' +
-      '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'));
+      '<button type="button" class="ps-btn ps-btn--soft" data-act="restart">' + T('swipeAgain') + '</button>', t('doneKicker'), myTallyHtml());
   }
 
   function introHtml() {
@@ -429,7 +432,6 @@
   function hideToast() { clearTimeout(toastTimer); var el = $('ps-toast'); if (el) el.classList.remove('is-on'); }
   function toastText(text, ms) { showToast('<span class="ps-toast-text">' + esc(text) + '</span>', ms); }
   function voteToast(v) {
-    var p = S.byId[v.photo] || {};
-    showToast('<span class="ps-toast-dot ps-toast-dot--' + v.verdict + '"></span><span class="ps-toast-text">' + esc(L(v.verdict)) + ' · ' + esc(p.caption || '') +
+    showToast('<span class="ps-toast-dot ps-toast-dot--' + v.verdict + '"></span><span class="ps-toast-text">' + esc(L(v.verdict)) +
       '</span><button type="button" data-act="undo" aria-label="' + T('undo') + '">' + icon(P.undo) + '<span class="ps-undo-label">' + T('undo') + '</span></button>');
   }
