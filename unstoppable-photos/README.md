@@ -53,13 +53,15 @@ Players never see results. They have no Results tab, no Present, and no "see the
 
 ## Categories
 
-Photos belong to a category: **Belfius** or **ReBel** for this PoC (`categories` in the settings).
+Photos belong to a category: **Belfius Private** or **ReBel** for this PoC (`categories` in the settings).
 
-- **Manage**: pick the category for new photos above the upload area. Each photo has a **Belfius | ReBel** switch, and you can filter the grid by category. The category is stored in a *Category* column of the photo library, which the app creates itself. Photos without a category count as Belfius.
-- **Swiping**: players get the photos brand by brand, in the order of the settings: Belfius first, then ReBel. The intro says "De foto’s komen per merk." (no counts, so it scales to many brands). The first brand starts right after **Starten**. Every next brand opens with a title card in place of the photo: "Merk 2 van 2", the brand's logo, the number of photos and a **Verder** button. There is no timer: the vote buttons stay off until the player taps Verder (or presses Enter). Undo still works on the title card. The brand's logo stays above the card while its photos are up. While ReBel photos are up, the app switches to ReBel's look (black with a lilac glow, #D5A8FF).
-- **Results**: filter by Alle, Belfius or ReBel for a podium and ranking per category. The export has a Categorie column.
+- **Manage**: pick the category for new photos above the upload area. Each photo has a **Belfius Private | ReBel** switch, and you can filter the grid by category. The category is stored in a *Category* column of the photo library, which the app creates itself. Photos without a category count as the first one (Belfius Private).
+- **Swiping**: players get the photos brand by brand, in the order of the settings: Belfius Private first, then ReBel. The intro says "De foto’s komen per merk." (no counts, so it scales to many brands). The first brand starts right after **Starten**. Every next brand opens with a title card in place of the photo: "Merk 2 van 2", the brand's logo, the number of photos and a **Verder** button. There is no timer: the vote buttons stay off until the player taps Verder (or presses Enter). Undo still works on the title card. The brand's logo stays above the card while its photos are up. While ReBel photos are up, the app switches to ReBel's look (black with a lilac glow, #D5A8FF).
+- **Results**: filter by Alle, Belfius Private or ReBel for a podium and ranking per category. The export has a Categorie column.
 
-The logos are the official files in `src/brand/` (`belfius-logo.png`, `rebel-logo.png`). They are embedded in the file at build time; a category picks one with `logo: 'belfius'` or `logo: 'rebel'`. A category without a logo shows its name instead. Players see "merk" (brand); Manage and Results say "Categorie".
+The logos are the official files in `src/brand/` (`belfius-private-logo.png`, `rebel-logo.png`, and `belfius-logo.png` for a plain Belfius brand later). They are embedded in the file at build time; a category picks one with `logo: 'belfius-private'`, `'rebel'` or `'belfius'`. A category without a logo shows its name instead. The stacked Belfius Private logo gets a taller label above the photo; the photo stays in the same place when the brand changes.
+
+Each category's `id` is what the photos carry in the library. Change a name or logo freely, but keep the `id`: Belfius Private still has the id `belfius` from when brand 1 was called Belfius, so its photos stayed put. A new brand needs a new id (a plain Belfius brand would be, say, `belfius-bank`). Players see "merk" (brand); Manage and Results say "Categorie".
 
 ## Who can do what
 
@@ -113,7 +115,7 @@ All settings are at the top of the script, in `CONFIG`:
 | `photoLibrary`, `votesList` | `SwipePhotos`, `PhotoSwipes` |
 | `siteUrl` | `https://belfius.sharepoint.com/teams/23032314150408` (the Content Team Internal Com team site). The photos and votes live there; the page itself can be on intranet-company. Empty means the site the page is on. |
 | `language` | `auto`, which follows each person's SharePoint language. Or `nl`, `fr`, `en`. People can also switch in the ⋮ menu. |
-| `categories` | Belfius, then ReBel (with `theme: 'rebel'`), each with its `logo`. Order = swipe order. |
+| `categories` | Belfius Private, then ReBel (with `theme: 'rebel'`), each with its `logo`. Order = swipe order. Keep each `id` when renaming. |
 | `labels` | Top / Flop / Unstoppable in NL and FR; Keep / Pass / Unstoppable in EN |
 | `cardShape` | `auto`: portrait on phones, landscape on wide screens |
 | `maxPhotoEdge` | `1600` |

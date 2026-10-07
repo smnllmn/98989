@@ -35,14 +35,20 @@ def font_face():
     )
 
 
-def rebel_logo():
-    data = base64.b64encode((src / "brand" / "rebel-logo.png").read_bytes()).decode("ascii")
-    return "data:image/png;base64," + data
+# Official logos in src/brand/, embedded where styles.css has their token.
+LOGOS = {
+    "__BELFIUS_LOGO__": "belfius-logo.png",
+    "__BELFIUS_PRIVATE_LOGO__": "belfius-private-logo.png",
+    "__REBEL_LOGO__": "rebel-logo.png",
+}
 
 
-def belfius_logo():
-    data = base64.b64encode((src / "brand" / "belfius-logo.png").read_bytes()).decode("ascii")
-    return "data:image/png;base64," + data
+def styles():
+    css = read("styles.css").replace("/*FONT-FACE*/", font_face())
+    for token, file in LOGOS.items():
+        data = base64.b64encode((src / "brand" / file).read_bytes()).decode("ascii")
+        css = css.replace(token, "data:image/png;base64," + data)
+    return css + "\n" + read("styles-sheets.css")
 
 
 def demo_photos():
@@ -58,7 +64,7 @@ def demo_photos():
 
 
 def page(extra_head=""):
-    css = read("styles.css").replace("/*FONT-FACE*/", font_face()).replace("__REBEL_LOGO__", rebel_logo()).replace("__BELFIUS_LOGO__", belfius_logo()) + "\n" + read("styles-sheets.css")
+    css = styles()
     parts = [read(JS_PARTS[0]), "  var I18N = {};"] + [read(name) for name in JS_PARTS[1:]]
     js = "\n\n".join(p.rstrip() for p in parts)
     return (

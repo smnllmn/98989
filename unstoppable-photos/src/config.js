@@ -44,10 +44,11 @@
     },
 
     // Photo categories (brands). Admins set them in Manage; players swipe one after the other, in this order.
-    // Photos without a category count as the first one. logo: 'belfius' or 'rebel' (built into the file);
-    // without a logo the name is shown. theme 'rebel' shows that category in ReBel's look.
+    // id is what each photo carries in the library: keep it when you rename a brand. Photos without a category
+    // count as the first one. logo: 'belfius', 'belfius-private' or 'rebel' (built into the file); without a
+    // logo the name is shown. theme 'rebel' shows that category in ReBel's look.
     categories: [
-      { id: 'belfius', name: 'Belfius', logo: 'belfius' },
+      { id: 'belfius', name: 'Belfius Private', logo: 'belfius-private' },
       { id: 'rebel', name: 'ReBel', theme: 'rebel', logo: 'rebel' }
     ],
 

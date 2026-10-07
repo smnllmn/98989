@@ -309,8 +309,8 @@
     $('ps-progress-bar').style.width = total ? (seen / total * 100).toFixed(1) + '%' : '0%';
   }
 
-  // The brand's logo (built into the file) or, without one, its name.
-  var LOGOS = { belfius: true, rebel: true };
+  // The brand's logo (built into the file) or, without one, its name. Stacked logos get a taller label.
+  var LOGOS = { belfius: 'wide', 'belfius-private': 'tall', rebel: 'wide' };
   function catMark(c, big) {
     if (c.logo && LOGOS[c.logo]) return '<i class="ps-logo ps-logo--' + c.logo + '" role="img" aria-label="' + esc(c.name) + '"></i>';
     return big ? '<h2>' + esc(c.name) + '</h2>' : esc(c.name);
@@ -357,10 +357,13 @@
     var show = !!c && catsInUse().length > 1;
     el.hidden = !show;
     if (!show) { el.innerHTML = ''; el.removeAttribute('data-cat'); return; }
+    // one height for the whole round, so the photo doesn't move when the brand changes
+    el.classList.toggle('is-tall', catsInUse().some(function (k) { return LOGOS[k.logo] === 'tall'; }));
     if (el.getAttribute('data-cat') === c.id) return;
     el.setAttribute('data-cat', c.id);
-    var hasLogo = !!(c.logo && LOGOS[c.logo]);
-    el.innerHTML = '<span class="ps-cat' + (hasLogo ? ' ps-cat--logo' : '') + (c.theme === 'rebel' ? ' ps-cat--rebel' : '') + '">' + catMark(c, false) + '</span>';
+    var shape = c.logo && LOGOS[c.logo];
+    el.innerHTML = '<span class="ps-cat' + (shape ? ' ps-cat--logo' : '') + (shape === 'tall' ? ' ps-cat--tall' : '') +
+      (c.theme === 'rebel' ? ' ps-cat--rebel' : '') + '">' + catMark(c, false) + '</span>';
   }
 
   function panel(kind, ic, title, text, actions, kicker, extra) {
