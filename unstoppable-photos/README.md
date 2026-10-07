@@ -15,7 +15,7 @@ The name is a setting: `title` at the top of the script. It can be one name, or 
 
 1. **Pick the sites.**
    - **The page** goes on a site where the custom-script module runs JavaScript, such as intranet-company. The intranet-news site reports custom script as *off*.
-   - **The data** (photos and votes) goes on the site in `siteUrl`, currently the Content Team Internal Com team site. Admins must be **owners** of that site.
+   - **The data** (photos and votes) goes on the site in `siteUrl`, currently the Content Team Internal Com team site. Admins must see every vote: make them **owners** of that site, or, without adding them to the team, give them *Full Control* on just the `PhotoSwipes` list (plus *Read* on `SwipePhotos`, or *Edit* if they should manage photos).
    - Players without access to the data site see *Nog geen toegang* with their address, so you know whom to add.
 2. **Put the app on the page.**
    - Upload `unstoppable-photos.js` to *SiteAssets › SitePages › UnstoppablePhotos* on intranet-company. Everyone who can open the page can read that folder. If the library asks you to check the file in or publish it, do so.
@@ -28,7 +28,7 @@ The name is a setting: `title` at the top of the script. It can be one name, or 
    - Big photos are resized to 1600 px before upload, so they load fast. Web-ready JPEGs go up unchanged.
    - Each photo gets a caption from its file name. Click a caption to edit it.
    - You can also drop photos straight into the `SwipePhotos` library in SharePoint. Folders show up as a label on the card. JPEGs over 1.5 MB get a **Shrink** button that resizes them in place (same item, votes stay attached). With version history on, the original stays in the history.
-5. **Give players access** on the data site: **Read** on `SwipePhotos` and **Contribute** on `PhotoSwipes`. Either add them to the team, or share just the list (edit) and the library (view) with them. They also need to be able to open the page.
+5. **Give players access** on the data site: **Read** on `SwipePhotos` and **Contribute** on `PhotoSwipes`. Either add them to the team, or give them rights on just those two without making them members: in the library's and the list's settings, open *Permissions for this list/library*, click *Stop inheriting permissions* (once), then *Grant permissions*, and pick the level under *Show options*. A SharePoint group for the players saves adding everyone twice. They also need to be able to open the page.
 6. **Share the page link.** For the C-level session, open **Results** on an admin's screen and click **Present** for a full-screen live leaderboard.
 
 ### Creating the library and list by hand
