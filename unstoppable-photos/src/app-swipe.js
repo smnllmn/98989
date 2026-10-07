@@ -80,9 +80,9 @@
   }
 
   function undo() {
-    if (S.busy || S.gate) return;
+    if (S.busy || S.gate || !S.history.length) return;
+    if (S.chapterOn) endChapter(true);
     var v = S.history.pop();
-    if (!v) return;
     S.votes = S.votes.filter(function (x) { return x !== v && !(v.spId && x.spId === v.spId); });
     if (S.store === 'sharepoint') {
       var job = v.job, qi = job ? S.queue.indexOf(job) : -1;
@@ -157,6 +157,7 @@
   function restart() {
     S.done = {};
     S.history = [];
+    S.chaptersShown = {};
     S.deck = groupedShuffle(S.photos.map(function (p) { return p.id; }));
     renderStack();
     renderTop();
@@ -294,11 +295,45 @@
       intro.innerHTML = introHtml();
     } else if (intro) intro.remove();
 
-    var on = !!top && !S.intro;
+    if (catTop && !S.intro && !S.chapterOn && catsInUse().length > 1 && !S.chaptersShown[catTop.id]) startChapter(catTop);
+
+    var on = !!top && !S.intro && !S.chapterOn;
     ['pass', 'hero', 'keep'].forEach(function (v) { $('ps-btn-' + v).disabled = !on; });
     var total = S.photos.length;
     var seen = S.photos.filter(function (p) { return S.done[p.id]; }).length;
     $('ps-progress-bar').style.width = total ? (seen / total * 100).toFixed(1) + '%' : '0%';
+  }
+
+  // Title card when a category starts: "Categorie 2 van 2 · ReBel · 4 foto's", about 2 seconds, nothing clickable.
+  var chapterTimer = null;
+  function startChapter(c) {
+    S.chaptersShown[c.id] = true;
+    S.chapterOn = true;
+    var stack = $('ps-stack'), old = stack.querySelector('.ps-chapter');
+    if (old) old.remove();
+    var inUse = catsInUse();
+    var left = S.deck.filter(function (id) { return catOf(S.byId[id]).id === c.id; }).length;
+    var el = document.createElement('div');
+    el.className = 'ps-chapter' + (c.theme === 'rebel' ? ' ps-chapter--rebel' : '');
+    el.setAttribute('role', 'status');
+    el.innerHTML = '<span class="ps-kicker">' + T('chapterKicker', { i: inUse.indexOf(c) + 1, n: inUse.length }) + '</span>' +
+      (c.theme === 'rebel' ? '<i class="ps-rebel-logo ps-rebel-logo--big" role="img" aria-label="' + esc(c.name) + '"></i>' : '<h2>' + esc(c.name) + '</h2>') +
+      '<p>' + esc(nPhotos(left)) + '</p><div class="ps-chapter-bar" aria-hidden="true"><i></i></div>';
+    stack.appendChild(el);
+    clearTimeout(chapterTimer);
+    chapterTimer = setTimeout(function () { endChapter(false); }, 2200);
+  }
+
+  function endChapter(now) {
+    clearTimeout(chapterTimer);
+    var el = $('ps-stack').querySelector('.ps-chapter');
+    S.chapterOn = false;
+    S.shownAt = performance.now();   // the title card's time doesn't count as looking at the photo
+    if (el) {
+      if (now || reduced()) el.remove();
+      else { el.classList.add('is-out'); setTimeout(function () { el.remove(); }, 320); }
+    }
+    renderStack();
   }
 
   // Which category is up: the ReBel logo or the category name, above the card (never on the photo).
@@ -378,7 +413,7 @@
 
   function fly(verdict, drag) {
     var card = topCard();
-    if (!card || S.busy || S.intro || S.gate) return;
+    if (!card || S.busy || S.intro || S.chapterOn || S.gate) return;
     S.busy = true;
     var id = card.dataset.id;
     var ms = Math.min(600000, performance.now() - S.shownAt);
@@ -408,7 +443,7 @@
 
   function onDown(e) {
     var card = topCard();
-    if (!card || S.busy || S.intro || !card.contains(e.target) || (e.button != null && e.button !== 0)) return;
+    if (!card || S.busy || S.intro || S.chapterOn || !card.contains(e.target) || (e.button != null && e.button !== 0)) return;
     var now = performance.now();
     drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, dx: 0, dy: 0, lx: e.clientX, ly: e.clientY, lt: now, vx: 0, vy: 0, card: card };
     card.classList.add('is-dragging');

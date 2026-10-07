@@ -33,7 +33,7 @@
     view: 'swipe', prevView: 'swipe', menu: false,
     queue: [], failed: [], saved: 0, lastError: '',
     uploads: [], confirmRemove: null, shrinking: null, savedCaption: null,
-    uploadCat: null, manageCat: 'all', resultsCat: 'all',
+    uploadCat: null, manageCat: 'all', resultsCat: 'all', chapterOn: false, chaptersShown: {},
     updatedAt: null, polling: false, previewLocked: false
   };
 

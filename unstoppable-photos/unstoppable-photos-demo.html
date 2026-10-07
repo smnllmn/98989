@@ -139,6 +139,18 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
     radial-gradient(42% 32% at 100% 0%, rgba(213, 168, 255, .16), rgba(213, 168, 255, 0) 70%),
     linear-gradient(180deg, #1A1420 0%, #0D0A10 55%, #050303 100%); }
 .ps.is-rebel .ps-themer { opacity: 1; }
+/* category title card */
+.ps-chapter { position: absolute; inset: 0; z-index: 7; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; border-radius: 26px; background: #fff; color: var(--b-ink); text-align: center; box-shadow: 0 30px 60px -26px rgba(50, 0, 18, .8); animation: ps-chapter-in .45s cubic-bezier(.2, .8, .2, 1); }
+.ps-chapter.is-out { animation: ps-chapter-out .32s ease forwards; }
+.ps-chapter h2 { margin: 0; font-size: clamp(1.9rem, 7cqi, 2.6rem); font-weight: 800; letter-spacing: -.01em; line-height: 1.1; color: var(--b-ink); }
+.ps-chapter p { margin: 0; font-weight: 700; color: var(--b-slate); }
+.ps-chapter--rebel { background: #050303; color: #D5A8FF; box-shadow: 0 30px 60px -26px rgba(0, 0, 0, .9), inset 0 0 0 1px rgba(213, 168, 255, .25); }
+.ps-chapter--rebel .ps-kicker, .ps-chapter--rebel p { color: #D5A8FF; }
+.ps-rebel-logo--big { width: min(72%, 250px); height: auto; aspect-ratio: 360 / 100; }
+.ps-chapter-bar { width: 120px; height: 4px; margin-top: 6px; overflow: hidden; border-radius: 4px; background: rgba(0, 0, 0, .08); }
+.ps-chapter--rebel .ps-chapter-bar { background: rgba(213, 168, 255, .2); }
+.ps-chapter-bar i { display: block; width: 100%; height: 100%; background: var(--b-magenta); transform-origin: left; animation: ps-chapter-bar 2.2s linear forwards; }
+.ps-chapter--rebel .ps-chapter-bar i { background: #D5A8FF; }
 .ps.is-rebel .ps-progress i { background: #D5A8FF; }
 .ps.is-rebel .ps-act--hero .ps-ic--fill { fill: url(#ps-grad-rebel); }
 .ps.is-rebel .ps-act--keep:hover .ps-act-tile { background: rgba(213, 168, 255, .35); }
@@ -394,6 +406,9 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-dot--busy { background: #FFD27A; animation: ps-blink 1s ease-in-out infinite; }
 
 @keyframes ps-spin { to { transform: rotate(360deg); } }
+@keyframes ps-chapter-in { from { opacity: 0; transform: translateY(10px) scale(.92); } to { opacity: 1; transform: none; } }
+@keyframes ps-chapter-out { to { opacity: 0; transform: scale(1.04); } }
+@keyframes ps-chapter-bar { from { transform: scaleX(1); } to { transform: scaleX(0); } }
 @keyframes ps-pop { from { opacity: 0; transform: translateY(6px) scale(.96); } to { opacity: 1; transform: none; } }
 @keyframes ps-shimmer { from { background-position: 160% 0; } to { background-position: -60% 0; } }
 @keyframes ps-pulse { 0% { box-shadow: 0 0 0 0 rgba(58, 126, 76, .45); } 70% { box-shadow: 0 0 0 9px rgba(58, 126, 76, 0); } 100% { box-shadow: 0 0 0 0 rgba(58, 126, 76, 0); } }
@@ -600,7 +615,8 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     sOpenList: 'anonymous in the app, but the votes list is still open', sAnon: 'anonymous',
     doneTitleThanks: 'Thanks for voting',
     noAccessTitle: 'No access yet', noAccessText: 'You’re signed in as {name}, but you don’t have access to the photos and votes yet. Ask the organiser to give this address access:',
-    catLabel: 'Category', catAll: 'All', catNewPhotos: 'New photos go into', catFail: 'Couldn’t change the category: {err}'
+    catLabel: 'Category', catAll: 'All', catNewPhotos: 'New photos go into', catFail: 'Couldn’t change the category: {err}',
+    chapterKicker: 'Category {i} of {n}'
   };
 
   I18N.nl = {
@@ -685,7 +701,8 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     sOpenList: 'anoniem in de app, maar de stemmenlijst is nog open', sAnon: 'anoniem',
     doneTitleThanks: 'Bedankt voor je stemmen',
     noAccessTitle: 'Nog geen toegang', noAccessText: 'Je bent aangemeld als {name}, maar je hebt nog geen toegang tot de foto’s en stemmen. Vraag de organisator om dit adres toegang te geven:',
-    catLabel: 'Categorie', catAll: 'Alle', catNewPhotos: 'Nieuwe foto’s komen in', catFail: 'Categorie niet gewijzigd: {err}'
+    catLabel: 'Categorie', catAll: 'Alle', catNewPhotos: 'Nieuwe foto’s komen in', catFail: 'Categorie niet gewijzigd: {err}',
+    chapterKicker: 'Categorie {i} van {n}'
   };
 
   I18N.fr = {
@@ -770,7 +787,8 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     sOpenList: 'anonyme dans l’application, mais la liste des votes est encore ouverte', sAnon: 'anonyme',
     doneTitleThanks: 'Merci pour vos votes',
     noAccessTitle: 'Pas encore d’accès', noAccessText: 'Vous êtes connecté en tant que {name}, mais vous n’avez pas encore accès aux photos et aux votes. Demandez à l’organisateur de donner accès à cette adresse\u00a0:',
-    catLabel: 'Catégorie', catAll: 'Toutes', catNewPhotos: 'Les nouvelles photos vont dans', catFail: 'Catégorie non modifiée\u00a0: {err}'
+    catLabel: 'Catégorie', catAll: 'Toutes', catNewPhotos: 'Les nouvelles photos vont dans', catFail: 'Catégorie non modifiée\u00a0: {err}',
+    chapterKicker: 'Catégorie {i} sur {n}'
   };
 
   /* ---------- constants ---------- */
@@ -808,7 +826,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
     view: 'swipe', prevView: 'swipe', menu: false,
     queue: [], failed: [], saved: 0, lastError: '',
     uploads: [], confirmRemove: null, shrinking: null, savedCaption: null,
-    uploadCat: null, manageCat: 'all', resultsCat: 'all',
+    uploadCat: null, manageCat: 'all', resultsCat: 'all', chapterOn: false, chaptersShown: {},
     updatedAt: null, polling: false, previewLocked: false
   };
 
@@ -1285,9 +1303,9 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
   }
 
   function undo() {
-    if (S.busy || S.gate) return;
+    if (S.busy || S.gate || !S.history.length) return;
+    if (S.chapterOn) endChapter(true);
     var v = S.history.pop();
-    if (!v) return;
     S.votes = S.votes.filter(function (x) { return x !== v && !(v.spId && x.spId === v.spId); });
     if (S.store === 'sharepoint') {
       var job = v.job, qi = job ? S.queue.indexOf(job) : -1;
@@ -1362,6 +1380,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
   function restart() {
     S.done = {};
     S.history = [];
+    S.chaptersShown = {};
     S.deck = groupedShuffle(S.photos.map(function (p) { return p.id; }));
     renderStack();
     renderTop();
@@ -1499,11 +1518,45 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
       intro.innerHTML = introHtml();
     } else if (intro) intro.remove();
 
-    var on = !!top && !S.intro;
+    if (catTop && !S.intro && !S.chapterOn && catsInUse().length > 1 && !S.chaptersShown[catTop.id]) startChapter(catTop);
+
+    var on = !!top && !S.intro && !S.chapterOn;
     ['pass', 'hero', 'keep'].forEach(function (v) { $('ps-btn-' + v).disabled = !on; });
     var total = S.photos.length;
     var seen = S.photos.filter(function (p) { return S.done[p.id]; }).length;
     $('ps-progress-bar').style.width = total ? (seen / total * 100).toFixed(1) + '%' : '0%';
+  }
+
+  // Title card when a category starts: "Categorie 2 van 2 · ReBel · 4 foto's", about 2 seconds, nothing clickable.
+  var chapterTimer = null;
+  function startChapter(c) {
+    S.chaptersShown[c.id] = true;
+    S.chapterOn = true;
+    var stack = $('ps-stack'), old = stack.querySelector('.ps-chapter');
+    if (old) old.remove();
+    var inUse = catsInUse();
+    var left = S.deck.filter(function (id) { return catOf(S.byId[id]).id === c.id; }).length;
+    var el = document.createElement('div');
+    el.className = 'ps-chapter' + (c.theme === 'rebel' ? ' ps-chapter--rebel' : '');
+    el.setAttribute('role', 'status');
+    el.innerHTML = '<span class="ps-kicker">' + T('chapterKicker', { i: inUse.indexOf(c) + 1, n: inUse.length }) + '</span>' +
+      (c.theme === 'rebel' ? '<i class="ps-rebel-logo ps-rebel-logo--big" role="img" aria-label="' + esc(c.name) + '"></i>' : '<h2>' + esc(c.name) + '</h2>') +
+      '<p>' + esc(nPhotos(left)) + '</p><div class="ps-chapter-bar" aria-hidden="true"><i></i></div>';
+    stack.appendChild(el);
+    clearTimeout(chapterTimer);
+    chapterTimer = setTimeout(function () { endChapter(false); }, 2200);
+  }
+
+  function endChapter(now) {
+    clearTimeout(chapterTimer);
+    var el = $('ps-stack').querySelector('.ps-chapter');
+    S.chapterOn = false;
+    S.shownAt = performance.now();   // the title card's time doesn't count as looking at the photo
+    if (el) {
+      if (now || reduced()) el.remove();
+      else { el.classList.add('is-out'); setTimeout(function () { el.remove(); }, 320); }
+    }
+    renderStack();
   }
 
   // Which category is up: the ReBel logo or the category name, above the card (never on the photo).
@@ -1583,7 +1636,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
 
   function fly(verdict, drag) {
     var card = topCard();
-    if (!card || S.busy || S.intro || S.gate) return;
+    if (!card || S.busy || S.intro || S.chapterOn || S.gate) return;
     S.busy = true;
     var id = card.dataset.id;
     var ms = Math.min(600000, performance.now() - S.shownAt);
@@ -1613,7 +1666,7 @@ window.PS_DEMO_PHOTOS = [{"id":"cat","file":"cat.jpg","caption":"Chelsea the cat
 
   function onDown(e) {
     var card = topCard();
-    if (!card || S.busy || S.intro || !card.contains(e.target) || (e.button != null && e.button !== 0)) return;
+    if (!card || S.busy || S.intro || S.chapterOn || !card.contains(e.target) || (e.button != null && e.button !== 0)) return;
     var now = performance.now();
     drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, dx: 0, dy: 0, lx: e.clientX, ly: e.clientY, lt: now, vx: 0, vy: 0, card: card };
     card.classList.add('is-dragging');

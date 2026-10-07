@@ -80,5 +80,6 @@
     sOpenList: 'anonyme dans l’application, mais la liste des votes est encore ouverte', sAnon: 'anonyme',
     doneTitleThanks: 'Merci pour vos votes',
     noAccessTitle: 'Pas encore d’accès', noAccessText: 'Vous êtes connecté en tant que {name}, mais vous n’avez pas encore accès aux photos et aux votes. Demandez à l’organisateur de donner accès à cette adresse\u00a0:',
-    catLabel: 'Catégorie', catAll: 'Toutes', catNewPhotos: 'Les nouvelles photos vont dans', catFail: 'Catégorie non modifiée\u00a0: {err}'
+    catLabel: 'Catégorie', catAll: 'Toutes', catNewPhotos: 'Les nouvelles photos vont dans', catFail: 'Catégorie non modifiée\u00a0: {err}',
+    chapterKicker: 'Catégorie {i} sur {n}'
   };
