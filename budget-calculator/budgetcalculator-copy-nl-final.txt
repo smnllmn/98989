@@ -1,0 +1,398 @@
+BUDGET CALCULATOR – NL COPY – FINALE VERSIE
+Basis: versie 4. Aanpassingen t.o.v. versie 4 staan onderaan.
+
+
+========================================================================
+1. FULL BUDGET CALCULATOR – INTRODUCTIESCHERM
+========================================================================
+
+Titel
+Bereken uw woonbudget
+
+Intro
+Beantwoord enkele vragen over uw persoonlijke en financiële situatie. Zo krijgt u een inschatting van uw woonbudget die ook rekening houdt met specifieke inkomsten en uitgaven, zoals huurinkomsten of onderhoudsgeld dat u betaalt.
+
+Tussentitel
+Met deze simulatie kan u:
+
+Opsomming
+- ontdekken hoeveel u kan lenen*
+- deze drie mogelijkheden binnen uw budget bekijken: een bestaande woning, nieuwbouw met 21% btw (standaardtarief) of nieuwbouw met 6% btw (verlaagd tarief)
+- de totale kostprijs van uw woonproject berekenen
+
+CTA
+Mijn budget berekenen
+
+Wettelijke vermeldingen
+Let op, geld lenen kost ook geld.
+
+* Hypothecair krediet, onderworpen aan Boek VII (titel 4, hoofdstuk 2) van het Wetboek Economisch Recht. Onder voorbehoud van aanvaarding van uw dossier.
+
+
+========================================================================
+2. QUICK BUDGET CALCULATOR
+========================================================================
+
+2.1 Introductiescherm
+---------------------
+
+Titel
+Bereken uw woonbudget in enkele minuten
+
+Intro
+Bereken in 2 minuten uw woonbudget op basis van uw inkomsten en spaargeld.
+
+Opsomming
+- Krijg een inschatting van hoeveel u kan lenen*
+- Bekijk drie mogelijkheden binnen uw budget: een bestaande woning, nieuwbouw met 21% btw (standaardtarief) of nieuwbouw met 6% btw (verlaagd tarief)
+- Bereken de totale kostprijs van uw woonproject
+
+CTA
+Mijn budget berekenen
+
+Wettelijke vermeldingen
+Let op, geld lenen kost ook geld.
+
+* Hypothecair krediet, onderworpen aan Boek VII (titel 4, hoofdstuk 2) van het Wetboek Economisch Recht. Onder voorbehoud van aanvaarding van uw dossier.
+
+Kader
+Titel
+Hebt u huurinkomsten? Blijft u na de aankoop of renovatie van uw woning huur betalen? Of betaalt u onderhoudsgeld?
+Tekst
+Gebruik onze uitgebreide simulator voor een resultaat dat beter bij uw situatie past.
+Link
+Start een simulatie
+
+
+2.2 Wie leent er
+----------------
+
+Leent u alleen of met twee?
+
+Alleen
+Zonder personen ten laste
+Met één persoon ten laste
+
+Met twee
+Zonder personen ten laste
+Met één persoon ten laste
+
+Wat is een persoon ten laste?
+Personen ten laste zijn gezinsleden, zoals kinderen of ouders, die weinig of geen inkomsten hebben en fiscaal ten laste van u zijn. Geeft u aan dat u personen ten laste hebt? Dan rekenen we in deze simulatie met één persoon ten laste.
+
+
+2.3 Inkomsten
+-------------
+
+Wat is uw netto maandinkomen?
+Uw maandinkomen
+Maandinkomen van uw partner
+
+Welke inkomsten vult u in?
+Welke inkomsten meetellen, hangt af van uw situatie. Meer info
+
+Volgende
+
+Tekst in het infovenster na een klik op ‘Meer info’
+
+Bent u werknemer of bedrijfsleider?
+Vul uw netto beroepsinkomen per maand in, zonder vakantiegeld, uitzonderlijke premies, bonussen enz.
+
+Bent u zelfstandige?
+Deel uw netto jaarinkomen uit uw beroepsactiviteit door 12 en vul het resultaat in. U vindt uw netto jaarinkomen op uw laatste aanslagbiljet.
+
+Ontvangt u een uitkering voor werkloosheid, ziekte of invaliditeit?
+Vul het bedrag van uw maandelijkse uitkering in.
+
+Ontvangt u kinderbijslag en/of onderhoudsgeld?
+Die bedragen hoeft u niet in te vullen.
+
+
+2.4 Lopende kredieten
+---------------------
+
+Hebt u lopende kredieten?
+Ja
+Nee
+
+Totale maandelijkse aflossing van uw kredieten
+Dit veld is verplicht
+
+Welke aflossingen tellen mee?
+Vul het totale bedrag in dat u maandelijks aflost voor kredieten die nog minstens één jaar lopen. Dat geldt zowel voor kredieten die u alleen afbetaalt als voor kredieten waarbij u medekredietnemer bent.
+
+Volgende
+
+
+2.5 Gewest
+----------
+
+In welk gewest wil u wonen?
+Vlaanderen
+Wallonië
+Brussel
+
+Waarom vragen we dit?
+De kosten van uw woonproject hangen onder meer af van het gewest waarin de woning ligt.
+
+
+2.6 E-mailadres
+---------------
+
+Wat is uw e-mailadres?
+E-mailadres
+Uw e-mailadres
+
+Waarom vragen we dit?
+Door uw e-mailadres in te vullen, geeft u Belfius toestemming om contact met u op te nemen over uw woonproject.
+We verwijderen uw e-mailadres na 30 dagen automatisch uit onze databank. Meer informatie vindt u in ons Privacycharter.
+
+CTA
+Mijn budget bekijken
+Link
+Verder zonder e-mailadres
+
+
+2.7 Resultaten
+--------------
+
+Titel
+Uw woonbudget
+
+Tabbladen
+Bestaande woning
+Nieuwbouw 6% btw
+Nieuwbouw 21% btw
+
+Rode tussentitel
+Geschatte maximale aankoopprijs bestaande woning
+Maximale aankoopprijs nieuwbouw (6% btw)
+Maximale aankoopprijs nieuwbouw (21% btw)
+
+Labels bij de bedragen
+Maandelijkse aflossing
+Eigen middelen
+
+Link
+Hoe berekenen we dit bedrag?
+
+Disclaimer
+Deze berekeningen geven een schatting en dienen uitsluitend ter informatie. De rekenmodules gebruiken vereenvoudigde formules en gaan uit van een vaste rentevoet en een looptijd van 25 jaar.
+
+Deze simulaties zijn niet bindend voor u of voor Belfius Bank NV. Ze bieden geen garantie dat u een krediet voor uw woonproject krijgt en vormen geen kredietaanbod. Belfius Bank NV kent een krediet pas toe na onderzoek van uw financiële situatie en aanvaarding van uw dossier.
+
+Rood kader
+Uw droomwoning gevonden?
+Korte tekst
+Simuleer uw hypothecair krediet en verfijn daarna uw simulatie met een kredietexpert.
+CTA
+Mijn hypothecair krediet simuleren
+
+
+2.8 Kredietbedrag en maandelijkse aflossing
+-------------------------------------------
+
+Uw kredietbedrag en maandelijkse aflossing
+
+Hoe berekenen we dit bedrag?
+We houden rekening met de inkomsten en uitgaven die u hebt ingevuld. Daarnaast voorzien we een budget voor uw dagelijkse leven en onverwachte uitgaven.
+
+CTA
+Meer over uw eigen middelen
+
+
+2.9 Eigen middelen
+------------------
+
+Wat zijn uw eigen middelen?
+Uw eigen middelen zijn het geld dat u zelf in uw woonproject investeert. In deze simulatie betaalt u de aankoopkosten en kredietkosten met uw eigen middelen. Die kosten zijn dus niet inbegrepen in het bedrag dat u leent. Ook minstens 10% van de aankoopprijs betaalt u zelf. Koopt u voor het eerst een woning? Dan kan u in bepaalde gevallen de volledige aankoopprijs lenen, onder voorbehoud van aanvaarding van uw dossier. Vraag ernaar bij uw kredietexpert.
+
+10% van de aankoopprijs van uw woning
+
+Aankoopkosten
+Registratierechten en notariskosten
+
+Kredietkosten
+Hypotheek-, notaris- en dossierkosten
+
+TOTAAL EIGEN MIDDELEN
+
+
+2.10 Detail van de berekening
+-----------------------------
+
+Titel: Hoe berekenen we dit bedrag?
+
+De kosten verschillen naargelang uw woonproject en het gewest. Vraag uw notaris om informatie voor uw situatie of raadpleeg notaris.be.
+
+[Voor een bestaande woning]
+U koopt een bestaande woning waarop u registratierechten betaalt. We gaan ervan uit dat dit uw enige eigen woning wordt en dat u voldoet aan de voorwaarden die in uw gewest gelden.
+
+[Voor nieuwbouw met verlaagd btw-tarief / Nieuwbouw 6% btw]
+U koopt een nieuwbouwwoning met het verlaagde btw-tarief van 6%. Dat tarief geldt onder bepaalde voorwaarden bij afbraak en heropbouw.
+
+[Voor nieuwbouw met standaard btw-tarief / Nieuwbouw 21% btw]
+U koopt een nieuwbouwwoning met 21% btw. U zal er zelf wonen en de woning niet verhuren. Daarbij gelden de voorwaarden van uw gewest.
+
+Naast de prijs van de woning betaalt u ook aankoopkosten en kredietkosten. Die tellen mee in de totale kostprijs van uw woonproject.
+Al deze kosten, behalve de btw, betaalt u met uw eigen middelen.
+
+Kosten van uw woonproject
+Aankoopprijs
+Btw
+
+Aankoopkosten
+Notariskosten
+Registratierechten
+
+Kredietkosten
+Hypotheek
+Notariskosten
+Dossierkosten
+
+TOTALE KOSTPRIJS VAN UW WOONPROJECT
+
+Hoe financiert u uw woonproject?
+Krediet
+Eigen middelen
+
+
+2.11 Maandelijkse aflossing aanpassen
+-------------------------------------
+
+Uw maandelijkse aflossing aanpassen
+
+Pas het bedrag aan dat u elke maand aan de aflossing van uw hypothecair krediet wil besteden.
+
+Op basis van de gegevens die u hebt ingevuld, mag dit bedrag niet hoger zijn dan [variable] EUR.
+
+Uw maandelijkse aflossing
+CTA: Herbereken
+
+Gevolg voor uw kredietbedrag
+[variable] EUR
+(op basis van een vaste rentevoet en een looptijd van 25 jaar)
+
+CTA-link
+Annuleren
+CTA
+Bevestigen
+
+
+2.12 Eigen middelen aanpassen
+-----------------------------
+
+Uw eigen middelen aanpassen
+
+Een deel van uw woonproject betaalt u met uw eigen middelen.
+Het minimumbedrag is 10.000 euro.
+
+Uw eigen middelen
+CTA: Herbereken
+
+Gevolg voor uw kredietbedrag
+[variable] EUR
+(op basis van een vaste rentevoet en een looptijd van 25 jaar)
+
+CTA-link
+Annuleren
+CTA
+Bevestigen
+
+
+========================================================================
+3. QUICK BUDGET CALCULATOR – WEBPAGINA
+========================================================================
+
+Nieuwe website – Quick Budget Simulator
+
+Let op, geld lenen kost ook geld.
+
+MENU
+
+Home > Producten > Lenen > Wonen > Budgetsimulator
+
+Ontdek uw woonbudget in enkele minuten
+
+Plannen om een woning te kopen? Bereken eerst uw woonbudget met onze simulator. Zo begint u goed voorbereid aan uw zoektocht.
+
+Mijn simulatie starten
+
+Wat berekent deze simulator?
+
+Onze simulator houdt rekening met verschillende factoren en schat zo realistisch mogelijk in hoeveel u elke maand aan uw woning kan en wil besteden.
+
+Met deze simulatie:
+- krijgt u een inschatting van hoeveel u zou kunnen lenen¹ en van uw indicatieve maandelijkse aflossing, op basis van uw netto maandinkomen en vaste uitgaven.
+- ontdekt u hoeveel eigen middelen u nodig hebt om uw woonproject te financieren en de bijkomende kosten te betalen (i)
+- bekijkt u drie mogelijkheden binnen uw budget: een bestaande woning, nieuwbouw met 21% btw (standaardtarief) of nieuwbouw met 6% btw (verlaagd tarief)
+
+(i) Welke kosten komen er bij de aankoop van een woning kijken?
+
+Aankoopkosten
+Kosten bij de aankoop of bouw van uw woning, zoals registratierechten of btw en notariskosten.
+
+Kredietkosten
+Kosten voor uw krediet, zoals de hypothecaire inschrijving en notariskosten.
+
+Uw droomwoning al gevonden?
+Bereken uw hypothecair krediet en krijg in enkele stappen een indicatieve rentevoet en een schatting van uw maandelijkse aflossing.
+Bereken uw hypothecair krediet
+
+Nog geen klant?
+Geen probleem. U kan meteen uw simulatie starten.
+Mijn simulatie starten
+
+Stap voor stap
+Maak uw woonplannen concreet
+
+Stap 1
+Bereken uw woonbudget
+Ontdek in enkele klikken hoeveel u kan lenen, wat u maandelijks aflost en welk totaalbudget u voor uw woonproject hebt. Alle bijkomende kosten zijn meegerekend.
+
+Stap 2
+Ontdek uw mogelijkheden
+Bekijk voorbeelden van woonprojecten die binnen uw budget passen.
+
+Stap 3
+Simuleer uw hypothecair krediet¹
+Uw droomwoning gevonden? Bereken uw hypothecair krediet in enkele klikken.
+
+Stap 4
+Verfijn uw simulatie
+Maak een afspraak met een kredietexpert. U krijgt persoonlijk advies en een kredietvoorstel op maat van uw woonplannen.
+
+Waarom kiezen voor Belfius?
+
+Een scherpe rentevoet
+Financier uw woonplannen tegen een scherpe rentevoet, met extra voordelen onder bepaalde voorwaarden.
+
+Een hypothecair krediet op maat
+Afhankelijk van uw woonproject kan u rekenen op een kredietvoorstel op maat, verschillende kredietformules, een looptijd tot 30 jaar en voordelen voor energiebesparende ingrepen.
+
+De beste begeleiding voor uw woonproject
+In ons uitgebreide kantorennetwerk staan honderden kredietexperts voor u klaar. Ze helpen u een voordelige oplossing te vinden en begeleiden u bij elke stap van uw woonproject.
+
+Klaar om uw woonplannen waar te maken?
+Vind op Immoweb woningen die binnen uw budget passen.
+Mijn zoektocht starten
+
+Nuttige documenten en informatie
+
+1. Hypothecair krediet, onderworpen aan Boek VII (titel 4, hoofdstuk 2) van het Wetboek Economisch Recht. Onder voorbehoud van aanvaarding van uw dossier. Kredietgever: Belfius Bank NV, Karel Rogierplein 11, 1210 Brussel – RPR Brussel – btw BE 0403.201.185.
+
+Deze berekeningen geven een schatting en dienen uitsluitend ter informatie. Ze vormen geen kredietaanbod, kredietadvies of persoonlijk juridisch of fiscaal advies. De rekenmodules gebruiken vereenvoudigde formules en gaan uit van standaardsituaties. Deze simulaties zijn niet bindend voor u of voor Belfius Bank NV en bieden geen garantie dat u een krediet voor uw woonproject krijgt.
+
+Mijn simulatie starten
+
+
+========================================================================
+AANPASSINGEN T.O.V. VERSIE 4
+========================================================================
+1. ‘alimentatie’ -> ‘onderhoudsgeld’ (3x), met ‘dat u betaalt’ behouden in de intro van de full calculator.
+2. Link in het kader (2.1): ‘Mijn budget berekenen’ -> ‘Start een simulatie’ (FR: Faire une simulation).
+3. Werknemer/bedrijfsleider (2.3): ‘Vul uw netto maandinkomen uit uw beroepsactiviteit in’ -> ‘Vul uw netto beroepsinkomen per maand in’.
+4. ‘Herberekenen’ -> ‘Herbereken’ (2x), de bestaande key volgens de briefing.
+5. Eerste bullet webpagina: ‘indicatieve’ toegevoegd bij maandelijkse aflossing (FR: mensualité indicative).
+6. Wettelijke vermelding (3x): ‘Wetboek van economisch recht’ -> ‘Wetboek Economisch Recht’, de bestaande formulering uit de briefing.
+Niet gewijzigd, want zo staat het in de finale FR: ‘De beste begeleiding voor uw woonproject’ en ‘Ook minstens 10% van de aankoopprijs betaalt u zelf.’
