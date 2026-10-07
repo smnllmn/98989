@@ -448,7 +448,7 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 
     // Leave empty to use the site this page is on, or set another site in the same tenant,
     // e.g. 'https://belfius.sharepoint.com/sites/photo-poc'
-    siteUrl: '',
+    siteUrl: 'https://belfius.sharepoint.com/teams/23032314150408',
 
     // 'auto' follows the SharePoint language (Dutch, French or English). Or force 'nl', 'fr' or 'en'.
     language: 'auto',
@@ -554,7 +554,8 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
     notOwner: 'In the locked votes list you only see your own votes, so your results are incomplete. Make the admins site owners.',
     dPrivacy: 'Privacy', sNotAnon: 'not anonymous', sLocked: 'anonymous, votes list locked',
     sOpenList: 'anonymous in the app, but the votes list is still open', sAnon: 'anonymous',
-    doneTitleThanks: 'Thanks for voting'
+    doneTitleThanks: 'Thanks for voting',
+    noAccessTitle: 'No access yet', noAccessText: 'You’re signed in as {name}, but you don’t have access to the photos and votes yet. Ask the organiser to give this address access:'
   };
 
   I18N.nl = {
@@ -637,7 +638,8 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
     notOwner: 'In de afgeschermde stemmenlijst zie je alleen je eigen stemmen, dus je resultaten zijn onvolledig. Maak de beheerders site-eigenaar.',
     dPrivacy: 'Privacy', sNotAnon: 'niet anoniem', sLocked: 'anoniem, stemmenlijst afgeschermd',
     sOpenList: 'anoniem in de app, maar de stemmenlijst is nog open', sAnon: 'anoniem',
-    doneTitleThanks: 'Bedankt voor je stemmen'
+    doneTitleThanks: 'Bedankt voor je stemmen',
+    noAccessTitle: 'Nog geen toegang', noAccessText: 'Je bent aangemeld als {name}, maar je hebt nog geen toegang tot de foto’s en stemmen. Vraag de organisator om dit adres toegang te geven:'
   };
 
   I18N.fr = {
@@ -720,7 +722,8 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
     notOwner: 'Dans la liste des votes verrouillée, vous ne voyez que vos propres votes\u00a0: vos résultats sont donc incomplets. Rendez les administrateurs propriétaires du site.',
     dPrivacy: 'Confidentialité', sNotAnon: 'non anonyme', sLocked: 'anonyme, liste des votes verrouillée',
     sOpenList: 'anonyme dans l’application, mais la liste des votes est encore ouverte', sAnon: 'anonyme',
-    doneTitleThanks: 'Merci pour vos votes'
+    doneTitleThanks: 'Merci pour vos votes',
+    noAccessTitle: 'Pas encore d’accès', noAccessText: 'Vous êtes connecté en tant que {name}, mais vous n’avez pas encore accès aux photos et aux votes. Demandez à l’organisateur de donner accès à cette adresse\u00a0:'
   };
 
   /* ---------- constants ---------- */
@@ -2128,6 +2131,12 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
         '<div class="ps-row"><button type="button" class="ps-btn ps-btn--white" data-act="copy">' + T('copy') + '</button>' +
         (S.previewLocked ? '<button type="button" class="ps-btn ps-btn--glass" data-act="end-preview">' + T('backToApp') + '</button>' : '') + '</div>' +
         (S.previewLocked ? '<p class="ps-small">' + T('previewNote') + '</p>' : '');
+    } else if (S.gate === 'noaccess') {
+      var who = S.user || {};
+      g.innerHTML = '<span class="ps-round ps-gate-ic">' + icon(P.lock) + '</span><h2>' + T('noAccessTitle') + '</h2>' +
+        '<p>' + T('noAccessText', { name: who.name || t('aColleague') }) + '</p><code id="ps-addr">' + esc(who.email || who.upn || '?') + '</code>' +
+        '<div class="ps-row"><button type="button" class="ps-btn ps-btn--white" data-act="copy">' + T('copy') + '</button>' +
+        '<button type="button" class="ps-btn ps-btn--glass" data-act="retry-boot">' + T('tryAgain') + '</button></div>';
     } else {
       g.innerHTML = '<span class="ps-round ps-gate-ic">' + icon(P.alert) + '</span><h2>' + T('errorTitle') + '</h2><p>' + esc(S.lastError) + '</p>' +
         '<p class="ps-small">' + T('errorHint', { site: SITE }) + '</p>' +
@@ -2409,6 +2418,23 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
     var me = null, err = null;
     // Only ask SharePoint who we are when we're actually on SharePoint (or a site is configured).
     if (ON_SHAREPOINT || CONFIG.siteUrl) { try { me = await whoAmI(); } catch (e) { err = e; } }
+
+    // The data lives on another site and this person has no access there (yet): find out who they are
+    // from the page's own site, so they get a clear screen instead of a technical error.
+    var pageWeb = CTX && CTX.webAbsoluteUrl ? String(CTX.webAbsoluteUrl).replace(/\/$/, '') : '';
+    if (!me && err && (err.status === 401 || err.status === 403) && pageWeb && pageWeb.toLowerCase() !== SITE.toLowerCase()) {
+      try {
+        var here = await spGet(pageWeb + '/_api/web/currentuser?$select=Id,Title,Email,UserPrincipalName,LoginName');
+        S.mode = 'sharepoint';
+        S.user = mkUser(here);
+        S.realAdmin = isListed(S.user, CONFIG.adminEmails);
+        S.allowed = S.realAdmin || isListed(S.user, CONFIG.allowedEmails);
+        S.lastError = err.message;
+        S.gate = S.allowed ? 'noaccess' : 'denied';
+        renderFrame();
+        return;
+      } catch (e2) { /* show the error screen below */ }
+    }
 
     if (me) {
       S.mode = 'sharepoint';

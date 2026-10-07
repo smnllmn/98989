@@ -30,7 +30,7 @@
 
     // Leave empty to use the site this page is on, or set another site in the same tenant,
     // e.g. 'https://belfius.sharepoint.com/sites/photo-poc'
-    siteUrl: '',
+    siteUrl: 'https://belfius.sharepoint.com/teams/23032314150408',
 
     // 'auto' follows the SharePoint language (Dutch, French or English). Or force 'nl', 'fr' or 'en'.
     language: 'auto',

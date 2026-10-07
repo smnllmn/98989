@@ -147,6 +147,23 @@
     // Only ask SharePoint who we are when we're actually on SharePoint (or a site is configured).
     if (ON_SHAREPOINT || CONFIG.siteUrl) { try { me = await whoAmI(); } catch (e) { err = e; } }
 
+    // The data lives on another site and this person has no access there (yet): find out who they are
+    // from the page's own site, so they get a clear screen instead of a technical error.
+    var pageWeb = CTX && CTX.webAbsoluteUrl ? String(CTX.webAbsoluteUrl).replace(/\/$/, '') : '';
+    if (!me && err && (err.status === 401 || err.status === 403) && pageWeb && pageWeb.toLowerCase() !== SITE.toLowerCase()) {
+      try {
+        var here = await spGet(pageWeb + '/_api/web/currentuser?$select=Id,Title,Email,UserPrincipalName,LoginName');
+        S.mode = 'sharepoint';
+        S.user = mkUser(here);
+        S.realAdmin = isListed(S.user, CONFIG.adminEmails);
+        S.allowed = S.realAdmin || isListed(S.user, CONFIG.allowedEmails);
+        S.lastError = err.message;
+        S.gate = S.allowed ? 'noaccess' : 'denied';
+        renderFrame();
+        return;
+      } catch (e2) { /* show the error screen below */ }
+    }
+
     if (me) {
       S.mode = 'sharepoint';
       S.user = mkUser(me);

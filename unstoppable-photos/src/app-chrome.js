@@ -119,6 +119,12 @@
         '<div class="ps-row"><button type="button" class="ps-btn ps-btn--white" data-act="copy">' + T('copy') + '</button>' +
         (S.previewLocked ? '<button type="button" class="ps-btn ps-btn--glass" data-act="end-preview">' + T('backToApp') + '</button>' : '') + '</div>' +
         (S.previewLocked ? '<p class="ps-small">' + T('previewNote') + '</p>' : '');
+    } else if (S.gate === 'noaccess') {
+      var who = S.user || {};
+      g.innerHTML = '<span class="ps-round ps-gate-ic">' + icon(P.lock) + '</span><h2>' + T('noAccessTitle') + '</h2>' +
+        '<p>' + T('noAccessText', { name: who.name || t('aColleague') }) + '</p><code id="ps-addr">' + esc(who.email || who.upn || '?') + '</code>' +
+        '<div class="ps-row"><button type="button" class="ps-btn ps-btn--white" data-act="copy">' + T('copy') + '</button>' +
+        '<button type="button" class="ps-btn ps-btn--glass" data-act="retry-boot">' + T('tryAgain') + '</button></div>';
     } else {
       g.innerHTML = '<span class="ps-round ps-gate-ic">' + icon(P.alert) + '</span><h2>' + T('errorTitle') + '</h2><p>' + esc(S.lastError) + '</p>' +
         '<p class="ps-small">' + T('errorHint', { site: SITE }) + '</p>' +

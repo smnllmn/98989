@@ -11,7 +11,10 @@ The name is a setting: `title` at the top of the script. It can be one name, or 
 
 ## Setup (about 5 minutes)
 
-1. **Pick the site.** Use a site where the custom-script module runs JavaScript (the one v1 worked on). The intranet-news site reports custom script as *off*. Make both admins **site owners** on that site.
+1. **Pick the sites.**
+   - **The page** goes on a site where the custom-script module runs JavaScript, such as intranet-company. The intranet-news site reports custom script as *off*.
+   - **The data** (photos and votes) goes on the site in `siteUrl`, currently the Content Team Internal Com team site. Admins must be **owners** of that site.
+   - Players without access to the data site see *Nog geen toegang* with their address, so you know whom to add.
 2. **Paste** `unstoppable-photos.html` into the custom-script module on a page and publish it.
 3. **Open the page as an admin.** You get *Set up this site*. Click **Set up now**. This creates:
    - `SwipePhotos`: a document library for the photos.
@@ -20,7 +23,7 @@ The name is a setting: `title` at the top of the script. It can be one name, or 
    - Big photos are resized to 1600 px before upload, so they load fast. Web-ready JPEGs go up unchanged.
    - Each photo gets a caption from its file name. Click a caption to edit it.
    - You can also drop photos straight into the `SwipePhotos` library in SharePoint. Folders show up as a label on the card. JPEGs over 1.5 MB get a **Shrink** button that resizes them in place (same item, votes stay attached). With version history on, the original stays in the history.
-5. **Give reviewers access.** They need **Read** on the page and on `SwipePhotos`, and **Contribute** on `PhotoSwipes`. The site's Members group gives them both.
+5. **Give players access** on the data site: **Read** on `SwipePhotos` and **Contribute** on `PhotoSwipes`. Either add them to the team, or share just the list (edit) and the library (view) with them. They also need to be able to open the page.
 6. **Share the page link.** For the C-level session, open **Results** on an admin's screen and click **Present** for a full-screen live leaderboard.
 
 ### Creating the library and list by hand
@@ -98,7 +101,7 @@ All settings are at the top of the script, in `CONFIG`:
 | `allowedEmails`, `adminEmails` | See *Who can do what* |
 | `anonymous` | `true`: lock the votes list so people only read their own rows |
 | `photoLibrary`, `votesList` | `SwipePhotos`, `PhotoSwipes` |
-| `siteUrl` | Empty, meaning this site. Set it to keep the data on another site in the same tenant. |
+| `siteUrl` | `https://belfius.sharepoint.com/teams/23032314150408` (the Content Team Internal Com team site). The photos and votes live there; the page itself can be on intranet-company. Empty means the site the page is on. |
 | `language` | `auto`, which follows each person's SharePoint language. Or `nl`, `fr`, `en`. People can also switch in the ⋮ menu. |
 | `labels` | Top / Flop / Unstoppable in NL and FR; Keep / Pass / Unstoppable in EN |
 | `cardShape` | `auto`: portrait on phones, landscape on wide screens |

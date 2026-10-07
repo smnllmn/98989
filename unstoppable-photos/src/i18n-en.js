@@ -78,5 +78,6 @@
     notOwner: 'In the locked votes list you only see your own votes, so your results are incomplete. Make the admins site owners.',
     dPrivacy: 'Privacy', sNotAnon: 'not anonymous', sLocked: 'anonymous, votes list locked',
     sOpenList: 'anonymous in the app, but the votes list is still open', sAnon: 'anonymous',
-    doneTitleThanks: 'Thanks for voting'
+    doneTitleThanks: 'Thanks for voting',
+    noAccessTitle: 'No access yet', noAccessText: 'You’re signed in as {name}, but you don’t have access to the photos and votes yet. Ask the organiser to give this address access:'
   };
