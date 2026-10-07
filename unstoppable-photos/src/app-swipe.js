@@ -309,8 +309,9 @@
     $('ps-progress-bar').style.width = total ? (seen / total * 100).toFixed(1) + '%' : '0%';
   }
 
-  // The brand's logo (built into the file) or, without one, its name. Stacked logos get a taller label.
-  var LOGOS = { belfius: 'wide', 'belfius-private': 'tall', rebel: 'wide' };
+  // The brand's logo (built into the file) or, without one, its name.
+  // 'white' logos sit straight on the Belfius colour; the others get a pill of their own.
+  var LOGOS = { belfius: 'pill', 'belfius-private': 'white', rebel: 'pill' };
   function catMark(c, big) {
     if (c.logo && LOGOS[c.logo]) return '<i class="ps-logo ps-logo--' + c.logo + '" role="img" aria-label="' + esc(c.name) + '"></i>';
     return big ? '<h2>' + esc(c.name) + '</h2>' : esc(c.name);
@@ -326,7 +327,7 @@
     var inUse = catsInUse();
     var left = S.deck.filter(function (id) { return catOf(S.byId[id]).id === c.id; }).length;
     var el = document.createElement('div');
-    el.className = 'ps-chapter' + (c.theme === 'rebel' ? ' ps-chapter--rebel' : '');
+    el.className = 'ps-chapter' + (c.theme === 'rebel' ? ' ps-chapter--rebel' : LOGOS[c.logo] === 'white' ? ' ps-chapter--brand' : '');
     el.setAttribute('role', 'dialog');
     el.setAttribute('aria-labelledby', 'ps-chapter-k ps-chapter-n');
     el.setAttribute('aria-describedby', 'ps-chapter-d');
@@ -358,11 +359,11 @@
     el.hidden = !show;
     if (!show) { el.innerHTML = ''; el.removeAttribute('data-cat'); return; }
     // one height for the whole round, so the photo doesn't move when the brand changes
-    el.classList.toggle('is-tall', catsInUse().some(function (k) { return LOGOS[k.logo] === 'tall'; }));
+    el.classList.toggle('is-tall', catsInUse().some(function (k) { return LOGOS[k.logo] === 'white'; }));
     if (el.getAttribute('data-cat') === c.id) return;
     el.setAttribute('data-cat', c.id);
-    var shape = c.logo && LOGOS[c.logo];
-    el.innerHTML = '<span class="ps-cat' + (shape ? ' ps-cat--logo' : '') + (shape === 'tall' ? ' ps-cat--tall' : '') +
+    var kind = c.logo && LOGOS[c.logo];
+    el.innerHTML = '<span class="ps-cat' + (kind === 'pill' ? ' ps-cat--logo' : kind === 'white' ? ' ps-cat--bare' : '') +
       (c.theme === 'rebel' ? ' ps-cat--rebel' : '') + '">' + catMark(c, false) + '</span>';
   }
 

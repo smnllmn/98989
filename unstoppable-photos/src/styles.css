@@ -124,17 +124,17 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-progress-row { width: var(--ps-w); display: flex; align-items: center; gap: 10px; }
 .ps-progress { flex: 1; min-width: 0; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .22); overflow: hidden; }
 .ps-catbar { flex: none; display: flex; align-items: center; }
-.ps-catbar.is-tall { min-height: 50px; }
+.ps-catbar.is-tall { min-height: 40px; }
 .ps-cat { display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .34); background: rgba(255, 255, 255, .18); color: #fff; font-weight: 800; font-size: .82rem; letter-spacing: .02em; white-space: nowrap; animation: ps-pop .35s ease; }
 .ps-cat--logo { border-color: #fff; background: #fff; }
-.ps-cat--tall { height: 50px; padding: 0 11px; border-radius: 14px; }
+.ps-cat--bare { height: auto; padding: 0; border: 0; border-radius: 0; background: none; }
 .ps-cat--rebel { border-color: rgba(213, 168, 255, .45); background: #050303; }
 .ps-logo { display: block; flex: none; background: center / contain no-repeat; }
 .ps-logo--belfius { background-image: url("__BELFIUS_LOGO__"); }
 .ps-logo--belfius-private { background-image: url("__BELFIUS_PRIVATE_LOGO__"); }
 .ps-logo--rebel { background-image: url("__REBEL_LOGO__"); }
 .ps-cat .ps-logo--belfius { width: 86px; height: 19px; }
-.ps-cat .ps-logo--belfius-private { width: 71px; height: 41px; }
+.ps-cat .ps-logo--belfius-private { width: 103px; height: 40px; }
 .ps-cat .ps-logo--rebel { width: 72px; height: 20px; }
 /* ReBel look while a ReBel photo is up: black with a lilac glow (#D5A8FF from the ReBel logo) */
 .ps-themer { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .7s ease;
@@ -151,9 +151,16 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-chapter--rebel { background: #050303; color: #D5A8FF; box-shadow: 0 30px 60px -26px rgba(0, 0, 0, .9), inset 0 0 0 1px rgba(213, 168, 255, .25); }
 .ps-chapter--rebel .ps-kicker, .ps-chapter--rebel p { color: #D5A8FF; }
 .ps-chapter .ps-logo--belfius { width: min(78%, 270px); aspect-ratio: 420 / 91; margin: 4px 0; }
-.ps-chapter .ps-logo--belfius-private { width: min(60%, 220px); aspect-ratio: 454 / 262; margin: 4px 0; }
+.ps-chapter .ps-logo--belfius-private { width: min(66%, 240px); aspect-ratio: 426 / 165; margin: 4px 0; }
 .ps-chapter .ps-logo--rebel { width: min(72%, 250px); aspect-ratio: 360 / 100; margin: 4px 0; }
 .ps-chapter-go { margin-top: 10px; min-width: 150px; }
+/* a brand with a white logo: its title card in the stage's own raspberry */
+.ps-chapter--brand { color: #fff; box-shadow: 0 30px 60px -26px rgba(50, 0, 18, .8), inset 0 0 0 1px rgba(255, 255, 255, .22);
+  background: radial-gradient(70% 55% at 50% 42%, rgba(252, 2, 179, .45), rgba(252, 2, 179, 0) 75%), linear-gradient(180deg, #C4024B 0%, #A90144 100%); }
+.ps-chapter--brand .ps-kicker, .ps-chapter--brand p { color: rgba(255, 255, 255, .92); }
+.ps-chapter--brand .ps-chapter-go { background: #fff; color: var(--b-raspberry) !important; box-shadow: 0 10px 22px -14px rgba(0, 0, 0, .6); }
+.ps-chapter--brand .ps-chapter-go:hover { background: var(--b-pink-50); }
+.ps-chapter--brand .ps-chapter-go:focus-visible { outline-color: #fff; }
 .ps-chapter--rebel .ps-chapter-go { background: #D5A8FF; color: #050303 !important; box-shadow: none; }
 .ps-chapter--rebel .ps-chapter-go:hover { background: #E3C6FF; }
 .ps-chapter--rebel .ps-chapter-go:focus-visible { outline-color: #D5A8FF; }

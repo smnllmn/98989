@@ -38,7 +38,7 @@ def font_face():
 # Official logos in src/brand/, embedded where styles.css has their token.
 LOGOS = {
     "__BELFIUS_LOGO__": "belfius-logo.png",
-    "__BELFIUS_PRIVATE_LOGO__": "belfius-private-logo.png",
+    "__BELFIUS_PRIVATE_LOGO__": "belfius-private-white.png",
     "__REBEL_LOGO__": "rebel-logo.png",
 }
 
