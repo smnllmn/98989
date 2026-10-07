@@ -81,5 +81,5 @@
     doneTitleThanks: 'Thanks for voting',
     noAccessTitle: 'No access yet', noAccessText: 'You’re signed in as {name}, but you don’t have access to the photos and votes yet. Ask the organiser to give this address access:',
     catLabel: 'Category', catAll: 'All', catNewPhotos: 'New photos go into', catFail: 'Couldn’t change the category: {err}',
-    chapterKicker: 'Category {i} of {n}'
+    chapterKicker: 'Brand {i} of {n}', chapterGo: 'Continue', introByBrand: 'The photos come brand by brand.'
   };

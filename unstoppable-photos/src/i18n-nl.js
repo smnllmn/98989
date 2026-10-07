@@ -81,5 +81,5 @@
     doneTitleThanks: 'Bedankt voor je stemmen',
     noAccessTitle: 'Nog geen toegang', noAccessText: 'Je bent aangemeld als {name}, maar je hebt nog geen toegang tot de foto’s en stemmen. Vraag de organisator om dit adres toegang te geven:',
     catLabel: 'Categorie', catAll: 'Alle', catNewPhotos: 'Nieuwe foto’s komen in', catFail: 'Categorie niet gewijzigd: {err}',
-    chapterKicker: 'Categorie {i} van {n}'
+    chapterKicker: 'Merk {i} van {n}', chapterGo: 'Verder', introByBrand: 'De foto’s komen per merk.'
   };

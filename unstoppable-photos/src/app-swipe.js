@@ -98,6 +98,8 @@
     }
     delete S.done[v.photo];
     if (S.byId[v.photo]) {
+      var was = S.topId && S.byId[S.topId] ? catOf(S.byId[S.topId]) : null;
+      if (was && was !== catOf(S.byId[v.photo])) delete S.chaptersShown[was.id];
       S.deck = S.deck.filter(function (id) { return id !== v.photo; });
       S.deck.unshift(v.photo);
     }
@@ -295,7 +297,10 @@
       intro.innerHTML = introHtml();
     } else if (intro) intro.remove();
 
-    if (catTop && !S.intro && !S.chapterOn && catsInUse().length > 1 && !S.chaptersShown[catTop.id]) startChapter(catTop);
+    if (catTop && !S.intro && !S.chapterOn && catsInUse().length > 1 && !S.chaptersShown[catTop.id]) {
+      if (catTop === catsInUse()[0]) S.chaptersShown[catTop.id] = true;   // the first brand starts right after the intro
+      else startChapter(catTop);
+    }
 
     var on = !!top && !S.intro && !S.chapterOn;
     ['pass', 'hero', 'keep'].forEach(function (v) { $('ps-btn-' + v).disabled = !on; });
@@ -304,8 +309,15 @@
     $('ps-progress-bar').style.width = total ? (seen / total * 100).toFixed(1) + '%' : '0%';
   }
 
-  // Title card when a category starts: "Categorie 2 van 2 · ReBel · 4 foto's", about 2 seconds, nothing clickable.
-  var chapterTimer = null;
+  // The brand's logo (built into the file) or, without one, its name.
+  var LOGOS = { belfius: true, rebel: true };
+  function catMark(c, big) {
+    if (c.logo && LOGOS[c.logo]) return '<i class="ps-logo ps-logo--' + c.logo + '" role="img" aria-label="' + esc(c.name) + '"></i>';
+    return big ? '<h2>' + esc(c.name) + '</h2>' : esc(c.name);
+  }
+
+  // Title card when the next brand starts: "Merk 2 van 6", its logo, "8 foto's" and a Verder button.
+  // No timer: the vote buttons stay off until the player taps Verder (or presses Enter).
   function startChapter(c) {
     S.chaptersShown[c.id] = true;
     S.chapterOn = true;
@@ -315,20 +327,23 @@
     var left = S.deck.filter(function (id) { return catOf(S.byId[id]).id === c.id; }).length;
     var el = document.createElement('div');
     el.className = 'ps-chapter' + (c.theme === 'rebel' ? ' ps-chapter--rebel' : '');
-    el.setAttribute('role', 'status');
-    el.innerHTML = '<span class="ps-kicker">' + T('chapterKicker', { i: inUse.indexOf(c) + 1, n: inUse.length }) + '</span>' +
-      (c.theme === 'rebel' ? '<i class="ps-rebel-logo ps-rebel-logo--big" role="img" aria-label="' + esc(c.name) + '"></i>' : '<h2>' + esc(c.name) + '</h2>') +
-      '<p>' + esc(nPhotos(left)) + '</p><div class="ps-chapter-bar" aria-hidden="true"><i></i></div>';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-labelledby', 'ps-chapter-k ps-chapter-n');
+    el.setAttribute('aria-describedby', 'ps-chapter-d');
+    el.innerHTML = '<span class="ps-kicker" id="ps-chapter-k">' + T('chapterKicker', { i: inUse.indexOf(c) + 1, n: inUse.length }) + '</span>' +
+      catMark(c, true) + '<p id="ps-chapter-d">' + esc(nPhotos(left)) + '</p>' +
+      '<button type="button" class="ps-btn ps-chapter-go" data-act="chapter-go">' + T('chapterGo') + '</button>';
+    el.children[1].id = 'ps-chapter-n';
     stack.appendChild(el);
-    clearTimeout(chapterTimer);
-    chapterTimer = setTimeout(function () { endChapter(false); }, 2200);
+    var ae = document.activeElement;   // don't pull the focus away from the rest of the intranet page
+    if (!ae || ae === document.body || APP.contains(ae)) { try { el.querySelector('.ps-chapter-go').focus({ preventScroll: true }); } catch (e) { /* old browsers */ } }
   }
 
   function endChapter(now) {
-    clearTimeout(chapterTimer);
-    var el = $('ps-stack').querySelector('.ps-chapter');
+    var stack = $('ps-stack'), el = stack.querySelector('.ps-chapter:not(.is-out)');
+    if (el && el.contains(document.activeElement)) { try { stack.focus({ preventScroll: true }); } catch (e) { /* old browsers */ } }
     S.chapterOn = false;
-    S.shownAt = performance.now();   // the title card's time doesn't count as looking at the photo
+    S.shownAt = performance.now();   // time on the title card doesn't count as looking at the photo
     if (el) {
       if (now || reduced()) el.remove();
       else { el.classList.add('is-out'); setTimeout(function () { el.remove(); }, 320); }
@@ -344,9 +359,8 @@
     if (!show) { el.innerHTML = ''; el.removeAttribute('data-cat'); return; }
     if (el.getAttribute('data-cat') === c.id) return;
     el.setAttribute('data-cat', c.id);
-    el.innerHTML = c.theme === 'rebel'
-      ? '<span class="ps-cat ps-cat--rebel" role="img" aria-label="' + esc(c.name) + '"><i class="ps-rebel-logo"></i></span>'
-      : '<span class="ps-cat">' + esc(c.name) + '</span>';
+    var hasLogo = !!(c.logo && LOGOS[c.logo]);
+    el.innerHTML = '<span class="ps-cat' + (hasLogo ? ' ps-cat--logo' : '') + (c.theme === 'rebel' ? ' ps-cat--rebel' : '') + '">' + catMark(c, false) + '</span>';
   }
 
   function panel(kind, ic, title, text, actions, kicker, extra) {
@@ -392,7 +406,8 @@
       '<li><span class="ps-howto-ic ps-howto-ic--keep">' + IC.keep + '</span><span><b>' + T('introRight') + '</b> = ' + esc(L('keep')) + '</span></li>' +
       '<li><span class="ps-howto-ic ps-howto-ic--pass">' + IC.pass + '</span><span><b>' + T('introLeft') + '</b> = ' + esc(L('pass')) + '</span></li>' +
       '<li><span class="ps-howto-ic ps-howto-ic--hero">' + IC.hero + '</span><span><b>' + T('introUp') + '</b> = ' + esc(L('hero')) + ', ' + T('introUpNote') + '</span></li>' +
-      '</ul><p class="ps-small">' + T('introUndo') + '</p>' +
+      '</ul>' + (catsInUse().length > 1 ? '<p class="ps-small">' + T('introByBrand') + '</p>' : '') +
+      '<p class="ps-small">' + T('introUndo') + '</p>' +
       '<button type="button" class="ps-btn" data-act="intro-start">' + T('introStart') + '</button></div>';
   }
 

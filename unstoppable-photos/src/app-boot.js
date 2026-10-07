@@ -8,6 +8,7 @@
       case 'vote': fly(id); break;
       case 'undo': undo(); break;
       case 'intro-start': dismissIntro(); break;
+      case 'chapter-go': endChapter(false); break;
       case 'restart': restart(); break;
       case 'retry': retryFailed(); break;
       case 'setup': doSetup(btn); break;
@@ -118,6 +119,11 @@
       var r = APP.getBoundingClientRect();
       if (r.bottom < 80 || r.top > window.innerHeight - 80) return;   // app scrolled out of view: leave keys to the page
       if (S.intro) { if (e.key === 'Enter' && !(tg && tg.closest && tg.closest('button'))) { e.preventDefault(); dismissIntro(); } return; }
+      if (S.chapterOn) {
+        if (e.key === 'Enter' && !(tg && tg.closest && tg.closest('button'))) { e.preventDefault(); endChapter(false); }
+        else if ((e.key === 'Backspace' || e.key === 'z' || e.key === 'Z') && S.history.length) { e.preventDefault(); undo(); }
+        return;
+      }
       var map = { ArrowLeft: 'pass', ArrowRight: 'keep', ArrowUp: 'hero' };
       if (map[e.key] && topCard()) { e.preventDefault(); fly(map[e.key]); }
       else if ((e.key === 'Backspace' || e.key === 'z' || e.key === 'Z') && S.history.length) { e.preventDefault(); undo(); }

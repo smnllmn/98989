@@ -155,7 +155,6 @@
 @keyframes ps-spin { to { transform: rotate(360deg); } }
 @keyframes ps-chapter-in { from { opacity: 0; transform: translateY(10px) scale(.92); } to { opacity: 1; transform: none; } }
 @keyframes ps-chapter-out { to { opacity: 0; transform: scale(1.04); } }
-@keyframes ps-chapter-bar { from { transform: scaleX(1); } to { transform: scaleX(0); } }
 @keyframes ps-pop { from { opacity: 0; transform: translateY(6px) scale(.96); } to { opacity: 1; transform: none; } }
 @keyframes ps-shimmer { from { background-position: 160% 0; } to { background-position: -60% 0; } }
 @keyframes ps-pulse { 0% { box-shadow: 0 0 0 0 rgba(58, 126, 76, .45); } 70% { box-shadow: 0 0 0 9px rgba(58, 126, 76, 0); } 100% { box-shadow: 0 0 0 0 rgba(58, 126, 76, 0); } }

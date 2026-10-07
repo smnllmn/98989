@@ -56,10 +56,10 @@ Players never see results. They have no Results tab, no Present, and no "see the
 Photos belong to a category: **Belfius** or **ReBel** for this PoC (`categories` in the settings).
 
 - **Manage**: pick the category for new photos above the upload area. Each photo has a **Belfius | ReBel** switch, and you can filter the grid by category. The category is stored in a *Category* column of the photo library, which the app creates itself. Photos without a category count as Belfius.
-- **Swiping**: players get the Belfius photos first, then the ReBel ones. While ReBel photos are up, the app switches to ReBel's look (black with a lilac glow, #D5A8FF) with the ReBel logo above the card.
+- **Swiping**: players get the photos brand by brand, in the order of the settings: Belfius first, then ReBel. The intro says "De foto’s komen per merk." (no counts, so it scales to many brands). The first brand starts right after **Starten**. Every next brand opens with a title card in place of the photo: "Merk 2 van 2", the brand's logo, the number of photos and a **Verder** button. There is no timer: the vote buttons stay off until the player taps Verder (or presses Enter). Undo still works on the title card. The brand's logo stays above the card while its photos are up. While ReBel photos are up, the app switches to ReBel's look (black with a lilac glow, #D5A8FF).
 - **Results**: filter by Alle, Belfius or ReBel for a podium and ranking per category. The export has a Categorie column.
 
-The ReBel logo is `src/brand/rebel-logo.png` and is embedded in the file at build time.
+The logos are the official files in `src/brand/` (`belfius-logo.png`, `rebel-logo.png`). They are embedded in the file at build time; a category picks one with `logo: 'belfius'` or `logo: 'rebel'`. A category without a logo shows its name instead. Players see "merk" (brand); Manage and Results say "Categorie".
 
 ## Who can do what
 
@@ -113,7 +113,7 @@ All settings are at the top of the script, in `CONFIG`:
 | `photoLibrary`, `votesList` | `SwipePhotos`, `PhotoSwipes` |
 | `siteUrl` | `https://belfius.sharepoint.com/teams/23032314150408` (the Content Team Internal Com team site). The photos and votes live there; the page itself can be on intranet-company. Empty means the site the page is on. |
 | `language` | `auto`, which follows each person's SharePoint language. Or `nl`, `fr`, `en`. People can also switch in the ⋮ menu. |
-| `categories` | Belfius, then ReBel (with `theme: 'rebel'`). Order = swipe order. |
+| `categories` | Belfius, then ReBel (with `theme: 'rebel'`), each with its `logo`. Order = swipe order. |
 | `labels` | Top / Flop / Unstoppable in NL and FR; Keep / Pass / Unstoppable in EN |
 | `cardShape` | `auto`: portrait on phones, landscape on wide screens |
 | `maxPhotoEdge` | `1600` |
