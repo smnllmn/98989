@@ -159,7 +159,7 @@
 
     // The data lives on another site and this person has no access there (yet): find out who they are
     // from the page's own site, so they get a clear screen instead of a technical error.
-    var pageWeb = CTX && CTX.webAbsoluteUrl ? String(CTX.webAbsoluteUrl).replace(/\/$/, '') : '';
+    var pageWeb = PAGE_WEB;
     if (!me && err && (err.status === 401 || err.status === 403) && pageWeb && pageWeb.toLowerCase() !== SITE.toLowerCase()) {
       try {
         var here = await spGet(pageWeb + '/_api/web/currentuser?$select=Id,Title,Email,UserPrincipalName,LoginName');

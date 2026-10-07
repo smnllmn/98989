@@ -348,8 +348,10 @@
   var VERBOSE = 'application/json;odata=verbose';
   var CTX = window._spPageContextInfo || null;
   var ON_SHAREPOINT = !!CTX || /\.sharepoint(-df)?\.(com|us|cn|de)$/i.test(location.hostname);
-  var SITE = (CONFIG.siteUrl || (CTX && CTX.webAbsoluteUrl) ||
+  // The page's own site. Script modules often leave out _spPageContextInfo, so the address is the fallback.
+  var PAGE_WEB = String((CTX && CTX.webAbsoluteUrl) ||
     (location.origin + ((location.pathname.match(/^\/(sites|teams)\/[^/]+/i) || [''])[0]))).replace(/\/$/, '');
+  var SITE = (CONFIG.siteUrl || PAGE_WEB).replace(/\/$/, '');
   var ORIGIN = (function () { try { return new URL(SITE).origin; } catch (e) { return location.origin; } })();
   var KEY = 'unstoppable-photos:v2:';
   var IMG_RE = /\.(jpe?g|png|webp|gif|avif)$/i;
@@ -2194,7 +2196,7 @@
 
     // The data lives on another site and this person has no access there (yet): find out who they are
     // from the page's own site, so they get a clear screen instead of a technical error.
-    var pageWeb = CTX && CTX.webAbsoluteUrl ? String(CTX.webAbsoluteUrl).replace(/\/$/, '') : '';
+    var pageWeb = PAGE_WEB;
     if (!me && err && (err.status === 401 || err.status === 403) && pageWeb && pageWeb.toLowerCase() !== SITE.toLowerCase()) {
       try {
         var here = await spGet(pageWeb + '/_api/web/currentuser?$select=Id,Title,Email,UserPrincipalName,LoginName');
