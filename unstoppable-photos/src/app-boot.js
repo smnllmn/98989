@@ -18,6 +18,10 @@
       case 'remove-no': S.confirmRemove = null; renderManage(); break;
       case 'remove-yes': removePhoto(id); break;
       case 'shrink': shrink([id]); break;
+      case 'set-cat': setPhotoCategory(id, btn.getAttribute('data-cat')); break;
+      case 'up-cat': S.uploadCat = catById(id).id; renderManage(); break;
+      case 'man-filter': S.manageCat = id; renderManage(); break;
+      case 'res-filter': S.resultsCat = id; renderResults(); break;
       case 'shrink-all':
         shrink(S.photos.filter(function (p) { return p.jpeg && p.uid && p.size > LARGE; }).map(function (p) { return p.id; }));
         break;
@@ -197,7 +201,7 @@
       S.admin = !S.asReviewer;
       S.user = { key: 'demo-me', name: t('demoUser'), first: '', initials: '', email: '', upn: '', login: '' };
       setPhotos((window.PS_DEMO_PHOTOS || []).map(function (p) {
-        return { id: String(p.id), name: p.file || p.id, caption: p.caption, credit: p.credit, folder: '', src: p.src, size: 0, jpeg: true };
+        return { id: String(p.id), name: p.file || p.id, caption: p.caption, credit: p.credit, folder: '', cat: catById(p.category).id, src: p.src, size: 0, jpeg: true };
       }));
       S.votes = exampleVotes().concat(loadLocalVotes());
       S.saved = S.votes.filter(function (v) { return !v.example; }).length;
@@ -231,6 +235,7 @@
   }
 
   function boot() {
+    S.uploadCat = cats()[0].id;
     APP = document.getElementById('ps-app');
     if (!APP || APP.getAttribute('data-booted')) return;
     APP.setAttribute('data-booted', '1');

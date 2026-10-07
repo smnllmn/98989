@@ -115,13 +115,28 @@ body:has(> #ps-app) > .ps { max-width: 1180px; margin: 0 auto; }
 .ps-foot .ps-linkbtn, .ps-banner .ps-linkbtn { color: #fff; }
 
 /* swipe view */
-.ps-swipe { display: flex; flex-direction: column; align-items: center; gap: 14px; --ps-ratio: 3 / 4; --ps-w: min(100%, max(250px, min(400px, calc((100dvh - 350px) * .75)))); }
+.ps-swipe { display: flex; flex-direction: column; align-items: center; gap: 14px; --ps-ratio: 3 / 4; --ps-w: min(100%, max(250px, min(400px, calc((100dvh - 372px) * .75)))); }
 @container ps (min-width: 700px) {
   .ps[data-shape="auto"] .ps-swipe { --ps-ratio: 4 / 3; --ps-w: min(100%, max(380px, min(680px, calc((100dvh - 350px) * 1.3333)))); }
 }
 .ps[data-shape="landscape"] .ps-swipe { --ps-ratio: 4 / 3; --ps-w: min(100%, max(300px, min(680px, calc((100dvh - 350px) * 1.3333)))); }
 .ps[data-shape="square"] .ps-swipe { --ps-ratio: 1 / 1; --ps-w: min(100%, max(260px, min(520px, calc(100dvh - 350px)))); }
-.ps-progress { width: var(--ps-w); height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .22); overflow: hidden; }
+.ps-progress-row { width: var(--ps-w); display: flex; align-items: center; gap: 10px; }
+.ps-progress { flex: 1; min-width: 0; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .22); overflow: hidden; }
+.ps-catbar { flex: none; display: flex; }
+.ps-cat { display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .34); background: rgba(255, 255, 255, .18); color: #fff; font-weight: 800; font-size: .82rem; letter-spacing: .02em; white-space: nowrap; animation: ps-pop .35s ease; }
+.ps-cat--rebel { padding: 0 14px; border-color: rgba(213, 168, 255, .45); background: #050303; }
+.ps-rebel-logo { display: block; width: 78px; height: 22px; background: url("__REBEL_LOGO__") center / contain no-repeat; }
+/* ReBel look while a ReBel photo is up: black with a lilac glow (#D5A8FF from the ReBel logo) */
+.ps-themer { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .7s ease;
+  background:
+    radial-gradient(56% 42% at 50% 46%, rgba(213, 168, 255, .30), rgba(213, 168, 255, 0) 72%),
+    radial-gradient(42% 32% at 100% 0%, rgba(213, 168, 255, .16), rgba(213, 168, 255, 0) 70%),
+    linear-gradient(180deg, #1A1420 0%, #0D0A10 55%, #050303 100%); }
+.ps.is-rebel .ps-themer { opacity: 1; }
+.ps.is-rebel .ps-progress i { background: #D5A8FF; }
+.ps.is-rebel .ps-act--hero .ps-ic--fill { fill: url(#ps-grad-rebel); }
+.ps.is-rebel .ps-act--keep:hover .ps-act-tile { background: rgba(213, 168, 255, .35); }
 .ps-progress i { display: block; width: 0; height: 100%; border-radius: inherit; background: #fff; transition: width .45s ease; }
 .ps-stack { position: relative; width: var(--ps-w); aspect-ratio: var(--ps-ratio); margin-bottom: 24px; touch-action: none; user-select: none; -webkit-user-select: none; outline: none; border-radius: 26px; }
 

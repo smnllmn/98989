@@ -125,11 +125,18 @@
     return m;
   }
 
+  // One category after the other (in the order of CONFIG.categories), shuffled within each.
+  function groupedShuffle(ids) {
+    var groups = cats().map(function () { return []; });
+    ids.forEach(function (id) { groups[catIndex(catOf(S.byId[id]).id)].push(id); });
+    return groups.reduce(function (all, g) { return all.concat(shuffle(g)); }, []);
+  }
+
   function buildDeck() {
     S.done = {};
     var mine = myVotes();
     Object.keys(mine).forEach(function (id) { if (S.byId[id]) S.done[id] = true; });
-    S.deck = shuffle(S.photos.filter(function (p) { return !S.done[p.id]; }).map(function (p) { return p.id; }));
+    S.deck = groupedShuffle(S.photos.filter(function (p) { return !S.done[p.id]; }).map(function (p) { return p.id; }));
   }
 
   // Adds photos that appeared since the deck was built (new uploads, a refresh).
@@ -137,13 +144,20 @@
     var inDeck = {};
     S.deck.forEach(function (id) { inDeck[id] = true; });
     var fresh = S.photos.filter(function (p) { return !S.done[p.id] && !inDeck[p.id]; }).map(function (p) { return p.id; });
-    S.deck = S.deck.concat(shuffle(fresh));
+    // Slot new photos in at the end of their category, never in front of the card that's showing.
+    shuffle(fresh).forEach(function (id) {
+      var ci = catIndex(catOf(S.byId[id]).id), at = 0;
+      for (var i = S.deck.length - 1; i >= 0; i--) {
+        if (catIndex(catOf(S.byId[S.deck[i]]).id) <= ci) { at = i + 1; break; }
+      }
+      S.deck.splice(S.deck.length ? Math.max(1, at) : 0, 0, id);
+    });
   }
 
   function restart() {
     S.done = {};
     S.history = [];
-    S.deck = shuffle(S.photos.map(function (p) { return p.id; }));
+    S.deck = groupedShuffle(S.photos.map(function (p) { return p.id; }));
     renderStack();
     renderTop();
   }
@@ -262,6 +276,9 @@
 
     var top = want[0] || null;
     if (top !== S.topId) { S.topId = top; S.shownAt = performance.now(); }
+    var catTop = top ? catOf(S.byId[top]) : null;
+    APP.classList.toggle('is-rebel', !!catTop && catTop.theme === 'rebel' && S.view === 'swipe');
+    renderCatChip(catTop);
     preload(S.deck.slice(3, 6));
 
     var state = stack.querySelector('.ps-state');
@@ -282,6 +299,19 @@
     var total = S.photos.length;
     var seen = S.photos.filter(function (p) { return S.done[p.id]; }).length;
     $('ps-progress-bar').style.width = total ? (seen / total * 100).toFixed(1) + '%' : '0%';
+  }
+
+  // Which category is up: the ReBel logo or the category name, above the card (never on the photo).
+  function renderCatChip(c) {
+    var el = $('ps-catbar');
+    var show = !!c && catsInUse().length > 1;
+    el.hidden = !show;
+    if (!show) { el.innerHTML = ''; el.removeAttribute('data-cat'); return; }
+    if (el.getAttribute('data-cat') === c.id) return;
+    el.setAttribute('data-cat', c.id);
+    el.innerHTML = c.theme === 'rebel'
+      ? '<span class="ps-cat ps-cat--rebel" role="img" aria-label="' + esc(c.name) + '"><i class="ps-rebel-logo"></i></span>'
+      : '<span class="ps-cat">' + esc(c.name) + '</span>';
   }
 
   function panel(kind, ic, title, text, actions, kicker, extra) {

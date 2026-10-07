@@ -33,6 +33,7 @@
     view: 'swipe', prevView: 'swipe', menu: false,
     queue: [], failed: [], saved: 0, lastError: '',
     uploads: [], confirmRemove: null, shrinking: null, savedCaption: null,
+    uploadCat: null, manageCat: 'all', resultsCat: 'all',
     updatedAt: null, polling: false, previewLocked: false
   };
 
@@ -55,6 +56,11 @@
     return set[code] || code;
   }
   function locale() { return LOCALES[S.lang] || 'en-GB'; }
+  function cats() { return (CONFIG.categories && CONFIG.categories.length ? CONFIG.categories : [{ id: 'all', name: '' }]); }
+  function catById(id) { return cats().filter(function (c) { return c.id === id; })[0] || cats()[0]; }
+  function catOf(p) { return catById(p && p.cat); }
+  function catIndex(id) { var i = cats().indexOf(catById(id)); return i < 0 ? 0 : i; }
+  function catsInUse() { var m = {}; S.photos.forEach(function (p) { m[catOf(p).id] = true; }); return cats().filter(function (c) { return m[c.id]; }); }
   function appTitle() {
     var x = CONFIG.title;
     return String((x && typeof x === 'object' ? x[S.lang] || x.en || x[Object.keys(x)[0]] : x) || 'Unstoppable Photos');
@@ -214,11 +220,26 @@
     try {
       var j = await spGet(libPath() + '?$select=Id,BaseTemplate,ListItemEntityTypeFullName,RootFolder/ServerRelativeUrl&$expand=RootFolder');
       if ([101, 109, 851].indexOf(j.BaseTemplate) === -1) throw new Error(t('errNotLibrary', { name: CONFIG.photoLibrary }));
-      S.lib = { state: 'ok', entityType: j.ListItemEntityTypeFullName, url: (j.RootFolder && j.RootFolder.ServerRelativeUrl) || '' };
+      S.lib = { state: 'ok', entityType: j.ListItemEntityTypeFullName, url: (j.RootFolder && j.RootFolder.ServerRelativeUrl) || '', hasCat: false };
     } catch (e) {
       S.lib = { state: e.status === 404 ? 'missing' : 'error', error: e.message };
       if (e.status !== 404) S.lastError = e.message;
+      return;
     }
+    await ensureCategoryField();
+  }
+
+  // The photo library gets a Category column; admins create it the first time they open the app.
+  async function ensureCategoryField() {
+    try {
+      var f = await spGet(libPath() + "/fields?$select=InternalName&$filter=InternalName eq 'Category'");
+      S.lib.hasCat = (f.value || []).length > 0;
+      if (!S.lib.hasCat && S.realAdmin) {
+        await spSend(libPath() + '/fields', { json: { __metadata: { type: 'SP.FieldText' }, FieldTypeKind: 2, Title: 'Category' } });
+        S.lib.hasCat = true;
+        try { await spSend(libPath() + "/DefaultView/ViewFields/addViewField('Category')"); } catch (e) { /* optional */ }
+      }
+    } catch (e) { S.lastError = e.message; }
   }
 
   async function checkVotes() {
@@ -288,7 +309,7 @@
   }
 
   async function loadSpPhotos() {
-    var rows = await spGetAll(libPath() + '/items?$select=Id,Title,FileLeafRef,FileRef,Modified,File/Length,File/UniqueId&$expand=File' +
+    var rows = await spGetAll(libPath() + '/items?$select=Id,Title,FileLeafRef,FileRef,Modified,File/Length,File/UniqueId' + (S.lib.hasCat ? ',Category' : '') + '&$expand=File' +
       '&$filter=FSObjType eq 0&$orderby=Id asc&$top=1000', CONFIG.photoLibrary);
     var root = (S.lib.url || '').replace(/\/$/, '').toLowerCase();
     var photos = [], skipped = 0;
@@ -300,7 +321,7 @@
       var title = String(r.Title || '').trim();
       photos.push({
         id: String(r.Id), uid: r.File && r.File.UniqueId, name: name,
-        caption: title || prettyName(name), folder: inLib.split('/').slice(0, -1).join(' / '),
+        caption: title || prettyName(name), folder: inLib.split('/').slice(0, -1).join(' / '), cat: catById(r.Category).id,
         src: ORIGIN + encPath(ref) + '?v=' + (Date.parse(r.Modified) || 0),
         size: Number(r.File && r.File.Length) || 0, jpeg: /\.jpe?g$/i.test(name)
       });
@@ -355,25 +376,30 @@
 
   function spRecycle(path, id) { return spSend(path + '/items(' + Number(id) + ')/recycle()'); }
 
-  async function spUpload(name, blob, caption) {
+  async function spUpload(name, blob, caption, cat) {
     var res = await spSend(libPath() + "/RootFolder/Files/add(url='" + encodeURIComponent(name.replace(/'/g, "''")) + "',overwrite=false)",
       { body: blob, timeout: 120000, what: CONFIG.photoLibrary });
     var f = await readJson(res);
     var item = await spGet("/_api/web/GetFileById('" + f.UniqueId + "')/ListItemAllFields?$select=Id,Modified");
-    if (caption) await spSetCaption(item.Id, caption);
+    var fields = {};
+    if (caption) fields.Title = caption;
+    if (S.lib.hasCat) fields.Category = cat;
+    if (Object.keys(fields).length) await spSetFields(item.Id, fields);
     return {
-      id: String(item.Id), uid: f.UniqueId, name: f.Name, caption: caption || prettyName(f.Name), folder: '',
+      id: String(item.Id), uid: f.UniqueId, name: f.Name, caption: caption || prettyName(f.Name), folder: '', cat: catById(cat).id,
       src: ORIGIN + encPath(f.ServerRelativeUrl) + '?v=' + (Date.parse(item.Modified) || Date.now()),
       size: Number(f.Length) || blob.size, jpeg: true
     };
   }
 
-  function spSetCaption(id, caption) {
+  function spSetFields(id, fields) {
+    var body = { __metadata: { type: S.lib.entityType } };
+    Object.keys(fields).forEach(function (k) { body[k] = fields[k]; });
     return spSend(libPath() + '/items(' + Number(id) + ')', {
-      json: { __metadata: { type: S.lib.entityType }, Title: caption },
-      headers: { 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, what: CONFIG.photoLibrary
+      json: body, headers: { 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, what: CONFIG.photoLibrary
     });
   }
+  function spSetCaption(id, caption) { return spSetFields(id, { Title: caption }); }
 
   // Replaces a file's content in place: same item, same ID, so its votes stay attached.
   function spReplace(p, blob) {

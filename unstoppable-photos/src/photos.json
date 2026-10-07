@@ -1,12 +1,12 @@
 [
-  { "id": "cat", "file": "cat.jpg", "caption": "Chelsea the cat", "credit": "Stéfan van der Walt" },
-  { "id": "rocket", "file": "rocket.jpg", "caption": "Launch pad at night", "credit": "SpaceX · public domain" },
-  { "id": "coffee", "file": "coffee.jpg", "caption": "Morning coffee", "credit": "Rachel Michetti" },
-  { "id": "astronaut", "file": "astronaut.jpg", "caption": "Astronaut portrait", "credit": "NASA · Eileen Collins" },
-  { "id": "dahlia", "file": "dahlia.jpg", "caption": "Dahlia", "credit": "scikit-learn sample set" },
-  { "id": "deep-field", "file": "deep-field.jpg", "caption": "Hubble Deep Field", "credit": "NASA / STScI" },
-  { "id": "hopper", "file": "hopper.jpg", "caption": "Grace Hopper", "credit": "U.S. Navy · public domain" },
-  { "id": "motorcycle", "file": "motorcycle.jpg", "caption": "Red motorcycle", "credit": "Middlebury stereo set" },
-  { "id": "palace", "file": "palace.jpg", "caption": "Summer Palace, Beijing", "credit": "scikit-learn sample set" },
-  { "id": "cameraman", "file": "cameraman.jpg", "caption": "The cameraman", "credit": "MIT · classic test image" }
+  {"id": "cat", "file": "cat.jpg", "caption": "Chelsea the cat", "credit": "Stéfan van der Walt", "category": "belfius"},
+  {"id": "rocket", "file": "rocket.jpg", "caption": "Launch pad at night", "credit": "SpaceX · public domain", "category": "rebel"},
+  {"id": "coffee", "file": "coffee.jpg", "caption": "Morning coffee", "credit": "Rachel Michetti", "category": "belfius"},
+  {"id": "astronaut", "file": "astronaut.jpg", "caption": "Astronaut portrait", "credit": "NASA · Eileen Collins", "category": "rebel"},
+  {"id": "dahlia", "file": "dahlia.jpg", "caption": "Dahlia", "credit": "scikit-learn sample set", "category": "belfius"},
+  {"id": "deep-field", "file": "deep-field.jpg", "caption": "Hubble Deep Field", "credit": "NASA / STScI", "category": "rebel"},
+  {"id": "hopper", "file": "hopper.jpg", "caption": "Grace Hopper", "credit": "U.S. Navy · public domain", "category": "belfius"},
+  {"id": "motorcycle", "file": "motorcycle.jpg", "caption": "Red motorcycle", "credit": "Middlebury stereo set", "category": "rebel"},
+  {"id": "palace", "file": "palace.jpg", "caption": "Summer Palace, Beijing", "credit": "scikit-learn sample set", "category": "belfius"},
+  {"id": "cameraman", "file": "cameraman.jpg", "caption": "The cameraman", "credit": "MIT · classic test image", "category": "belfius"}
 ]

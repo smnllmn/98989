@@ -35,6 +35,11 @@ def font_face():
     )
 
 
+def rebel_logo():
+    data = base64.b64encode((src / "brand" / "rebel-logo.png").read_bytes()).decode("ascii")
+    return "data:image/png;base64," + data
+
+
 def demo_photos():
     photos = json.loads(read("photos.json"))
     for p in photos:
@@ -48,7 +53,7 @@ def demo_photos():
 
 
 def page(extra_head=""):
-    css = read("styles.css").replace("/*FONT-FACE*/", font_face()) + "\n" + read("styles-sheets.css")
+    css = read("styles.css").replace("/*FONT-FACE*/", font_face()).replace("__REBEL_LOGO__", rebel_logo()) + "\n" + read("styles-sheets.css")
     parts = [read(JS_PARTS[0]), "  var I18N = {};"] + [read(name) for name in JS_PARTS[1:]]
     js = "\n\n".join(p.rstrip() for p in parts)
     return (

@@ -79,5 +79,6 @@
     dPrivacy: 'Privacy', sNotAnon: 'niet anoniem', sLocked: 'anoniem, stemmenlijst afgeschermd',
     sOpenList: 'anoniem in de app, maar de stemmenlijst is nog open', sAnon: 'anoniem',
     doneTitleThanks: 'Bedankt voor je stemmen',
-    noAccessTitle: 'Nog geen toegang', noAccessText: 'Je bent aangemeld als {name}, maar je hebt nog geen toegang tot de foto’s en stemmen. Vraag de organisator om dit adres toegang te geven:'
+    noAccessTitle: 'Nog geen toegang', noAccessText: 'Je bent aangemeld als {name}, maar je hebt nog geen toegang tot de foto’s en stemmen. Vraag de organisator om dit adres toegang te geven:',
+    catLabel: 'Categorie', catAll: 'Alle', catNewPhotos: 'Nieuwe foto’s komen in', catFail: 'Categorie niet gewijzigd: {err}'
   };

@@ -119,6 +119,17 @@
 .ps-saved .ps-ic { width: 14px; height: 14px; stroke-width: 2.6; }
 .ps-large { padding: 1px 7px; border-radius: 999px; background: #FFF1E2; color: #94470A; font-weight: 700; }
 .ps-count { font-size: .85rem; font-weight: 700; color: var(--b-muted); }
+.ps-man-cat { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 16px; font-size: .85rem; font-weight: 700; color: var(--b-slate); }
+.ps-filter { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.ps-filter button { padding: 6px 14px; border: 1px solid var(--b-line); border-radius: 999px; background: #fff; color: var(--b-slate); font-weight: 700; font-size: .82rem; }
+.ps-filter button span { margin-left: 2px; font-weight: 600; color: var(--b-muted); }
+.ps-filter button[aria-pressed="true"] { border-color: var(--b-magenta); background: var(--b-magenta); color: #fff; }
+.ps-filter button[aria-pressed="true"] span { color: rgba(255, 255, 255, .8); }
+.ps-filter button.is-rebel[aria-pressed="true"] { border-color: #050303; background: #050303; color: #D5A8FF; }
+.ps-catseg { display: flex; padding: 3px; border-radius: 999px; background: var(--b-track); }
+.ps-catseg button { flex: 1; min-width: 0; padding: 5px 8px; border: 0; border-radius: 999px; background: none; color: var(--b-muted); font-weight: 700; font-size: .74rem; }
+.ps-catseg button[aria-pressed="true"] { background: #fff; color: var(--b-magenta); box-shadow: 0 2px 6px -3px rgba(0, 0, 0, .3); }
+.ps-catseg button.is-rebel[aria-pressed="true"] { background: #050303; color: #D5A8FF; }
 
 /* connection details */
 .ps-dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 18px; margin: 18px 0; font-size: .85rem; }
@@ -142,6 +153,7 @@
 .ps-dot--busy { background: #FFD27A; animation: ps-blink 1s ease-in-out infinite; }
 
 @keyframes ps-spin { to { transform: rotate(360deg); } }
+@keyframes ps-pop { from { opacity: 0; transform: translateY(6px) scale(.96); } to { opacity: 1; transform: none; } }
 @keyframes ps-shimmer { from { background-position: 160% 0; } to { background-position: -60% 0; } }
 @keyframes ps-pulse { 0% { box-shadow: 0 0 0 0 rgba(58, 126, 76, .45); } 70% { box-shadow: 0 0 0 9px rgba(58, 126, 76, 0); } 100% { box-shadow: 0 0 0 0 rgba(58, 126, 76, 0); } }
 @keyframes ps-blink { 50% { opacity: .35; } }

@@ -43,6 +43,13 @@
       en: { keep: 'Keep', pass: 'Pass', hero: 'Unstoppable' }
     },
 
+    // Photo categories. Admins set them in Manage; players swipe one category after the other, in this order.
+    // Photos without a category count as the first one. theme 'rebel' shows that category in ReBel's look.
+    categories: [
+      { id: 'belfius', name: 'Belfius' },
+      { id: 'rebel', name: 'ReBel', theme: 'rebel' }
+    ],
+
     // Card shape: 'auto' (portrait on phones, landscape on wide screens), 'portrait', 'landscape' or 'square'.
     cardShape: 'auto',
 

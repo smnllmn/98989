@@ -45,7 +45,7 @@
     var list = Array.prototype.slice.call(files || []);
     if (!list.length || !S.admin) return;
     if (S.view !== 'manage') setView('manage');
-    list.forEach(function (f) { S.uploads.push({ key: ++upSeq, file: f, name: f.name, status: 'waiting' }); });
+    list.forEach(function (f) { S.uploads.push({ key: ++upSeq, file: f, name: f.name, status: 'waiting', cat: S.uploadCat }); });
     pumpUploads();
   }
 
@@ -70,8 +70,9 @@
       renderUploads();
       var caption = prettyName(f.name);
       var name = slug(f.name) + '-' + rand(4) + '.jpg';
-      var p = S.mode === 'sharepoint' ? await spUpload(name, r.blob, caption)
-        : { id: 'local-' + (++S.seq), name: name, caption: caption, folder: '', src: URL.createObjectURL(r.blob), size: r.blob.size, jpeg: true, local: true };
+      var cat = catById(u.cat).id;
+      var p = S.mode === 'sharepoint' ? await spUpload(name, r.blob, caption, cat)
+        : { id: 'local-' + (++S.seq), name: name, caption: caption, folder: '', cat: cat, src: URL.createObjectURL(r.blob), size: r.blob.size, jpeg: true, local: true };
       S.photos.push(p);
       S.byId[p.id] = p;
       syncDeck();
@@ -133,6 +134,9 @@
           '<button type="button" class="ps-btn ps-btn--sm ps-btn--white" data-act="remove-no">' + T('removeNo') + '</button></div></div>'
         : '<button type="button" class="ps-ph-del" data-act="remove" data-id="' + esc(p.id) + '" aria-label="' + T('remove') + ': ' + esc(p.caption) + '" title="' + T('remove') + '">' + icon(P.trash) + '</button>') +
       '</div><input class="ps-cap-in" type="text" data-id="' + esc(p.id) + '" value="' + esc(p.caption) + '" maxlength="255" aria-label="' + T('caption') + '" placeholder="' + T('caption') + '">' +
+      (cats().length > 1 ? '<div class="ps-catseg" role="group" aria-label="' + T('catLabel') + '">' + cats().map(function (c) {
+        return '<button type="button" data-act="set-cat" data-id="' + esc(p.id) + '" data-cat="' + esc(c.id) + '" aria-pressed="' + (catOf(p).id === c.id) + '"' + (c.theme === 'rebel' ? ' class="is-rebel"' : '') + '>' + esc(c.name) + '</button>';
+      }).join('') + '</div>' : '') +
       '<div class="ps-ph-meta"><span>' + esc(nVotes(n)) + '</span>' + (p.size ? '<span>' + fmtSize(p.size) + '</span>' : '') +
       (S.savedCaption === p.id ? '<span class="ps-saved">' + icon(P.check) + T('captionSaved') + '</span>' : '') +
       (big ? '<span class="ps-large">' + T('large') + '</span>' + (p.jpeg && p.uid && !S.shrinking ? '<button type="button" class="ps-linkbtn" data-act="shrink" data-id="' + esc(p.id) + '">' + T('shrink') + '</button>' : '') : '') +
@@ -163,7 +167,18 @@
       if (S.list.readSecurity === 1) notice = '<div class="ps-notice">' + icon(P.lock) + '<span>' + T('listOpen') + '</span><button type="button" class="ps-btn ps-btn--sm" data-act="lock-votes">' + T('lockVotes') + '</button></div>';
       else if (S.list.readSecurity === 2 && S.list.seeAll === false) notice = '<div class="ps-notice">' + icon(P.alert) + '<span>' + T('notOwner') + '</span></div>';
     }
-    var html = head + '</div>' + notice +
+    var multi = cats().length > 1;
+    var counts2 = {};
+    S.photos.forEach(function (p) { var c = catOf(p).id; counts2[c] = (counts2[c] || 0) + 1; });
+    var upCat = multi ? '<div class="ps-man-cat"><span>' + T('catNewPhotos') + '</span><div class="ps-seg" role="group" aria-label="' + T('catNewPhotos') + '">' +
+      cats().map(function (c) { return '<button type="button" data-act="up-cat" data-id="' + esc(c.id) + '" aria-pressed="' + (S.uploadCat === c.id) + '">' + esc(c.name) + '</button>'; }).join('') + '</div></div>' : '';
+    var filter = multi ? '<div class="ps-filter" role="group" aria-label="' + T('catLabel') + '">' +
+      [{ id: 'all', name: t('catAll') }].concat(cats()).map(function (c) {
+        var n = c.id === 'all' ? S.photos.length : (counts2[c.id] || 0);
+        return '<button type="button" data-act="man-filter" data-id="' + esc(c.id) + '" aria-pressed="' + (S.manageCat === c.id) + '"' + (c.theme === 'rebel' ? ' class="is-rebel"' : '') + '>' + esc(c.name) + ' <span>' + n + '</span></button>';
+      }).join('') + '</div>' : '';
+    var shown = S.photos.filter(function (p) { return S.manageCat === 'all' || catOf(p).id === S.manageCat; });
+    var html = head + '</div>' + notice + upCat +
       '<label class="ps-drop" id="ps-drop"><input type="file" class="ps-file" id="ps-file" multiple accept="image/*">' +
       '<span class="ps-drop-ic">' + icon(P.upload) + '</span><b>' + T('drop') + '</b><span class="ps-drop-or">' + T('dropOr') + '</span>' +
       '<small>' + T('dropHint', { px: CONFIG.maxPhotoEdge }) + '</small></label>' +
@@ -172,7 +187,7 @@
       (large.length && !S.shrinking ? '<p class="ps-note">' + T('shrinkNote') + '</p>' : '') +
       (S.mode === 'demo' ? '<p class="ps-note">' + T('demoPhotosNote') + '</p>' : '') +
       (S.skipped ? '<p class="ps-note">' + T('skippedFiles', { n: S.skipped }) + '</p>' : '') +
-      '<ul class="ps-grid">' + S.photos.slice().reverse().map(function (p) { return phHtml(p, counts[p.id] || 0); }).join('') + '</ul>';
+      filter + '<ul class="ps-grid">' + shown.slice().reverse().map(function (p) { return phHtml(p, counts[p.id] || 0); }).join('') + '</ul>';
     keepFocus(el, html);
     renderUploads();
   }
@@ -197,6 +212,16 @@
       toastText(t('captionFail', { err: e.message }), 7000);
     }
     if (S.view === 'manage') renderManage();
+  }
+
+  async function setPhotoCategory(id, catId) {
+    var p = S.byId[id], c = catById(catId);
+    if (!p || catOf(p).id === c.id) return;
+    var old = p.cat;
+    p.cat = c.id;
+    renderManage();
+    try { if (S.mode === 'sharepoint') await spSetFields(p.id, { Category: c.id }); }
+    catch (e) { p.cat = old; S.lastError = e.message; toastText(t('catFail', { err: e.message }), 7000); renderManage(); }
   }
 
   async function removePhoto(id) {

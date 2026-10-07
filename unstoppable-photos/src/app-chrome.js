@@ -169,6 +169,7 @@
     if (v === 'details' && S.view !== 'details') S.prevView = S.view;
     if (v !== S.view) hideToast();
     S.view = v;
+    if (v !== 'swipe') APP.classList.remove('is-rebel');
     S.menu = false;
     S.confirmRemove = null;
     ['swipe', 'results', 'manage', 'details'].forEach(function (x) { $('ps-view-' + x).hidden = x !== v; });

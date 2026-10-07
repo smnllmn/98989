@@ -2,9 +2,11 @@
   function tally() {
     var votes = latest(S.votes).filter(function (v) { return S.byId[v.photo]; });
     var users = {}, totalMs = 0, examples = false, per = {}, nVotes = 0;
-    S.photos.forEach(function (p) { per[p.id] = { p: p, n: 0, keep: 0, hero: 0, pass: 0, ms: 0, mine: null }; });
+    var photosIn = S.photos.filter(function (p) { return S.resultsCat === 'all' || catOf(p).id === S.resultsCat; });
+    photosIn.forEach(function (p) { per[p.id] = { p: p, n: 0, keep: 0, hero: 0, pass: 0, ms: 0, mine: null }; });
     votes.forEach(function (v) {
       var r = per[v.photo];
+      if (!r) return;
       if (S.user && v.user === S.user.key) r.mine = v.verdict;
       users[v.user] = true;
       totalMs += v.ms || 0;
@@ -38,7 +40,7 @@
     var split = voted.filter(function (r) { return r.n >= minN; })
       .sort(function (a, b) { return (Math.abs(a.rate - .5) - Math.abs(b.rate - .5)) || (b.n - a.n); })[0];
     return {
-      rows: rows, voted: voted, reviewers: reviewers, votes: nVotes, avgMs: nVotes ? totalMs / nVotes : 0, examples: examples,
+      rows: rows, voted: voted, photoCount: photosIn.length, reviewers: reviewers, votes: nVotes, avgMs: nVotes ? totalMs / nVotes : 0, examples: examples,
       taste: compared >= 3 ? agree / compared : null,
       hero: hero && hero.hero ? hero : null,
       split: split && Math.abs(split.rate - .5) <= .2 ? split : null
@@ -90,6 +92,13 @@
       '<div class="ps-rrow-pct">' + (r.n ? pct(r.rate) : '–') + '<small>' + esc(L('keep')) + '</small></div></li>';
   }
 
+  function resultsFilter() {
+    if (catsInUse().length < 2) { S.resultsCat = 'all'; return ''; }
+    return '<div class="ps-filter" role="group" aria-label="' + T('catLabel') + '">' + [{ id: 'all', name: t('catAll') }].concat(cats()).map(function (c) {
+      return '<button type="button" data-act="res-filter" data-id="' + esc(c.id) + '" aria-pressed="' + (S.resultsCat === c.id) + '"' + (c.theme === 'rebel' ? ' class="is-rebel"' : '') + '>' + esc(c.name) + '</button>';
+    }).join('') + '</div>';
+  }
+
   function renderResults() {
     var el = $('ps-view-results');
     var R = tally();
@@ -97,7 +106,7 @@
       (R.voted.length ? '<button type="button" class="ps-btn ps-btn--soft" data-act="export">' + icon(P.download) + T('exportCsv') + '</button>' : '') +
       (S.store === 'sharepoint' ? '<button type="button" class="ps-btn ps-btn--soft ps-btn--icon" data-act="refresh" aria-label="' + T('refresh') + '" title="' + T('refresh') + '">' + icon(P.refresh) + '</button>' : '');
     var html = '<div class="ps-head"><div class="ps-head-text"><h2>' + T('resTitle') + '</h2><div class="ps-live-row">' + liveHtml() + '</div></div><div class="ps-tools">' + tools + '</div></div>' +
-      '<div class="ps-kpis">' + kpi(t('kPhotos'), S.photos.length) + kpi(t('kReviewers'), R.reviewers) + kpi(t('kVotes'), R.votes) +
+      resultsFilter() + '<div class="ps-kpis">' + kpi(t('kPhotos'), R.photoCount) + kpi(t('kReviewers'), R.reviewers) + kpi(t('kVotes'), R.votes) +
       kpi(t('kAvg'), R.votes ? secs(R.avgMs) : '–') + '</div>';
     if (R.examples) html += '<p class="ps-note">' + T('exampleNote') + '</p>';
     if (!R.voted.length) {
@@ -171,9 +180,9 @@
   function exportCsv() {
     var R = tally();
     var dec = function (n) { return n.toLocaleString(locale(), { maximumFractionDigits: 1, useGrouping: false }); };
-    var lines = [[t('csvRank'), t('csvCaption'), t('csvFile'), t('csvVotes'), L('keep'), L('hero'), L('pass'), t('csvPct', { keep: L('keep') }), t('csvAvg')]];
+    var lines = [[t('csvRank'), t('csvCaption'), t('catLabel'), t('csvFile'), t('csvVotes'), L('keep'), L('hero'), L('pass'), t('csvPct', { keep: L('keep') }), t('csvAvg')]];
     R.rows.forEach(function (r, i) {
-      lines.push([i + 1, r.p.caption, r.p.name || r.p.id, r.n, r.keep, r.hero, r.pass, r.n ? Math.round(r.rate * 100) : '', r.n ? dec(r.avg / 1000) : '']);
+      lines.push([i + 1, r.p.caption, catOf(r.p).name, r.p.name || r.p.id, r.n, r.keep, r.hero, r.pass, r.n ? Math.round(r.rate * 100) : '', r.n ? dec(r.avg / 1000) : '']);
     });
     // Semicolons and a BOM: what Excel expects with Belgian regional settings.
     var csv = '﻿' + lines.map(function (l) { return l.map(csvCell).join(';'); }).join('\r\n');
