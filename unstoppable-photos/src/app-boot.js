@@ -144,8 +144,8 @@
     S.user = null; S.allowed = S.admin = S.realAdmin = false;
     renderFrame();
     var me = null, err = null;
-    // Only ask SharePoint who we are when we're actually on SharePoint (or a site is configured).
-    if (ON_SHAREPOINT || CONFIG.siteUrl) { try { me = await whoAmI(); } catch (e) { err = e; } }
+    // Only ask SharePoint who we are when the page is on SharePoint; a local file can't use the sign-in anyway.
+    if (ON_SHAREPOINT) { try { me = await whoAmI(); } catch (e) { err = e; } }
 
     // The data lives on another site and this person has no access there (yet): find out who they are
     // from the page's own site, so they get a clear screen instead of a technical error.
