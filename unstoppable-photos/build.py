@@ -2,9 +2,13 @@
 
 Usage: python3 build.py
 
-Writes two files:
-  unstoppable-photos.html       for SharePoint: the app and its font, no photos (photos come from the library)
-  unstoppable-photos-demo.html  the same app with the sample photos embedded, for trying it outside SharePoint
+Writes:
+  unstoppable-photos.js          the app for SharePoint in one file (styles, markup, code; no photos). Upload it to
+                                 SCRIPT_URL's folder; to update the app later, upload it again over the old one.
+  unstoppable-photos-loader.html the short loader to paste into the page's script module. It loads the file above.
+  unstoppable-photos.html        the same app as one paste-in block (works while editing a page, but too big to
+                                 survive saving in the Involv Script Editor, so publish with the loader instead)
+  unstoppable-photos-demo.html   the app with the sample photos embedded, for trying it outside SharePoint
 """
 import base64
 import json
@@ -12,6 +16,9 @@ from pathlib import Path
 
 here = Path(__file__).parent
 src = here / "src"
+
+# Where unstoppable-photos.js lives: a folder on the intranet site every viewer of the page can read.
+SCRIPT_URL = "https://belfius.sharepoint.com/sites/intranet-company/SiteAssets/SitePages/UnstoppablePhotos/unstoppable-photos.js"
 
 JS_PARTS = [
     "config.js",
@@ -63,20 +70,81 @@ def demo_photos():
     )
 
 
-def page(extra_head=""):
-    css = styles()
+def app_js():
     parts = [read(JS_PARTS[0]), "  var I18N = {};"] + [read(name) for name in JS_PARTS[1:]]
     js = "\n\n".join(p.rstrip() for p in parts)
+    return "(function () {\n  'use strict';\n\n" + js.rstrip() + "\n})();\n"
+
+
+def page(extra_head=""):
     return (
         "<title>Unstoppable Photos</title>\n"
-        "<style>\n" + css + "</style>\n\n"
+        "<style>\n" + styles() + "</style>\n\n"
         + read("markup.html") + "\n"
         + extra_head
-        + "<script>\n(function () {\n  'use strict';\n\n" + js.rstrip() + "\n})();\n</script>\n"
+        + "<script>\n" + app_js() + "</script>\n"
     )
 
 
-for name, html in (("unstoppable-photos.html", page()), ("unstoppable-photos-demo.html", page(demo_photos()))):
+def ascii_only(code):
+    """Escape every non-ASCII character, so the file reads the same whatever charset SharePoint serves it with."""
+    out = []
+    for ch in code:
+        o = ord(ch)
+        if o < 128:
+            out.append(ch)
+        elif o <= 0xFFFF:
+            out.append("\\u%04x" % o)
+        else:
+            o -= 0x10000
+            out.append("\\u%04x\\u%04x" % (0xD800 + (o >> 10), 0xDC00 + (o & 0x3FF)))
+    return "".join(out)
+
+
+def bundle():
+    mount = (
+        "/* Unstoppable Photos: styles, markup and app in one file. The page holds only the short loader from\n"
+        "   unstoppable-photos-loader.html, which puts <div id=\"unstoppable-photos\"> on the page and loads this file. */\n"
+        "(function () {\n"
+        "  var CSS = " + json.dumps(styles()) + ";\n"
+        "  var MARKUP = " + json.dumps(read("markup.html")) + ";\n"
+        "  (function mount(n) {\n"
+        "    var host = document.getElementById('unstoppable-photos');\n"
+        "    if (!host) { if (n < 200) setTimeout(function () { mount(n + 1); }, 50); return; }\n"
+        "    if (document.getElementById('ps-app')) return;\n"
+        "    var style = document.createElement('style');\n"
+        "    style.textContent = CSS;\n"
+        "    document.head.appendChild(style);\n"
+        "    host.innerHTML = MARKUP;\n"
+        "  })(0);\n"
+        "})();\n\n"
+    )
+    return ascii_only(mount + app_js())
+
+
+def loader():
+    return (
+        "<div id=\"unstoppable-photos\"></div>\n"
+        "<script>\n"
+        "(function () {\n"
+        "  var s = document.createElement('script');\n"
+        "  s.src = '" + SCRIPT_URL + "?v=' + Date.now();\n"
+        "  s.onerror = function () {\n"
+        "    var host = document.getElementById('unstoppable-photos');\n"
+        "    if (host) host.textContent = 'Unstoppable Photos: unstoppable-photos.js niet gevonden.';\n"
+        "  };\n"
+        "  document.head.appendChild(s);\n"
+        "})();\n"
+        "</script>\n"
+    )
+
+
+for name, text in (
+    ("unstoppable-photos.js", bundle()),
+    ("unstoppable-photos-loader.html", loader()),
+    ("unstoppable-photos.html", page()),
+    ("unstoppable-photos-demo.html", page(demo_photos())),
+):
     out = here / name
-    out.write_text(html, encoding="utf-8")
+    out.write_text(text, encoding="utf-8")
     print(f"wrote {name} ({out.stat().st_size // 1024} KB)")

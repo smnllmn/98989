@@ -4,7 +4,9 @@ People swipe through photos: right for **Top**, left for **Flop**, up for **Unst
 
 | File | Use it for |
 | --- | --- |
-| `unstoppable-photos.html` | **Paste this into the custom-script module.** The app and its font, about 200 KB, no photos inside. |
+| `unstoppable-photos.js` | **Upload this** to *SiteAssets › SitePages › UnstoppablePhotos* on intranet-company. The whole app in one file (about 280 KB, no photos). |
+| `unstoppable-photos-loader.html` | **Paste this into the Involv Script Editor** on the page. A short loader that fetches the file above. |
+| `unstoppable-photos.html` | The same app as one paste-in block. It runs while you edit the page, but it is too big to survive saving in the Involv Script Editor, so the published page stays empty. Use the loader instead. |
 | `unstoppable-photos-demo.html` | Opening on a laptop without SharePoint. It has 10 sample photos and 4 example reviewers. |
 
 The name is a setting: `title` at the top of the script. It can be one name, or one per language (`{ nl: '…', fr: '…', en: '…' }`).
@@ -15,7 +17,10 @@ The name is a setting: `title` at the top of the script. It can be one name, or 
    - **The page** goes on a site where the custom-script module runs JavaScript, such as intranet-company. The intranet-news site reports custom script as *off*.
    - **The data** (photos and votes) goes on the site in `siteUrl`, currently the Content Team Internal Com team site. Admins must be **owners** of that site.
    - Players without access to the data site see *Nog geen toegang* with their address, so you know whom to add.
-2. **Paste** `unstoppable-photos.html` into the custom-script module on a page and publish it.
+2. **Put the app on the page.**
+   - Upload `unstoppable-photos.js` to *SiteAssets › SitePages › UnstoppablePhotos* on intranet-company. Everyone who can open the page can read that folder. If the library asks you to check the file in or publish it, do so.
+   - Paste `unstoppable-photos-loader.html` into the Involv Script Editor on the page and publish. If you put the file somewhere else, change the address in the loader (`SCRIPT_URL` in `build.py`).
+   - **Updating the app later:** upload the new `unstoppable-photos.js` over the old one. The page doesn't change, and the loader always fetches the latest file.
 3. **Open the page as an admin.** You get *Set up this site*. Click **Set up now**. This creates:
    - `SwipePhotos`: a document library for the photos.
    - `PhotoSwipes`: a list for the votes, with the columns `Verdict`, `DwellMs` and `PhotoName`. It is locked so that people can only read their own rows.
@@ -123,7 +128,7 @@ All settings are at the top of the script, in `CONFIG`:
 
 ## Editing the app
 
-The source is split into parts under `src/`. Edit those, then rebuild both HTML files:
+The source is split into parts under `src/`. Edit those, then rebuild all four files:
 
 ```
 python3 build.py

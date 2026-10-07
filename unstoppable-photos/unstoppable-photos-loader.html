@@ -1,0 +1,12 @@
+<div id="unstoppable-photos"></div>
+<script>
+(function () {
+  var s = document.createElement('script');
+  s.src = 'https://belfius.sharepoint.com/sites/intranet-company/SiteAssets/SitePages/UnstoppablePhotos/unstoppable-photos.js?v=' + Date.now();
+  s.onerror = function () {
+    var host = document.getElementById('unstoppable-photos');
+    if (host) host.textContent = 'Unstoppable Photos: unstoppable-photos.js niet gevonden.';
+  };
+  document.head.appendChild(s);
+})();
+</script>
