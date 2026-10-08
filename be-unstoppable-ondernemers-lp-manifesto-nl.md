@@ -63,7 +63,7 @@ Elk van deze ondernemingen begon met één plan, en met iemand die het niet losl
 
 Van één buurtbioscoop tot 122 bioscopen.
 
-Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films tegelijk, onder één dak. Daarna telt de familie gewoon verder. Drie zalen in Hasselt, vijf in Kortrijk, tien in Gent. In 1988 staan er 25 in Brussel, en heet het Kinepolis.
+Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films tegelijk, onder één dak. Daarna telt de familie gewoon verder: drie zalen in Hasselt, vijf in Kortrijk, tien in Gent, 25 in Brussel. Daar krijgt het ook een nieuwe naam: Kinepolis. Vandaag hangt die naam boven 122 bioscopen, in Europa en Noord-Amerika.
 
 Lees hoe twee families de eerste megaplex ter wereld bouwden.
 
