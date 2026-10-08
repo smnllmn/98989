@@ -237,3 +237,47 @@ Be Unstoppable.
 2. Starten is uw keuze. Blijven is de onze.
 3. Alles mag veranderen. Wij blijven.
 4. Verander gerust van logo. Niet van bank.
+
+---
+
+# Ronde 6 — "Starten is uw keuze. ___ is de onze."
+
+Kritiek Simon: "blijven" is een zwakke belofte ("we laten u niet vallen"). Klopt.
+De tweede helft moet iets zijn wat Belfius actief kiest, en dat groter is dan de start, niet kleiner.
+
+**Starten is uw keuze. U bent de onze.**
+Be Unstoppable.
+→ Wij kiezen de ondernemer, niet de fase of de grootte. Daarmee zit de hele rit erin zonder het te zeggen.
+   Minder persoonlijke variant: "Ondernemers zijn de onze."
+
+**Starten is uw keuze. Durven is de onze.**
+Be Unstoppable.
+→ Een bank die durft. Dat is het verschil (de kredietaanpak) en het is het werkwoord uit het merkmanifesto: "durf. Ga ervoor. Daag ons uit."
+
+**Starten is uw keuze. Investeren is de onze.**
+Be Unstoppable.
+→ Geld achter de belofte in plaats van gevoel. Investeren is geen eenmalige daad, dus de rit zit erin.
+
+**Starten is uw keuze. Groter denken is de onze.**
+Be Unstoppable.
+→ De bank die niet remt maar duwt. CreaLab had het ook: "On m'a dit que c'était trop risqué. Belfius m'a conseillé d'investir davantage."
+
+**Starten is uw keuze. Meegroeien is de onze.**
+Be Unstoppable.
+→ De veilige. Zegt: u groeit nooit uit uw bank.
+
+## Buiten het stramien, zelfde gedachte
+
+**U begint klein. Wij beginnen groot.**
+Be Unstoppable.
+→ Vanaf uw eerste stap zitten wij er voluit in. Past op de visual: klein bovenaan, groot onderaan.
+
+**U durft. Wij durven mee.**
+Be Unstoppable.
+
+## Volgorde zoals ik ze zou voorleggen
+
+1. Starten is uw keuze. U bent de onze.
+2. Starten is uw keuze. Durven is de onze.
+3. Starten is uw keuze. Investeren is de onze.
+4. U begint klein. Wij beginnen groot.
