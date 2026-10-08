@@ -194,3 +194,28 @@ Van één tot niet meer te tellen. Wij tellen mee.
 Dus, beste ondernemer: begin bij één.
 
 Belfius. Be Unstoppable.
+
+---
+
+## V1 — korte versie (± 85 woorden) en nieuwe slotzin
+
+Slotzin aangepast: "Dus, beste ondernemer: vertel ons waar u naartoe wilt." zat te dicht op het merkmanifesto
+("Dus wat uw plan ook is: durf. Ga ervoor. Daag ons uit."). De LP sluit kleiner af dan het merk.
+Huisstijl: "u wil", "u kan".
+
+**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
+
+Een idee dat niet weggaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
+
+Wij hebben daar een woord voor. Niet als aanmoediging. Als vaststelling.
+
+Wat u wel kan gebruiken: iemand die ziet wat u ziet. Die uw cijfers leest, maar uw plannen begrijpt. Die meerekent, en zoekt hoe het wél kan.
+
+Bij Belfius zijn wij die iemand. Voor uw eerste plan. En voor alles wat erna komt.
+
+Vertel ons gewoon wat u van plan bent.
+
+Belfius. Be Unstoppable.
+
+Alternatieve slotzin met de blik vooruit: "Vertel ons gewoon waar u naartoe wil."
+Mist An het woord België, dan kan deze lijn terug: "Want we zien het elke dag, overal in België."
