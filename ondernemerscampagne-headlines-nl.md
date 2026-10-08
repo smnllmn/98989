@@ -151,3 +151,52 @@ Drie om naast de shortlistlijn te leggen:
 
 De lijnen zonder "wij" leunen op het Belfius-logo en de sign-off voor de boodschap "wij blijven de hele rit".
 Wil Olivier dat explicieter, combineer dan één lijn uit elke groep: de eerste als headline, de tweede als baseline boven de sign-off.
+
+---
+
+# Ronde 4 — kort, met Belfius erin: van de start, voor de hele rit
+
+Elke lijn zegt drie dingen: wij, vanaf de start, en we blijven. "Be Unstoppable" maakt de gedachte af.
+
+**Wij stoppen niet bij de start.**
+Be Unstoppable.
+→ Vijf woorden. "Stoppen niet" leidt recht naar Unstoppable.
+
+**Starten doen we samen. Stoppen doen we niet.**
+Be Unstoppable.
+
+**Niet alleen aan de start. De hele rit.**
+Be Unstoppable.
+→ An's "hele rit" letterlijk. "Niet alleen" leest dubbel: niet enkel, en niet in uw eentje. Beide kloppen. Wil je het eenduidig: "Niet enkel aan de start."
+
+**Wij zijn er vanaf dag één. En elke dag daarna.**
+Be Unstoppable.
+→ De gedachte van An, zonder omweg.
+
+**Wij blijven. Vanaf dag één.**
+Be Unstoppable.
+→ Vier woorden, omgekeerde volgorde: eerst de belofte, dan het startpunt.
+
+**Wij zijn er voor elk hoofdstuk. Ook het eerste.**
+Be Unstoppable.
+→ Draait de voorkeurslijn om. Banken komen meestal pas als het boek dik is.
+
+**Bij uw eerste stap. En bij elke volgende.**
+Be Unstoppable.
+
+**U begint. Wij blijven.**
+Be Unstoppable.
+
+**U stopt niet. Wij ook niet.**
+Be Unstoppable.
+
+**Samen begonnen. Nooit gestopt.**
+Be Unstoppable.
+→ Verleden tijd, dus een claim over de geschiedenis van elke case. Enkel gebruiken waar het klopt.
+
+## Aanbeveling
+
+Naast "Starten is een begin. Blijven gaan is Unstoppable." zou ik deze drie leggen:
+1. Wij stoppen niet bij de start.
+2. Starten doen we samen. Stoppen doen we niet.
+3. Niet alleen aan de start. De hele rit.
