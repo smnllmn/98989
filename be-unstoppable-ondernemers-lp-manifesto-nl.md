@@ -1,10 +1,10 @@
-# LP "Be Unstoppable voor Ondernemers" — manifesto (NL)
+# LP "Be Unstoppable voor Ondernemers" — copy (NL)
 
 Huisstijl: "u wil", "u kan". Archief en verhalenschets: `manifesto-archief-nl.md`.
 
 ---
 
-# SHORTLIST
+# 1. MANIFESTO — shortlist
 
 ## V4 — "Voor wie"
 
@@ -59,7 +59,45 @@ Belfius. Be Unstoppable.
 
 ---
 
-# LONGLIST
+# 2. VERHALEN (OK)
+
+Stramien: bedrijfsnaam als titel, daaronder een "Van ... tot ..."-lijn (zelfde grammatica als de campagneheadline "Van eerste stap tot niet te stoppen"), een tease van drie à vier zinnen, een leeslink. De naamswissel zit in de tease waar ze bestaat, niet in het kader.
+
+## Sectie
+
+**Wat Unstoppable betekent, vertellen zij beter dan wij.**
+
+Elk van deze ondernemingen begon met één plan, en met iemand die het niet losliet. Hoe het verder ging, vertellen ze zelf.
+
+## Kinepolis
+Van één buurtbioscoop tot 122 bioscopen.
+
+Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films op één avond: niemand doet dat. Daarna telt de familie gewoon verder. Drie zalen in Hasselt, vijf in Kortrijk, tien in Gent. In 1988 staan er 25 in Brussel, en heet het Kinepolis.
+
+Lees hoe twee families de eerste megaplex ter wereld bouwden.
+
+## Pairi Daiza
+Van een vogeltuin in een ruïne tot de drukste attractie van het land.
+
+Eric Domb is 32 en jurist wanneer hij de ruïne van de abdij van Cambron koopt. Kort voor de opening leidt hij touroperators rond over een modderige werf en belooft hen het mooiste park ter wereld. In 1994 opent Paradisio, met 2.500 vogels. Vandaag komen er bijna 2,9 miljoen bezoekers per jaar.
+
+Lees waarom Paradisio een nieuwe naam nodig had.
+
+## Odoo
+Van Tiny tot wereldspeler.
+
+In 2002 schrijft Fabien Pinckaers bedrijfssoftware voor kmo's, vanuit zijn studentenkamer in Louvain-la-Neuve. Het bedrijf telt één werknemer: hijzelf. De naam zegt het eerlijk: TinyERP. Twaalf jaar en twee namen later haalt Odoo tien miljoen dollar groeikapitaal op en neemt het het op tegen de grootste softwarehuizen ter wereld.
+
+Lees hoe Odoo twee keer van naam veranderde.
+
+## Noten voor de bouw
+- Drie uitgelichte kaarten nu, daaronder een raster dat meegroeit, filterbaar op starter / business / corporate (zelfde indeling als de contacthoek).
+- "Touroperators": in An's bron zijn het autocarbedrijven. Zij organiseren groepsuitstappen, dus de term dekt wat ze voor Domb deden. Wil An het exact, dan: "de mensen die hem zijn eerste bezoekers moeten brengen".
+- "Slechts één bankier geloofde erin" (Pairi Daiza) staat bewust niet in de tease. Enkel in het volledige verhaal, en enkel als citaat van Eric Domb.
+
+---
+
+# 1b. MANIFESTO — longlist
 
 ## V2 — "Beslissen" (naar longlist: opent op tegenwind, de kern zit nu in V4)
 
