@@ -10,11 +10,11 @@ Huisstijl: "u wil", "u kan". Archief en verhalenschets: `manifesto-archief-nl.md
 
 **Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
 
-Een idee dat niet weggaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
+Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
 
-Wij hebben daar een woord voor. Niet als aanmoediging. Als vaststelling.
+Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. Als vaststelling.
 
-Wat u wel kan gebruiken: een bank die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
+Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
 
 Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
 
