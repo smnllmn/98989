@@ -1,11 +1,50 @@
-# LP "Be Unstoppable voor Ondernemers" — manifesto shortlist (NL)
+# LP "Be Unstoppable voor Ondernemers" — manifesto (NL)
 
-Enkel wat OK is. Al de rest staat in `manifesto-archief-nl.md`.
-Huisstijl: "u wil", "u kan".
+Huisstijl: "u wil", "u kan". Archief en verhalenschets: `manifesto-archief-nl.md`.
 
 ---
 
-## V1 — origineel
+# SHORTLIST
+
+## V1
+
+**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
+
+Een idee dat niet weggaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
+
+Wij hebben daar een woord voor. Niet als aanmoediging. Als vaststelling.
+
+Wat u wel kan gebruiken: een bank die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
+
+Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
+
+Vertel ons gewoon wat u van plan bent.
+
+Belfius. Be Unstoppable.
+
+## V2 — "Beslissen"
+
+**Makkelijk is het nooit geweest. Daar kiest u ook niet voor.**
+
+De markt verschuift. De regels veranderen. De technologie loopt sneller dan het plan. En morgen is er weer iets nieuws.
+
+U weet dat. En u beslist toch. Over een bestelwagen of een overname. Over een eerste werknemer of een volgende generatie. Niet omdat het zeker is. Omdat u het ziet.
+
+Dat is wat Be Unstoppable voor ons betekent. Geen slogan op een muur. Een ondernemer die beslist, terwijl de rest nog afwacht.
+
+Zo'n ondernemer heeft geen bank nodig die moed inspreekt. Wel een bank die beslist zoals u. Hier, in België. Met iemand die uw plan kent, niet alleen uw balans. Die ja zegt als het kan. En zoekt hoe het wél kan als het moeilijk wordt.
+
+Zo werken wij. Bij uw eerste beslissing. En bij elke beslissing daarna.
+
+Belfius. Be Unstoppable.
+
+Te checken met An: "Hier, in België" leunt op het proof point "beslissingen in België". Kan dat niet zomaar voor corporate krediet, dan "dicht bij uw realiteit".
+
+---
+
+# LONGLIST
+
+## V1 — origineel (echoot het merkmanifesto te sterk)
 
 **Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
 
@@ -25,7 +64,7 @@ Dus, beste ondernemer: vertel ons waar u naartoe wil.
 
 Belfius. Be Unstoppable.
 
-### V1 — kort (± 85 woorden), met kleinere slotzin
+## V1 — korte tussenversie
 
 **Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
 
@@ -40,23 +79,3 @@ Bij Belfius zijn wij die iemand. Voor uw eerste plan. En voor alles wat erna kom
 Vertel ons gewoon wat u van plan bent.
 
 Belfius. Be Unstoppable.
-
----
-
-## V2 — "Beslissen" (basis)
-
-**Makkelijk is het nooit geweest. Daar kiest u ook niet voor.**
-
-De markt verschuift. De regels veranderen. De technologie loopt sneller dan het plan. En morgen is er weer iets nieuws.
-
-U weet dat. En u beslist toch. Over een bestelwagen of een overname. Over een eerste werknemer of een volgende generatie. Niet omdat het zeker is. Omdat u het ziet.
-
-Dat is wat Be Unstoppable voor ons betekent. Geen slogan op een muur. Een ondernemer die beslist, terwijl de rest nog afwacht.
-
-Zo'n ondernemer heeft geen bank nodig die moed inspreekt. Wel een bank die beslist zoals u. Hier, in België. Met iemand die uw plan kent, niet alleen uw balans. Die ja zegt als het kan. En zoekt hoe het wél kan als het moeilijk wordt.
-
-Zo werken wij. Bij uw eerste beslissing. En bij elke beslissing daarna.
-
-Belfius. Be Unstoppable.
-
-Te checken met An: "Hier, in België" leunt op het proof point "beslissingen in België". Kan dat niet zomaar voor corporate krediet, dan "dicht bij uw realiteit".
