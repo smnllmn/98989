@@ -107,6 +107,23 @@ Twijfelt u tussen twee? Kies gerust. Wij zorgen dat u bij de juiste persoon tere
 
 # Longlist
 
+## Manifesto — briefing van An, ingekort
+
+**Be Unstoppable is geen slogan. Het is wat Belgische ondernemers al zijn.**
+
+Ondernemen heeft nooit stilgestaan. Maar het vraagt vandaag meer dan ooit: de technologie versnelt, markten verschuiven, regels stapelen zich op.
+
+En toch. Starters en familiebedrijven, scale-ups en internationale groepen: ze zien kansen waar anderen risico zien. Ze passen zich aan, beslissen en bouwen verder. Elk met een eigen ambitie en een eigen idee van succes.
+
+Bij Belfius denken we net zo. Wij kijken verder dan de cijfers: naar wie erachter zit, en wat die van plan is. En we zetten daar alles op in: stevige schouders, een eigen kijk op krediet, een app die werkt en een banker die opneemt. Van bij de start tot lang daarna.
+
+Want wie niet te stoppen is, heeft meer nodig dan een bank. Iemand die ziet wat u ziet, en het geld en de mensen heeft om het mee waar te maken.
+
+Voor een zaak die vandaag sterker staat. En er over twintig jaar nog staat.
+
+Belfius. Be Unstoppable.
+
+
 ## Manifesto V2
 
 **Makkelijk is het nooit geweest. Daar kiest u ook niet voor.**
