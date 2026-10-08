@@ -200,3 +200,40 @@ Naast "Starten is een begin. Blijven gaan is Unstoppable." zou ik deze drie legg
 1. Wij stoppen niet bij de start.
 2. Starten doen we samen. Stoppen doen we niet.
 3. Niet alleen aan de start. De hele rit.
+
+---
+
+# Ronde 5 — één idee per lijn
+
+Diagnose ronde 4: lijnen die de briefing navertellen in plaats van er een idee uit te halen.
+Hier draagt elke lijn één gedachte. De logo's dragen "start", de sign-off draagt "Unstoppable".
+
+**Starten is uw keuze. Blijven is de onze.**
+Be Unstoppable.
+→ U beslist te beginnen, wij beslissen te blijven. Letterlijk de core message uit de briefing ("Belfius chooses, every day, to be the partner that keeps looking ahead").
+
+**Alles mag veranderen. Wij blijven.**
+Be Unstoppable.
+→ Het affiche toont alles wat verandert: naam, logo, formaat. De lijn benoemt wat niet verandert.
+   Variant voor de affiches met naamswissel: "Uw naam mag veranderen. Wij blijven."
+
+**Verander gerust van logo. Niet van bank.**
+Be Unstoppable.
+→ Zelfde idee, met een knipoog. Werkt op elk affiche, want elk affiche toont een logo dat verandert.
+   Variant: "Verander gerust van naam. Niet van bank."
+
+**Te klein bestaat niet. Te groot ook niet.**
+Be Unstoppable.
+→ De start-en-blijven-belofte van een bank in zeven woorden: u bent nooit te klein om te beginnen, nooit te groot om te volgen.
+
+**Eerste factuur. Eerste overname. Dezelfde bank.**
+Be Unstoppable.
+→ Twee concrete mijlpalen, één constante. Belofte, geen geschiedenis.
+   Variant: "Dag één. Dag tienduizend. Dezelfde bank."
+
+## Shortlist zoals ik ze nu zou voorleggen
+
+1. Starten is een begin. Blijven gaan is Unstoppable.
+2. Starten is uw keuze. Blijven is de onze.
+3. Alles mag veranderen. Wij blijven.
+4. Verander gerust van logo. Niet van bank.
