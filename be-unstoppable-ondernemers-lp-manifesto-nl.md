@@ -57,7 +57,7 @@ Belfius. Be Unstoppable.
 
 **Wat Unstoppable betekent, vertellen zij beter dan wij.**
 
-Elk van deze ondernemingen begon met één plan, en met iemand die het niet losliet. Hoe het verder ging, vertellen ze zelf.
+Elk van deze ondernemingen begon met één plan, en met iemand die het niet losliet. Hoe het verder ging, leest u hier.
 
 ## Kinepolis
 
