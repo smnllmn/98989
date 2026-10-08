@@ -85,3 +85,69 @@ Dat klopt niet voor elke case en is niet nodig. De lijn is een belofte, geen ges
 Het probleem is dat de koekjesgroei het verhaal van Lotus vertelt, niet dat van de campagne.
 De andere affiches tonen oud logo → nieuw logo. Doe hetzelfde bij Lotus (oudste logo bovenaan, huidige onderaan)
 en de reeks leest als één campagne. Het koekje mag erbij, maar als product onder het huidige logo, niet als groeicurve.
+
+---
+
+# Ronde 3 — kort en punchy (stijl An, met een draai)
+
+Shortlist tot nu: "Starten is een begin. Blijven gaan is Unstoppable."
+
+Principe: de headline is een halve gedachte, "Be Unstoppable" maakt ze af.
+Lees elke lijn met de sign-off eronder.
+
+## Over de ondernemer (de visual en het Belfius-logo doen de rest)
+
+**Klein begonnen. Nooit gestopt.**
+Be Unstoppable.
+→ Zegt exact wat het affiche toont: klein logo bovenaan, groot onderaan. Vier woorden.
+
+**Stoppen stond niet in het businessplan.**
+Be Unstoppable.
+→ Knipoog naar de bank zonder de bank te noemen. "Ondernemingsplan" kan ook, maar is trager.
+
+**Niet begonnen om te stoppen.**
+Be Unstoppable.
+
+**Begonnen om te blijven.**
+Be Unstoppable.
+→ Positieve tweeling van de vorige. Kies er één.
+
+**De start is het kortste hoofdstuk.**
+Be Unstoppable.
+→ Sluit aan bij de voorkeurslijn met "hoofdstuk".
+
+**Starten is één dag. Blijven gaan is elke dag.**
+Be Unstoppable.
+→ Zusje van de shortlistlijn.
+
+**Het begin was klein. Een einde is er niet.**
+Be Unstoppable.
+
+## Met Belfius erin (u / wij)
+
+**U begint. Wij blijven.**
+Be Unstoppable.
+→ De voorkeurslijn in vier woorden.
+
+**U stopt niet. Wij ook niet.**
+Be Unstoppable.
+→ An's "U gaat verder. Wij ook.", maar dan met het woord dat naar Unstoppable leidt.
+
+**Niet te stoppen. Niet alleen.**
+Be Unstoppable.
+
+**U blijft gaan. Wij blijven erbij.**
+Be Unstoppable.
+
+**Begonnen met een plan. Nooit gestopt met plannen.**
+Be Unstoppable.
+
+## Aanbeveling
+
+Drie om naast de shortlistlijn te leggen:
+1. Klein begonnen. Nooit gestopt.
+2. U begint. Wij blijven.
+3. Stoppen stond niet in het businessplan.
+
+De lijnen zonder "wij" leunen op het Belfius-logo en de sign-off voor de boodschap "wij blijven de hele rit".
+Wil Olivier dat explicieter, combineer dan één lijn uit elke groep: de eerste als headline, de tweede als baseline boven de sign-off.
