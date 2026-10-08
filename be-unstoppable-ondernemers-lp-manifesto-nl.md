@@ -2,22 +2,6 @@
 
 # 1. Manifesto — shortlist
 
-## V1
-
-**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
-
-Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
-
-Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. Als vaststelling.
-
-Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
-
-Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
-
-Vertel ons gewoon wat u van plan bent.
-
-Belfius. Be Unstoppable.
-
 ## V4
 
 **Voor wie vanmorgen weer begonnen is.**
@@ -48,6 +32,22 @@ Dat is voor ons Be Unstoppable: een ondernemer met een richting, en een bank die
 Daarom is dat onze eerste vraag. Bij uw eerste plan, en bij elk plan daarna.
 
 Waar wil u naartoe?
+
+Belfius. Be Unstoppable.
+
+## V1
+
+**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
+
+Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
+
+Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. Als vaststelling.
+
+Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
+
+Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
+
+Vertel ons gewoon wat u van plan bent.
 
 Belfius. Be Unstoppable.
 
