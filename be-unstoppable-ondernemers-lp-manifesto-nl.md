@@ -40,6 +40,24 @@ Belfius. Be Unstoppable.
 
 Te checken met An: "Hier, in België" leunt op het proof point "beslissingen in België". Kan dat niet zomaar voor corporate krediet, dan "dicht bij uw realiteit".
 
+## V3 — "De vraag"
+
+**Eerst waar u naartoe wil. Dan de cijfers.**
+
+Elke ondernemer heeft het: een beeld van waar het naartoe moet. Een tweede vestiging. Een eerste export. Een opvolger die klaarstaat. Soms staat het op papier. Meestal zit het gewoon in uw hoofd, terwijl u bezig bent.
+
+Dat beeld interesseert ons minstens even veel als uw balans. Want wie weet waar u naartoe wil, kan meerekenen. Kan ja zeggen op het juiste moment. En kan zoeken hoe het wél kan, als het moeilijk wordt.
+
+Dat is voor ons Be Unstoppable: een ondernemer met een richting, en een bank die dezelfde kant uit kijkt.
+
+Daarom is dat onze eerste vraag. Bij uw eerste plan, en bij elk plan daarna.
+
+Waar wil u naartoe?
+
+Belfius. Be Unstoppable.
+
+Alternatieve headline als "Dan de cijfers" gevoelig ligt: "Eerst waar u naartoe wil. De cijfers komen wel."
+
 ---
 
 # LONGLIST
