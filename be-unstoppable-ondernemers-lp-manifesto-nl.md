@@ -13,9 +13,9 @@ Voor wie het bedrijf van thuis overneemt en er iets eigen van maakt.
 
 U doet dit elke dag opnieuw. Met een plan in uw hoofd dat groter is dan wat er vandaag staat.
 
-Dat is Be Unstoppable. En dat bent u al.
+Zo ziet Unstoppable eruit.
 
-Voor u werken wij bij Belfius. Met bankers die uw zaak kennen, en die even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
+Voor u werken wij bij Belfius. Met bankers die uw zaak kennen, uw plannen mee doorrekenen en even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
 
 Belfius. Be Unstoppable.
 
@@ -25,7 +25,7 @@ Belfius. Be Unstoppable.
 
 Elke ondernemer heeft het: een beeld van waar het naartoe moet. Een tweede vestiging. Een eerste export. Een opvolger die klaarstaat. Soms staat het op papier. Meestal zit het gewoon in uw hoofd, terwijl u bezig bent.
 
-Dat beeld interesseert ons minstens even veel als uw balans. Want wie weet waar u naartoe wil, kan meerekenen. Kan ja zeggen op het juiste moment. En kan zoeken hoe het wél kan, als het moeilijk wordt.
+Dat beeld willen wij eerst kennen. Want wie weet waar u naartoe wil, leest uw cijfers anders. Kan meerekenen. Kan ja zeggen op het juiste moment. En kan zoeken hoe het wél kan, als het moeilijk wordt.
 
 Dat is voor ons Be Unstoppable: een ondernemer met een richting, en een bank die dezelfde kant uit kijkt.
 
@@ -61,15 +61,15 @@ Elk van deze ondernemingen begon met één plan, en met iemand die het niet losl
 
 ## Kinepolis
 
-Van één buurtbioscoop tot 122 bioscopen.
+Een tweede zaal was pas het begin.
 
-Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films tegelijk, onder één dak. Daarna telt de familie gewoon verder: drie zalen in Hasselt, vijf in Kortrijk, tien in Gent, 25 in Brussel. Daar krijgt het ook een nieuwe naam: Kinepolis. Vandaag hangt die naam boven 122 bioscopen, in Europa en Noord-Amerika.
+Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films tegelijk, onder één dak. Daarna telt de familie gewoon verder. Bij 25 zalen krijgt het een nieuwe naam: Kinepolis. Vandaag hangt die naam boven 122 bioscopen, in Europa en Noord-Amerika.
 
 Lees hoe twee families de eerste megaplex ter wereld bouwden.
 
 ## Pairi Daiza
 
-Van een vogeltuin in een ruïne tot de meest bezochte betalende attractie van het land.
+Hij beloofde een paradijs, midden in de modder.
 
 Eric Domb is 32 en jurist wanneer hij de vervallen abdij van Cambron ontdekt. Kort voor de opening leidt hij touroperators rond over een modderige werf en belooft hen het mooiste park ter wereld. In 1994 opent Paradisio, met 2.500 vogels. In 2025 kwamen er bijna 2,9 miljoen bezoekers.
 
@@ -77,11 +77,11 @@ Lees waarom Paradisio een nieuwe naam nodig had.
 
 ## Odoo
 
-Van Tiny tot wereldspeler.
+Twee keer te groot voor zijn eigen naam.
 
 Fabien Pinckaers schrijft bedrijfssoftware voor kmo's, vanuit zijn studentenkamer in Louvain-la-Neuve. Het bedrijf telt één werknemer: hijzelf. De naam zegt het eerlijk: TinyERP. Twee namen later neemt Odoo het op tegen de grootste softwarehuizen ter wereld.
 
-Lees hoe Odoo twee keer van naam veranderde.
+Lees waarom Odoo zijn software open source maakte.
 
 # 3. Contact
 
@@ -93,12 +93,12 @@ Kies wat het best bij u past. Zo komt u meteen bij de juiste mensen terecht.
 Een plan dat klaar is, of een zaak die pas draait.
 [Maak een afspraak met een startersadviseur]
 
-**U groeit.**
-Een zaak die draait en verder wil: een vestiging, personeel, een investering.
+**U bent zelfstandige of leidt een kmo.**
+Een zaak die draait, en die u goed wil laten draaien. Of verder wil laten groeien.
 [Maak een afspraak met een Business Banker]
 
-**U leidt een groot bedrijf.**
-Internationaal, in overname, of met een volgende generatie in zicht.
+**U leidt een grote onderneming.**
+Meerdere vestigingen, activiteiten over de grens, een eigen financiële ploeg.
 [Maak een afspraak met een Corporate Banker]
 
 Twijfelt u tussen twee? Kies gerust. Wij zorgen dat u bij de juiste persoon terechtkomt.
