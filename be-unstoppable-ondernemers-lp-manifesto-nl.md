@@ -6,39 +6,22 @@ Huisstijl: "u wil", "u kan". Archief en verhalenschets: `manifesto-archief-nl.md
 
 # SHORTLIST
 
-## V1
+## V4 — "Voor wie"
 
-**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
+**Voor wie vanmorgen weer begonnen is.**
 
-Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
+Voor wie vandaag de deuren opent. Voor het eerst, of voor de duizendste keer.
+Voor wie een eerste werknemer aanneemt en meteen aan een tweede denkt.
+Voor wie vanavond een eerste bestelling naar het buitenland inpakt.
+Voor wie het bedrijf van thuis overneemt en er iets eigen van maakt.
 
-Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. Als vaststelling.
+U doet dit elke dag opnieuw. Met een plan in uw hoofd dat groter is dan wat er vandaag staat.
 
-Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
+Dat is Be Unstoppable. En dat bent u al.
 
-Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
-
-Vertel ons gewoon wat u van plan bent.
-
-Belfius. Be Unstoppable.
-
-## V2 — "Beslissen"
-
-**Makkelijk is het nooit geweest. Daar kiest u ook niet voor.**
-
-De markt verschuift. De regels veranderen. De technologie loopt sneller dan het plan. En morgen is er weer iets nieuws.
-
-U weet dat. En u beslist toch. Over een bestelwagen of een overname. Over een eerste werknemer of een volgende generatie. Niet omdat het zeker is. Omdat u het ziet.
-
-Dat is wat Be Unstoppable voor ons betekent. Geen slogan op een muur. Een ondernemer die beslist, terwijl de rest nog afwacht.
-
-Zo'n ondernemer heeft geen bank nodig die moed inspreekt. Wel een bank die beslist zoals u. Hier, in België. Met iemand die uw plan kent, niet alleen uw balans. Die ja zegt als het kan. En zoekt hoe het wél kan als het moeilijk wordt.
-
-Zo werken wij. Bij uw eerste beslissing. En bij elke beslissing daarna.
+Voor u werken wij bij Belfius. Met bankers die uw zaak kennen, en die even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
 
 Belfius. Be Unstoppable.
-
-Te checken met An: "Hier, in België" leunt op het proof point "beslissingen in België". Kan dat niet zomaar voor corporate krediet, dan "dicht bij uw realiteit".
 
 ## V3 — "De vraag"
 
@@ -58,20 +41,19 @@ Belfius. Be Unstoppable.
 
 Alternatieve headline als "Dan de cijfers" gevoelig ligt: "Eerst waar u naartoe wil. De cijfers komen wel."
 
-## V4 — "Voor wie"
+## V1
 
-**Voor wie vanmorgen weer begonnen is.**
+**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
 
-Voor wie vandaag de deuren opent. Voor het eerst, of voor de duizendste keer.
-Voor wie een eerste werknemer aanneemt en meteen aan een tweede denkt.
-Voor wie vanavond een eerste bestelling naar het buitenland inpakt.
-Voor wie het bedrijf van thuis overneemt en er iets eigen van maakt.
+Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
 
-U doet dit elke dag opnieuw. Met een plan in uw hoofd dat groter is dan wat er vandaag staat.
+Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. Als vaststelling.
 
-Dat is Be Unstoppable. En dat bent u al.
+Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
 
-Voor u werken wij bij Belfius. Met bankers die uw zaak kennen, en die even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
+Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
+
+Vertel ons gewoon wat u van plan bent.
 
 Belfius. Be Unstoppable.
 
@@ -79,6 +61,23 @@ Belfius. Be Unstoppable.
 
 # LONGLIST
 
+## V2 — "Beslissen" (naar longlist: opent op tegenwind, de kern zit nu in V4)
+
+**Makkelijk is het nooit geweest. Daar kiest u ook niet voor.**
+
+De markt verschuift. De regels veranderen. De technologie loopt sneller dan het plan. En morgen is er weer iets nieuws.
+
+U weet dat. En u beslist toch. Over een bestelwagen of een overname. Over een eerste werknemer of een volgende generatie. Niet omdat het zeker is. Omdat u het ziet.
+
+Dat is wat Be Unstoppable voor ons betekent. Geen slogan op een muur. Een ondernemer die beslist, terwijl de rest nog afwacht.
+
+Zo'n ondernemer heeft geen bank nodig die moed inspreekt. Wel een bank die beslist zoals u. Hier, in België. Met iemand die uw plan kent, niet alleen uw balans. Die ja zegt als het kan. En zoekt hoe het wél kan als het moeilijk wordt.
+
+Zo werken wij. Bij uw eerste beslissing. En bij elke beslissing daarna.
+
+Belfius. Be Unstoppable.
+
+Te checken met An: "Hier, in België" leunt op het proof point "beslissingen in België". Kan dat niet zomaar voor corporate krediet, dan "dicht bij uw realiteit".
 ## V1 — origineel (echoot het merkmanifesto te sterk)
 
 **Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
