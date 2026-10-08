@@ -13,7 +13,7 @@ Voor wie een eerste werknemer aanneemt en meteen aan een tweede denkt.
 Voor wie vanavond een eerste bestelling naar het buitenland inpakt.
 Voor wie het bedrijf van thuis overneemt en er iets eigen van maakt.
 
-U doet dit elke dag opnieuw. [Terwijl de wereld verschuift, de regels veranderen en de technologie niet wacht.] Met het volgende al in uw hoofd, nog voor het vorige af is.
+U doet dit elke dag opnieuw. Met het volgende al in uw hoofd, nog voor het vorige af is. [Ook als de wereld verschuift, de regels veranderen en de technologie niet wacht.]
 
 Zo ziet Unstoppable eruit.
 
