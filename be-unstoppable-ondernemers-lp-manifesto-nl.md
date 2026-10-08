@@ -139,3 +139,58 @@ Bijvoorbeeld:
 Als er later verhalen komen die niet over een naam gaan, valt de sectie terug op de bredere titel **Ook dit begon met één plan.** Die werkt voor elk verhaal en houdt het overzichtelijk.
 
 Over "slechts één bankier geloofde erin" (Pairi Daiza): niet in het manifesto. Eventueel als knipoog in het Pairi Daiza-verhaal zelf, maar enkel als het een citaat van Eric Domb is en An het wil. Anders klinkt het als eigen lof.
+
+---
+
+## Manifesto V2 — "Beslissen" (aanbevolen als tweede piste)
+
+Andere ruggengraat dan V1. V1 gaat over zien en benoemen. V2 gaat over beslissen,
+en gebruikt de context uit de briefing (markt, regels, technologie) in plaats van ze te schrappen.
+Leunt op het proof point "beslissingen in België". Check met An of "Hier, in België" zomaar kan voor corporate krediet;
+anders "dicht bij uw realiteit".
+
+**Makkelijk is het nooit geweest. Daar kiest u ook niet voor.**
+
+De markt verschuift. De regels veranderen. De technologie loopt sneller dan het plan. En morgen is er weer iets nieuws.
+
+U weet dat. En u beslist toch. Over een bestelwagen of een overname. Over een eerste werknemer of een volgende generatie. Niet omdat het zeker is. Omdat u het ziet.
+
+Dat is wat Be Unstoppable voor ons betekent. Geen slogan op een muur. Een ondernemer die beslist, terwijl de rest nog afwacht.
+
+Zo'n ondernemer heeft geen bank nodig die moed inspreekt. Wel een bank die beslist zoals u. Hier, in België. Met iemand die uw plan kent, niet alleen uw balans. Die ja zegt als het kan. En zoekt hoe het wél kan als het moeilijk wordt.
+
+Zo werken wij. Bij uw eerste beslissing. En bij elke beslissing daarna.
+
+Belfius. Be Unstoppable.
+
+---
+
+## Manifesto V2b — "Tellen" (sterk, maar waarschijnlijk te veel stijlfiguur voor de opdrachtgever)
+
+De tekst groeit zoals de bedrijven op de pagina. Sluit aan op de drie verhalen (zalen, vogels, één werknemer)
+en op de campagnelijn "Van eerste stap. Tot niet meer te stoppen." Bewaard voor als er ooit een typografische hero komt.
+
+**Alles begint bij één.**
+
+Eén idee. Eén naam. Eén klant die ja zegt.
+Eén werknemer, en dat bent u.
+
+Dan twee. Een tweede zaal. Een tweede bestelwagen. Een tweede mening aan tafel.
+Drie. Vijf. Tien.
+De eerste vestiging buiten de gemeente. Het eerste land buiten België.
+De eerste medewerker die u niet zelf hebt aangeworven.
+
+Ergens onderweg houdt u op met tellen.
+Niet omdat het niet meer telt. Omdat u al bezig bent met het volgende.
+
+Dat noemen wij Unstoppable. Niet nooit stoppen. Nooit stoppen met beginnen.
+
+Wij houden niet op met tellen. Dat is ons werk.
+Wij rekenen mee bij één, bij tien, bij het getal dat u vandaag nog niet kent.
+Met cijfers, met krediet, en met iemand die uw plan even goed kent als uw balans.
+
+Van één tot niet meer te tellen. Wij tellen mee.
+
+Dus, beste ondernemer: begin bij één.
+
+Belfius. Be Unstoppable.
