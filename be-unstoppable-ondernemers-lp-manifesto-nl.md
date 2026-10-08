@@ -58,6 +58,23 @@ Belfius. Be Unstoppable.
 
 Alternatieve headline als "Dan de cijfers" gevoelig ligt: "Eerst waar u naartoe wil. De cijfers komen wel."
 
+## V4 — "Voor wie"
+
+**Voor wie vanmorgen weer begonnen is.**
+
+Voor wie vandaag de deuren opent. Voor het eerst, of voor de duizendste keer.
+Voor wie een eerste werknemer aanneemt en meteen aan een tweede denkt.
+Voor wie vanavond een eerste bestelling naar het buitenland inpakt.
+Voor wie het bedrijf van thuis overneemt en er iets eigen van maakt.
+
+U doet dit elke dag opnieuw. Met een plan in uw hoofd dat groter is dan wat er vandaag staat.
+
+Dat is Be Unstoppable. En dat bent u al.
+
+Voor u werken wij bij Belfius. Met bankers die uw zaak kennen, en die even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
+
+Belfius. Be Unstoppable.
+
 ---
 
 # LONGLIST
