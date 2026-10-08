@@ -2,6 +2,22 @@
 
 # 1. Manifesto — shortlist
 
+## V1
+
+**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
+
+Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
+
+Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. Als vaststelling.
+
+Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
+
+Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
+
+Vertel ons gewoon wat u van plan bent.
+
+Belfius. Be Unstoppable.
+
 ## V4
 
 **Voor wie vanmorgen weer begonnen is.**
@@ -35,22 +51,6 @@ Waar wil u naartoe?
 
 Belfius. Be Unstoppable.
 
-## V1
-
-**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
-
-Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
-
-Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. Als vaststelling.
-
-Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
-
-Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
-
-Vertel ons gewoon wat u van plan bent.
-
-Belfius. Be Unstoppable.
-
 # 2. Verhalen
 
 ## Sectie
@@ -63,15 +63,15 @@ Elk van deze ondernemingen begon met één plan, en met iemand die het niet losl
 
 Van één buurtbioscoop tot 122 bioscopen.
 
-Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films op één avond: niemand doet dat. Daarna telt de familie gewoon verder. Drie zalen in Hasselt, vijf in Kortrijk, tien in Gent. In 1988 staan er 25 in Brussel, en heet het Kinepolis.
+Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films tegelijk, onder één dak. Daarna telt de familie gewoon verder. Drie zalen in Hasselt, vijf in Kortrijk, tien in Gent. In 1988 staan er 25 in Brussel, en heet het Kinepolis.
 
 Lees hoe twee families de eerste megaplex ter wereld bouwden.
 
 ## Pairi Daiza
 
-Van een vogeltuin in een ruïne tot de drukste attractie van het land.
+Van een vogeltuin in een ruïne tot de meest bezochte betalende attractie van het land.
 
-Eric Domb is 32 en jurist wanneer hij de ruïne van de abdij van Cambron koopt. Kort voor de opening leidt hij touroperators rond over een modderige werf en belooft hen het mooiste park ter wereld. In 1994 opent Paradisio, met 2.500 vogels. Vandaag komen er bijna 2,9 miljoen bezoekers per jaar.
+Eric Domb is 32 en jurist wanneer hij de vervallen abdij van Cambron ontdekt. Kort voor de opening leidt hij touroperators rond over een modderige werf en belooft hen het mooiste park ter wereld. In 1994 opent Paradisio, met 2.500 vogels. In 2025 kwamen er bijna 2,9 miljoen bezoekers.
 
 Lees waarom Paradisio een nieuwe naam nodig had.
 
@@ -79,7 +79,7 @@ Lees waarom Paradisio een nieuwe naam nodig had.
 
 Van Tiny tot wereldspeler.
 
-In 2002 schrijft Fabien Pinckaers bedrijfssoftware voor kmo's, vanuit zijn studentenkamer in Louvain-la-Neuve. Het bedrijf telt één werknemer: hijzelf. De naam zegt het eerlijk: TinyERP. Twaalf jaar en twee namen later haalt Odoo tien miljoen dollar groeikapitaal op en neemt het het op tegen de grootste softwarehuizen ter wereld.
+Fabien Pinckaers schrijft bedrijfssoftware voor kmo's, vanuit zijn studentenkamer in Louvain-la-Neuve. Het bedrijf telt één werknemer: hijzelf. De naam zegt het eerlijk: TinyERP. Twee namen later neemt Odoo het op tegen de grootste softwarehuizen ter wereld.
 
 Lees hoe Odoo twee keer van naam veranderde.
 
