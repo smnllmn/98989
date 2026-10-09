@@ -66,3 +66,13 @@ Stramien per kaart: oude naam → nieuwe naam als titel, één ronkende lijn, tw
 
 Voor verhalen zonder naamswissel valt de sectie terug op: **Ook dit begon met één plan.**
 "Slechts één bankier geloofde erin" (Pairi Daiza): niet in het manifesto; eventueel in het verhaal zelf, enkel als citaat van Eric Domb.
+
+---
+
+## Achterzak: contextzin (markt, regels, technologie)
+
+Eén zin per manifesto, toe te voegen als de opdrachtgever de context uit de briefing expliciet wil.
+
+V1, in de bankparagraaf: "Die uw ambitie even ernstig neemt als uw cijfers, ook als de wereld verschuift, de regels veranderen en de technologie niet wacht."
+V4, als eigen regel na de scènes: "Ook als de wereld verschuift, de regels veranderen en de technologie niet wacht."
+V3, na "terwijl u bezig bent": "En het blijft daar, ook als de wereld verschuift, de regels veranderen en de technologie niet wacht."

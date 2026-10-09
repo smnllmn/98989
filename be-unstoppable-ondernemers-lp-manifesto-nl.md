@@ -1,6 +1,5 @@
 # LP "Be Unstoppable voor Ondernemers" — copy (NL)
 
-[ ] = optioneel
 
 # 1. Manifesto — shortlist
 
@@ -12,7 +11,7 @@ Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee do
 
 Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. U bent het al.
 
-Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers[, ook als de wereld verschuift, de regels veranderen en de technologie niet wacht]. En die bij een moeilijke vraag zoekt hoe het wél kan.
+Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers. En die bij een moeilijke vraag zoekt hoe het wél kan.
 
 Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
 
@@ -26,8 +25,6 @@ Belfius. Be Unstoppable.
 
 Ergens in België opent vandaag iemand de deuren. Voor de duizendste keer, of voor het eerst. Iemand anders neemt een eerste werknemer aan, en denkt al aan een tweede. Iemand pakt vanavond een eerste bestelling naar het buitenland in. En iemand neemt het bedrijf van thuis over, om er iets eigen van te maken.
 
-[Ook als de wereld verschuift, de regels veranderen en de technologie niet wacht.]
-
 Zo ziet Unstoppable eruit.
 
 Voor hen werken wij bij Belfius. En dus voor u. Met bankers die uw zaak kennen, uw plannen mee doorrekenen en even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
@@ -38,7 +35,7 @@ Belfius. Be Unstoppable.
 
 **Eerst waar u naartoe wil. Dan de cijfers.**
 
-Elke ondernemer heeft het: een beeld van waar het naartoe moet. Een tweede vestiging. Een eerste export. Een opvolger die klaarstaat. Soms staat het op papier. Meestal zit het gewoon in uw hoofd, terwijl u bezig bent. [En het blijft daar, ook als de wereld verschuift, de regels veranderen en de technologie niet wacht.]
+Elke ondernemer heeft het: een beeld van waar het naartoe moet. Een tweede vestiging. Een eerste export. Een opvolger die klaarstaat. Soms staat het op papier. Meestal zit het gewoon in uw hoofd, terwijl u bezig bent.
 
 Dat beeld willen wij eerst kennen. Want wie weet waar u naartoe wil, leest uw cijfers anders. Kan meerekenen. Kan ja zeggen op het juiste moment. En kan zoeken hoe het wél kan, als het moeilijk wordt.
 
