@@ -61,7 +61,7 @@ Een tweede zaal was pas het begin.
 
 Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films tegelijk, onder één dak. Daarna telt de familie gewoon verder. Bij 25 zalen krijgt het een nieuwe naam: Kinepolis. Vandaag hangt die naam boven 122 bioscopen, in Europa en Noord-Amerika.
 
-Lees hoe twee families de eerste megaplex ter wereld bouwden.
+Lees het verhaal
 
 ## Pairi Daiza
 
@@ -69,7 +69,7 @@ Hij beloofde een paradijs, midden in de modder.
 
 Eric Domb is 32 en jurist wanneer hij de vervallen abdij van Cambron ontdekt. Kort voor de opening leidt hij touroperators rond over een modderige werf en belooft hen het mooiste park ter wereld. In 1994 opent Paradisio, met 2.500 vogels. In 2025 kwamen er bijna 2,9 miljoen bezoekers.
 
-Lees waarom Paradisio een nieuwe naam nodig had.
+Lees het verhaal
 
 ## Odoo
 
@@ -77,7 +77,7 @@ Twee keer te groot voor zijn eigen naam.
 
 Fabien Pinckaers schrijft bedrijfssoftware voor kmo's, vanuit zijn studentenkamer in Louvain-la-Neuve. Het bedrijf telt één werknemer: hijzelf. De naam zegt het eerlijk: TinyERP. Twee namen later neemt Odoo het op tegen de grootste softwarehuizen ter wereld.
 
-Lees waarom Odoo zijn software open source maakte.
+Lees het verhaal
 
 # 3. Contact
 
