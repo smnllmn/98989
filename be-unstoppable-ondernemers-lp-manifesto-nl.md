@@ -67,7 +67,7 @@ Lees het verhaal
 
 Hij beloofde een paradijs, midden in de modder.
 
-Eric Domb is 32 en jurist wanneer hij de vervallen abdij van Cambron ontdekt. Kort voor de opening leidt hij touroperators rond over een modderige werf en belooft hen het mooiste park ter wereld. In 1994 opent Paradisio, met 2.500 vogels. In 2025 kwamen er bijna 2,9 miljoen bezoekers.
+Eric Domb is 32 en jurist wanneer hij de vervallen abdij van Cambron ontdekt. Kort voor de opening leidt hij touroperators rond over een modderige werf en belooft hen het mooiste park ter wereld. In 1994 opent Paradisio, met 2.500 vogels. Vandaag komen er bijna 2,9 miljoen bezoekers per jaar.
 
 Lees het verhaal
 
