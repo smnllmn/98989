@@ -22,18 +22,15 @@ Belfius. Be Unstoppable.
 
 ## V4
 
-**Voor wie vanmorgen weer begonnen is.**
+**Vanmorgen is er weer iemand begonnen.**
 
-Voor wie vandaag de deuren opent. Voor de duizendste keer, of voor het eerst.
-Voor wie een eerste werknemer aanneemt en meteen aan een tweede denkt.
-Voor wie vanavond een eerste bestelling naar het buitenland inpakt.
-Voor wie het bedrijf van thuis overneemt en er iets eigen van maakt.
+Ergens in België opent vandaag iemand de deuren. Voor de duizendste keer, of voor het eerst. Iemand anders neemt een eerste werknemer aan, en denkt al aan een tweede. Iemand pakt vanavond een eerste bestelling naar het buitenland in. En iemand neemt het bedrijf van thuis over, om er iets eigen van te maken.
 
 [Ook als de wereld verschuift, de regels veranderen en de technologie niet wacht.]
 
 Zo ziet Unstoppable eruit.
 
-Voor u werken wij bij Belfius. Met bankers die uw zaak kennen, uw plannen mee doorrekenen en even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
+Voor hen werken wij bij Belfius. En dus voor u. Met bankers die uw zaak kennen, uw plannen mee doorrekenen en even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
 
 Belfius. Be Unstoppable.
 
