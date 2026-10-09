@@ -3,7 +3,7 @@
 
 # 1. Manifesto — shortlist
 
-## V1
+## A
 
 **Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
 
@@ -19,19 +19,7 @@ Vertel ons gewoon wat u van plan bent.
 
 Belfius. Be Unstoppable.
 
-## V4
-
-**Vanmorgen is er weer iemand begonnen.**
-
-Ergens in België opent vandaag iemand de deuren. Voor de duizendste keer, of voor het eerst. Iemand anders neemt een eerste werknemer aan, en denkt al aan een tweede. Iemand pakt vanavond een eerste bestelling naar het buitenland in. En iemand neemt het bedrijf van thuis over, om er iets eigen van te maken.
-
-Zo ziet Unstoppable eruit.
-
-Voor hen werken wij bij Belfius. En dus voor u. Met bankers die uw zaak kennen, uw plannen mee doorrekenen en even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
-
-Belfius. Be Unstoppable.
-
-## V3
+## B
 
 **Eerst waar u naartoe wil. Dan de cijfers.**
 
@@ -44,6 +32,18 @@ Dat is voor ons Be Unstoppable: een ondernemer met een richting, en een bank die
 Daarom is dat onze eerste vraag. Bij uw eerste plan, en bij elk plan daarna.
 
 Waar wil u naartoe?
+
+Belfius. Be Unstoppable.
+
+## C
+
+**Vanmorgen is er weer iemand begonnen.**
+
+Ergens in België opent vandaag iemand de deuren. Voor de duizendste keer, of voor het eerst. Iemand anders neemt een eerste werknemer aan, en denkt al aan een tweede. Iemand pakt vanavond een eerste bestelling naar het buitenland in. En iemand neemt het bedrijf van thuis over, om er iets eigen van te maken.
+
+Zo ziet Unstoppable eruit.
+
+Voor hen werken wij bij Belfius. En dus voor u. Met bankers die uw zaak kennen, uw plannen mee doorrekenen en even ver vooruitkijken als u. Bij uw eerste stap. En bij elke stap daarna.
 
 Belfius. Be Unstoppable.
 
@@ -120,7 +120,7 @@ Voor een zaak die vandaag sterker staat. En er over twintig jaar nog staat.
 Belfius. Be Unstoppable.
 
 
-## Manifesto V2
+## Manifesto — eerdere versie (beslissen)
 
 **Makkelijk is het nooit geweest. Daar kiest u ook niet voor.**
 
@@ -136,7 +136,7 @@ Zo werken wij. Bij uw eerste beslissing. En bij elke beslissing daarna.
 
 Belfius. Be Unstoppable.
 
-## Manifesto V1 — origineel
+## Manifesto — eerdere versie van A (origineel)
 
 **Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
 
@@ -156,7 +156,7 @@ Dus, beste ondernemer: vertel ons waar u naartoe wil.
 
 Belfius. Be Unstoppable.
 
-## Manifesto V1 — korte tussenversie
+## Manifesto — eerdere versie van A (kort)
 
 **Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
 
