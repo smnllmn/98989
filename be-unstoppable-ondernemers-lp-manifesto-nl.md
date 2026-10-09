@@ -4,16 +4,32 @@
 
 # 1. Manifesto — shortlist
 
+## V1
+
+**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
+
+Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
+
+Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. U bent het al.
+
+Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers[, ook als de wereld verschuift, de regels veranderen en de technologie niet wacht]. En die bij een moeilijke vraag zoekt hoe het wél kan.
+
+Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
+
+Vertel ons gewoon wat u van plan bent.
+
+Belfius. Be Unstoppable.
+
 ## V4
 
 **Voor wie vanmorgen weer begonnen is.**
 
-Voor wie vandaag de deuren opent. Voor het eerst, of voor de duizendste keer.
+Voor wie vandaag de deuren opent. Voor de duizendste keer, of voor het eerst.
 Voor wie een eerste werknemer aanneemt en meteen aan een tweede denkt.
 Voor wie vanavond een eerste bestelling naar het buitenland inpakt.
 Voor wie het bedrijf van thuis overneemt en er iets eigen van maakt.
 
-U doet dit elke dag opnieuw. Met het volgende al in uw hoofd, nog voor het vorige af is. [Ook als de wereld verschuift, de regels veranderen en de technologie niet wacht.]
+Andere zaken, andere stappen. Dezelfde gewoonte: het volgende al in het hoofd, nog voor het vorige af is. [Ook als de wereld verschuift, de regels veranderen en de technologie niet wacht.]
 
 Zo ziet Unstoppable eruit.
 
@@ -33,23 +49,7 @@ Dat is voor ons Be Unstoppable: een ondernemer met een richting, en een bank die
 
 Daarom is dat onze eerste vraag. Bij uw eerste plan, en bij elk plan daarna.
 
-Waar wil u naartoe?
-
-Belfius. Be Unstoppable.
-
-## V1
-
-**Wat wij Unstoppable noemen, noemt u gewoon ondernemen.**
-
-Een idee dat u niet loslaat. Een plan dat blijft terugkomen tot u er iets mee doet. Niemand hoeft u dan te zeggen dat u moet doorgaan. U bent al vertrokken.
-
-Wij hebben daar een woord voor: Unstoppable. Niet als aanmoediging. Als vaststelling.
-
-Daar hoort een bank bij die meerekent in plaats van af te remmen. Die uw ambitie even ernstig neemt als uw cijfers[, ook als de wereld verschuift, de regels veranderen en de technologie niet wacht]. En die bij een moeilijke vraag zoekt hoe het wél kan.
-
-Dat is wat wij doen bij Belfius. Bij uw eerste stap. En bij elke stap daarna.
-
-Vertel ons gewoon wat u van plan bent.
+Waar wil u naartoe? Daar gaan wij voor.
 
 Belfius. Be Unstoppable.
 
