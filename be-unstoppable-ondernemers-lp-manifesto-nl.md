@@ -59,7 +59,7 @@ Elk van deze ondernemingen begon met één plan, en met iemand die het niet losl
 
 Een tweede zaal was pas het begin.
 
-Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films tegelijk, onder één dak. Daarna telt de familie gewoon verder. Bij 25 zalen krijgt het een nieuwe naam: Kinepolis. Vandaag hangt die naam boven 122 bioscopen, in Europa en Noord-Amerika.
+Eind jaren zestig splitst Albert Bert zijn buurtbioscoop in Harelbeke in twee zalen. Twee films tegelijk, onder één dak. Daarna gaat het hard. Bij 25 zalen krijgt het een nieuwe naam: Kinepolis. Vandaag hangt die naam boven 122 bioscopen, in Europa en Noord-Amerika.
 
 Lees het verhaal
 
