@@ -90,7 +90,7 @@ Een plan dat klaar is, of een zaak die pas draait.
 [Maak een afspraak met een startersadviseur]
 
 **U bent zelfstandige of leidt een kmo.**
-Een zaak die draait, en die u goed wil laten draaien. Of verder wil laten groeien.
+Een zaak die draait, en die u beter wil laten draaien.
 [Maak een afspraak met een Business Banker]
 
 **U leidt een grote onderneming.**
