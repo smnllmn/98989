@@ -83,7 +83,7 @@ Lees het verhaal
 
 **Vertel ons wat u van plan bent.**
 
-Kies wat het best bij u past. Zo komt u meteen bij de juiste mensen terecht.
+Kies wat bij u past. Dan beginnen we met de juiste vragen.
 
 **U start, of bent pas gestart.**
 Een plan dat klaar is, of een zaak die pas draait.
