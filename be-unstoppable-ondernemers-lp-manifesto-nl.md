@@ -73,7 +73,7 @@ Lees het verhaal
 
 ## Odoo
 
-Twee keer te groot voor zijn eigen naam.
+Tiny verovert de wereld.
 
 Fabien Pinckaers schrijft bedrijfssoftware voor kmo's, vanuit zijn studentenkamer in Louvain-la-Neuve. Het bedrijf telt één werknemer: hijzelf. De naam zegt het eerlijk: TinyERP. Twee namen later neemt Odoo het op tegen de grootste softwarehuizen ter wereld.
 
